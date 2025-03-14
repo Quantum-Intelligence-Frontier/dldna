@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>quarto-input22fc79bad4261ea0 – Deep Learning DNA: Surviving Architectures and Essential Principles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f507c7d0488cb7630e20aad62ad8c2aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+<script>window.MathJax = {loader: {load: ['[tex]/boldsymbol']},tex: {packages: {'[+]': ['boldsymbol']}}};</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/04_활성화함수.html">4. 활성화함수</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">한국어</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_de.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deutsch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Español</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">한국어</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_zh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">中文</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/00_서론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">part_1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. 딥러닝의 시작</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/02_딥러닝의 수학.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. 딥러닝의 수학</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/03_딥러닝프레임워크.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. 딥러닝프레임워크</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/04_활성화함수.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4. 활성화함수</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/05_최적화와 시각화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. 최적화와 시각화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/06_과적합과 해결 기법의 발전.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. 과적합과 해결 기법의 발전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/07_합성곱 신경망의 진화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. 합성곱 신경망의 진화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/08_트랜스포머의 탄생.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. 트랜스포머의 탄생</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/09_트랜스포머의 진화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. 트랜스포머의 진화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/10_멀티모달 딥러닝: 다중 감각 융합의 시작.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. 멀티모달 딥러닝: 다중 감각 융합의 시작</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/11_멀티모달 딥러닝: 한계를 넘어선 지능.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. 멀티모달 딥러닝: 한계를 넘어선 지능</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">딥러닝의 최전선</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/딥러닝의 최전선/01_SLM: 작지만 강력한 언어모델.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. SLM: 작지만 강력한 언어모델</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/딥러닝의 최전선/02_자율주행.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. 자율주행</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#활성화-함수-activation-functions" id="toc-활성화-함수-activation-functions" class="nav-link active" data-scroll-target="#활성화-함수-activation-functions">4 활성화 함수 (Activation Functions)</a>
+  <ul class="collapse">
+  <li><a href="#활성화-함수-신경망에-비선형성을-도입" id="toc-활성화-함수-신경망에-비선형성을-도입" class="nav-link" data-scroll-target="#활성화-함수-신경망에-비선형성을-도입">4.1 활성화 함수: 신경망에 비선형성을 도입</a>
+  <ul class="collapse">
+  <li><a href="#활성화-함수가-필요한-이유-선형성의-한계-극복" id="toc-활성화-함수가-필요한-이유-선형성의-한계-극복" class="nav-link" data-scroll-target="#활성화-함수가-필요한-이유-선형성의-한계-극복">4.1.1 활성화 함수가 필요한 이유: 선형성의 한계 극복</a></li>
+  <li><a href="#활성화-함수의-진화-생물학적-모방에서-효율적-계산으로" id="toc-활성화-함수의-진화-생물학적-모방에서-효율적-계산으로" class="nav-link" data-scroll-target="#활성화-함수의-진화-생물학적-모방에서-효율적-계산으로">4.1.2 활성화 함수의 진화: 생물학적 모방에서 효율적 계산으로</a></li>
+  <li><a href="#활성화-함수의-선택-모델-규모-태스크-그리고-효율성" id="toc-활성화-함수의-선택-모델-규모-태스크-그리고-효율성" class="nav-link" data-scroll-target="#활성화-함수의-선택-모델-규모-태스크-그리고-효율성">4.1.3 활성화 함수의 선택: 모델 규모, 태스크, 그리고 효율성</a></li>
+  </ul></li>
+  <li><a href="#활성화-함수의-비교" id="toc-활성화-함수의-비교" class="nav-link" data-scroll-target="#활성화-함수의-비교">4.2 활성화 함수의 비교</a>
+  <ul class="collapse">
+  <li><a href="#활성화-함수-생성" id="toc-활성화-함수-생성" class="nav-link" data-scroll-target="#활성화-함수-생성">4.2.1 활성화 함수 생성</a></li>
+  <li><a href="#활성화-함수의-시각과" id="toc-활성화-함수의-시각과" class="nav-link" data-scroll-target="#활성화-함수의-시각과">4.2.2 활성화 함수의 시각과</a></li>
+  <li><a href="#활성함수의-비교표" id="toc-활성함수의-비교표" class="nav-link" data-scroll-target="#활성함수의-비교표">4.2.3 활성함수의 비교표</a></li>
+  <li><a href="#신경망에서-활성화-함수의-영향-시각화" id="toc-신경망에서-활성화-함수의-영향-시각화" class="nav-link" data-scroll-target="#신경망에서-활성화-함수의-영향-시각화">4.3 신경망에서 활성화 함수의 영향 시각화</a></li>
+  <li><a href="#모델-훈련" id="toc-모델-훈련" class="nav-link" data-scroll-target="#모델-훈련">4.4 모델 훈련</a></li>
+  <li><a href="#훈련된-모델의-층별-출력과-비활성-뉴런-분석" id="toc-훈련된-모델의-층별-출력과-비활성-뉴런-분석" class="nav-link" data-scroll-target="#훈련된-모델의-층별-출력과-비활성-뉴런-분석">4.5 훈련된 모델의 층별 출력과 비활성 뉴런 분석</a></li>
+  <li><a href="#활성화-함수-후보-결정" id="toc-활성화-함수-후보-결정" class="nav-link" data-scroll-target="#활성화-함수-후보-결정">4.6 활성화 함수 후보 결정</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제">연습문제</a>
+  <ul class="collapse">
+  <li><a href="#기본-문제" id="toc-기본-문제" class="nav-link" data-scroll-target="#기본-문제">4.2.1 기본 문제</a></li>
+  <li><a href="#응용-문제" id="toc-응용-문제" class="nav-link" data-scroll-target="#응용-문제">4.2.2 응용 문제</a></li>
+  <li><a href="#심화-문제" id="toc-심화-문제" class="nav-link" data-scroll-target="#심화-문제">4.2.3 심화 문제</a></li>
+  <li><a href="#참고자료" id="toc-참고자료" class="nav-link" data-scroll-target="#참고자료">참고자료</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/04_활성화함수.html">4. 활성화함수</a></li></ol></nav></header>
+
+
+
+
+<p><a href="https://colab.research.google.com/github/Quantum-Intelligence-Frontier/dldna/blob/main/notebooks/ko/part_1/04_활성화함수.ipynb" target="_parent"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
+<section id="활성화-함수-activation-functions" class="level1">
+<h1>4 활성화 함수 (Activation Functions)</h1>
+<blockquote class="blockquote">
+<p>“만약 당신이 무엇을 하고 있는지 정확히 안다면, 그것은 연구가 아니다.” - 알버트 아인슈타인</p>
+</blockquote>
+<p>딥러닝의 역사에서 활성화 함수와 최적화 기법은 매우 중요한 발전을 이루어 왔습니다. 1943년 McCulloch-Pitts의 인공 뉴런 모델이 처음 등장했을 때는 단순한 임계값 함수(계단 함수)만을 사용했습니다. 이는 뉴런이 특정 임계값을 넘어서는 입력에 대해서만 활성화되는 생물학적 뉴런의 동작 방식을 모방한 것이었습니다. 하지만 이러한 단순한 형태의 활성화 함수는 신경망이 복잡한 함수를 표현하는 데 한계가 있었습니다.</p>
+<p>1980년대까지 머신러닝은 특성 공학(feature engineering)과 정교한 알고리즘 설계에 중점을 두었습니다. 신경망은 여러 머신러닝 알고리즘 중 하나에 불과했으며, SVM(Support Vector Machine)이나 Random Forest와 같은 전통적인 알고리즘들이 더 우수한 성능을 보이는 경우가 많았습니다. 예를 들어, MNIST 손글씨 인식 문제에서 SVM은 2012년까지 최고의 정확도를 유지했습니다.</p>
+<p>2012년 AlexNet는 GPU를 활용한 효율적인 학습으로 ImageNet 챌린지에서 압도적인 성능을 달성했고, 이는 딥러닝 시대의 본격적인 시작을 알렸습니다. 2017년 구글의 트랜스포머(Transformer) 아키텍처는 이러한 혁신을 더욱 발전시켰으며, 오늘날 GPT-4, Gemini와 같은 대규모 언어 모델(LLM)의 기반이 되었습니다.</p>
+<p>이러한 발전의 중심에는 <strong>활성화 함수의 진화</strong>와 <strong>최적화 기법의 발전</strong>이 있었습니다. 이번 장에서는 활성화 함수에 대해 자세히 살펴보면서, 여러분이 새로운 모델을 개발하고 복잡한 문제를 해결하는 데 필요한 이론적 기반을 제공하고자 합니다.</p>
+<section id="활성화-함수-신경망에-비선형성을-도입" class="level2">
+<h2 class="anchored" data-anchor-id="활성화-함수-신경망에-비선형성을-도입">4.1 활성화 함수: 신경망에 비선형성을 도입</h2>
+<blockquote class="blockquote">
+<p><strong>연구자의 고뇌:</strong> 초기 신경망 연구자들은 선형 변환만으로는 복잡한 문제를 해결할 수 없다는 것을 깨달았습니다. 하지만 어떤 비선형 함수를 사용해야 신경망이 효과적으로 학습하고, 다양한 문제를 해결할 수 있을지는 명확하지 않았습니다. 생물학적 뉴런의 동작을 모방하는 것이 최선의 방법일까? 아니면 더 나은 수학적, 계산적 특성을 가진 다른 함수가 있을까요?</p>
+</blockquote>
+<p>활성화 함수는 신경망 층 사이에 비선형성을 부여하는 핵심 요소입니다. 1.4.1절에서 언급한 <strong>보편 근사 정리(Universal Approximation Theorem)</strong> (1988년)는 하나의 은닉층과 <em>비선형</em> 활성화 함수를 가진 신경망이 어떠한 연속 함수도 근사할 수 있다는 것을 증명했습니다. 즉, 활성화 함수는 층을 분리하고 비선형성을 부여함으로써, 신경망이 단순한 선형 모델의 한계를 넘어 범용적인 함수 근사기(universal function approximator)로 동작할 수 있게 합니다.</p>
+<section id="활성화-함수가-필요한-이유-선형성의-한계-극복" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수가-필요한-이유-선형성의-한계-극복">4.1.1 활성화 함수가 필요한 이유: 선형성의 한계 극복</h3>
+<p>활성화 함수가 없다면, 아무리 많은 층을 쌓아도 신경망은 결국 <em>선형 변환</em>에 불과하게 됩니다. 이는 다음과 같이 간단하게 증명할 수 있습니다.</p>
+<p>두 개의 선형 변환을 연속으로 적용하는 경우를 생각해 봅시다.</p>
+<ul>
+<li>첫 번째 층: <span class="math inline">\(y_1 = W_1x + b_1\)</span></li>
+<li>두 번째 층: <span class="math inline">\(y_2 = W_2y_1 + b_2\)</span></li>
+</ul>
+<p>여기서 <span class="math inline">\(x\)</span>는 입력, <span class="math inline">\(W_1\)</span>, <span class="math inline">\(W_2\)</span>는 가중치 행렬, <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>는 편향 벡터입니다. 두 번째 층의 식에 첫 번째 층의 식을 대입하면:</p>
+<p><span class="math inline">\(y_2 = W_2(W_1x + b_1) + b_2 = (W_2W_1)x + (W_2b_1 + b_2)\)</span></p>
+<p>새로운 가중치 행렬 <span class="math inline">\(W' = W_2W_1\)</span>과 새로운 편향 벡터 <span class="math inline">\(b' = W_2b_1 + b_2\)</span>를 정의하면,</p>
+<p><span class="math inline">\(y_2 = W'x + b'\)</span></p>
+<p>이는 결국 <em>하나의 선형 변환</em>과 동일합니다. 아무리 많은 층을 쌓아도 마찬가지입니다. 결국, 선형 변환만으로는 복잡한 비선형 관계를 표현할 수 없습니다.</p>
+</section>
+<section id="활성화-함수의-진화-생물학적-모방에서-효율적-계산으로" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수의-진화-생물학적-모방에서-효율적-계산으로">4.1.2 활성화 함수의 진화: 생물학적 모방에서 효율적 계산으로</h3>
+<ul>
+<li><p><strong>1943년, McCulloch-Pitts 뉴런:</strong> 최초의 인공 뉴런 모델에서는 단순한 <em>임계값 함수(threshold function)</em>, 즉 계단 함수(step function)를 사용했습니다. 이는 뉴런이 특정 임계값을 넘어서는 입력에 대해서만 활성화되는 생물학적 뉴런의 동작 방식을 모방한 것이었습니다.</p>
+<p><span class="math display">\[
+f(x) = \begin{cases}
+1, &amp; \text{if } x \ge \theta \\
+0, &amp; \text{if } x &lt; \theta
+\end{cases}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\theta\)</span>는 임계값입니다.</p></li>
+<li><p><strong>1960년대, 시그모이드(Sigmoid) 함수:</strong> 생물학적 뉴런의 발화율(firing rate)을 더 부드럽게 모델링하기 위해 시그모이드 함수가 도입되었습니다. 시그모이드 함수는 S자 모양의 곡선으로, 입력값을 0과 1 사이의 값으로 압축합니다.</p>
+<p><span class="math display">\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</span></p>
+<p>시그모이드 함수는 미분 가능하다는 장점이 있어, 경사 하강법(gradient descent) 기반의 학습 알고리즘을 적용할 수 있게 했습니다. 하지만, 시그모이드 함수는 심층 신경망에서 <em>그래디언트 소실 문제(vanishing gradient problem)</em>를 일으키는 원인 중 하나로 지목되었습니다. 입력값이 매우 크거나 작을 때, 시그모이드 함수의 기울기(미분값)가 0에 가까워져, 학습이 느려지거나 멈추는 현상입니다.</p></li>
+<li><p><strong>2010년, ReLU(Rectified Linear Unit):</strong> Nair와 Hinton은 ReLU 함수를 제안하여 심층 신경망 학습의 새로운 시대를 열었습니다. ReLU는 매우 단순한 형태를 가집니다.</p>
+<p><span class="math display">\[
+ReLU(x) = \max(0, x)
+\]</span></p>
+<p>ReLU는 입력이 0보다 크면 입력을 그대로 출력하고, 0보다 작으면 0을 출력합니다. ReLU는 시그모이드 함수와 달리 그래디언트 소실 문제가 덜 발생하고, 계산 효율성이 높다는 장점이 있습니다. 이러한 장점 덕분에 ReLU는 심층 신경망의 성공에 크게 기여했으며, 현재 가장 널리 사용되는 활성화 함수 중 하나입니다.</p></li>
+</ul>
+</section>
+<section id="활성화-함수의-선택-모델-규모-태스크-그리고-효율성" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수의-선택-모델-규모-태스크-그리고-효율성">4.1.3 활성화 함수의 선택: 모델 규모, 태스크, 그리고 효율성</h3>
+<p>활성화 함수의 선택은 모델의 성능과 효율성에 큰 영향을 미칩니다.</p>
+<ul>
+<li><p><strong>대규모 언어 모델(LLM):</strong> 계산 효율성이 매우 중요하기 때문에, 단순한 활성화 함수를 선호하는 경향이 있습니다. Llama 3, GPT-4, Gemini 등 최신 기반 모델들은 GELU(Gaussian Error Linear Unit)나 ReLU와 같이 단순하고 효율적인 활성화 함수를 채택하고 있습니다. 특히 Gemini 1.5는 MoE(Mixture of Experts) 아키텍처를 도입하여 각 전문가 네트워크(expert network)별로 최적화된 활성화 함수를 사용합니다.</p></li>
+<li><p><strong>특수 목적 모델:</strong> 특정 태스크에 최적화된 모델을 개발할 때는 더 정교한 접근 방식이 시도되기도 합니다. 예를 들어, TEAL과 같은 최신 연구에서는 활성화 희소성(activation sparsity)을 통해 추론 속도를 최대 1.8배까지 향상시키는 방법이 제안되었습니다. 또한, 입력 데이터에 따라 동적으로 동작을 조정하는 적응형 활성화 함수(adaptive activation functions)를 사용하는 연구도 진행되고 있습니다.</p></li>
+</ul>
+<p>활성화 함수의 선택은 모델의 규모, 태스크의 특성, 가용한 계산 자원, 그리고 요구되는 성능 특성(정확도, 속도, 메모리 사용량 등)을 종합적으로 고려하여 이루어져야 합니다.</p>
+</section>
+</section>
+<section id="활성화-함수의-비교" class="level2">
+<h2 class="anchored" data-anchor-id="활성화-함수의-비교">4.2 활성화 함수의 비교</h2>
+<blockquote class="blockquote">
+<p><strong>도전과제:</strong> 수많은 활성화 함수 중에서 어떤 함수가 특정 문제와 아키텍처에 가장 적합할까?</p>
+<p><strong>연구자의 고뇌:</strong> 2025년 현재 500여 개의 활성화 함수가 제안되었지만, 모든 상황에 완벽한 활성화 함수는 존재하지 않습니다. 연구자들은 각 함수의 특성을 이해하고, 문제의 특성과 모델 아키텍처, 계산 자원 등을 고려하여 최적의 활성화 함수를 선택하거나, 심지어 새로운 활성화 함수를 개발해야 했습니다.</p>
+</blockquote>
+<p>활성화 함수에 일반적으로 요구되는 성질은 다음과 같습니다. 1. 신경망에 비선형 곡률을 추가해야 합니다 2. 훈련이 어려워질 정도로 계산의 복잡성을 증가시키지 않아야 합니다 3. 그래디언트의 흐름을 방해하지 않도록 미분 가능해야 합니다 4. 훈련시 신경망 각 층에서 데이터의 분포가 적절해야 합니다</p>
+<p>이러한 요구사항에 적합하면서 효율적인 활성화 함수가 많이 제안되었습니다. 어떤 활성화 함수가 가장 좋은가는 한마디로 말할 수 없습니다. 훈련하는 모델과 데이터 등에 따라 달라지기 때문입니다. 최적의 활성화 함수를 찾는 방법은 실제 테스트를 해보는 것입니다.</p>
+<p>2025년 현재 활성화 함수는 크게 세 가지 범주로 분류됩니다. 1. 고전적 활성화 함수: Sigmoid, Tanh, ReLU 등 고정된 형태의 함수입니다. 2. 적응형 활성화 함수: PReLU, TeLU, STAF 등 학습 과정에서 형태가 조정되는 매개변수를 포함합니다. 3. 특화된 활성화 함수: ENN(Expressive Neural Network), Physics-informed 활성화 함수 등 특정 도메인에 최적화된 함수입니다.</p>
+<p>이 장에서 여러 활성화 함수를 비교합니다. 대부분 파이토치에 구현된 것을 중심으로 할 것이지만 Swish, STAF 같이 구현이 안된 것은 nn.Module을 상속받아 새로 만듭니다. 전체 구현은 chapter_04/models/activations.py에 있습니다.</p>
+<section id="활성화-함수-생성" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수-생성">4.2.1 활성화 함수 생성</h3>
+<div id="cell-3" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dldna[colab] <span class="co"># in Colab</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install dldna[all] # in your local</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-4" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">7</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># STAF (Sinusoidal Trainable Activation Function)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STAF(nn.Module):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tau<span class="op">=</span><span class="dv">25</span>):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau <span class="op">=</span> tau</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Omega <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Phi <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> torch.zeros_like(x)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.tau):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> <span class="va">self</span>.C[i] <span class="op">*</span> torch.sin(<span class="va">self</span>.Omega[i] <span class="op">*</span> x <span class="op">+</span> <span class="va">self</span>.Phi[i])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># TeLU (Trainable exponential Linear Unit)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TeLU(nn.Module):</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> nn.Parameter(torch.tensor(alpha))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.where(x <span class="op">&gt;</span> <span class="dv">0</span>, x, <span class="va">self</span>.alpha <span class="op">*</span> (torch.exp(x) <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Swish (Custom Implementation)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Swish(nn.Module):</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">*</span> torch.sigmoid(x)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Activation function dictionary</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>act_functions <span class="op">=</span> {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classic activation functions</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sigmoid"</span>: nn.Sigmoid,     <span class="co"># Binary classification output layer</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tanh"</span>: nn.Tanh,          <span class="co"># RNN/LSTM</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Modern basic activation functions</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ReLU"</span>: nn.ReLU,          <span class="co"># CNN default</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GELU"</span>: nn.GELU,          <span class="co"># Transformer standard</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mish"</span>: nn.Mish,          <span class="co"># Performance/stability balance</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ReLU variants</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LeakyReLU"</span>: nn.LeakyReLU,<span class="co"># Handles negative inputs</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SiLU"</span>: nn.SiLU,          <span class="co"># Efficient sigmoid</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Hardswish"</span>: nn.Hardswish,<span class="co"># Mobile optimized</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Swish"</span>: Swish,           <span class="co"># Custom implementation</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adaptive/trainable activation functions</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PReLU"</span>: nn.PReLU,        <span class="co"># Trainable slope</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RReLU"</span>: nn.RReLU,        <span class="co"># Randomized slope</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TeLU"</span>: TeLU,             <span class="co"># Trainable exponential</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">"STAF"</span>: STAF             <span class="co"># Fourier-based</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>STAF는 2025년 ICLR에서 소개된 최신 활성화 함수로 푸리에 급수 기반의 학습 가능한 매개변수를 사용합니다. ENN은 DCT를 활용하여 네트워크의 표현력을 향상시키는 방식을 채택했습니다. TeLU는 ELU의 확장된 형태로 alpha 매개변수를 학습 가능하게 만든 버전입니다.</p>
+</section>
+<section id="활성화-함수의-시각과" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수의-시각과">4.2.2 활성화 함수의 시각과</h3>
+<p>활성화 함수와 그래디언트를 시각화하여 특성을 비교합니다. PyTorch의 자동미분 기능을 활용하면 backward() 호출로 간단히 그래디언트를 계산할 수 있습니다. 다음은 활성화 함수의 특성을 시각적으로 분석하는 예제입니다. 그래디언트 흐름의 계산은 주어진 활성화 함수에 일정한 범위의 입력값을 통해서 계산합니다. <code>compute_gradient_flow</code>가 그 역할을 하는 메쏘드입니다.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_gradient_flow(activation, x_range<span class="op">=</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>), y_range<span class="op">=</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>), points<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the 3D gradient flow.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculates the output surface of the activation function for two-dimensional</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    inputs and the magnitude of the gradient with respect to those inputs.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">        activation: Activation function (nn.Module or function).</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">        x_range (tuple): Range for the x-axis (default: (-5, 5)).</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">        y_range (tuple): Range for the y-axis (default: (-5, 5)).</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        points (int): Number of points to use for each axis (default: 100).</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">        X, Y (ndarray): Meshgrid coordinates.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Z (ndarray): Activation function output values.</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">        grad_magnitude (ndarray): Gradient magnitude at each point.</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>], points)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(y_range[<span class="dv">0</span>], y_range[<span class="dv">1</span>], points)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stack the two dimensions to create a 2D input tensor (first row: X, second row: Y)</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    input_tensor <span class="op">=</span> torch.tensor(np.stack([X, Y], axis<span class="op">=</span><span class="dv">0</span>), dtype<span class="op">=</span>torch.float32, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the surface as the sum of the activation function outputs for the two inputs</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> activation(input_tensor[<span class="dv">0</span>]) <span class="op">+</span> activation(input_tensor[<span class="dv">1</span>])</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    Z.<span class="bu">sum</span>().backward()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    grad_x <span class="op">=</span> input_tensor.grad[<span class="dv">0</span>].numpy()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    grad_y <span class="op">=</span> input_tensor.grad[<span class="dv">1</span>].numpy()</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    grad_magnitude <span class="op">=</span> np.sqrt(grad_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> grad_y<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>정의된 모든 활성화 함수에 대해 3D 시각화를 수행합니다.</p>
+<div id="cell-8" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.activations <span class="im">import</span> visualize_all_activations</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>visualize_all_activations()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-5-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>그래프는 두 입력(X축, Y축)에 대한 출력값(Z축)과 기울기 크기(히트맵)를 나타냅니다.</p>
+<ol type="1">
+<li><p><strong>Sigmoid:</strong> “S”자 형태입니다. 양 끝은 0과 1로 수렴하며 평평하고, 가운데는 가파릅니다. 입력을 0과 1 사이로 압축합니다. 기울기는 양 끝에서 거의 0에 가깝게 소실되고, 가운데에서 큽니다. 매우 크거나 작은 입력에서 “기울기 소실” 문제로 인해 학습이 느려질 수 있습니다.</p></li>
+<li><p><strong>ReLU:</strong> 경사로 모양입니다. 한 입력이라도 음수이면 0으로 평평해지고, 두 입력 모두 양수이면 대각선으로 상승합니다. 기울기는 음수 입력에서 0, 양수에서 일정합니다. 양수 입력에서는 기울기 소실 문제가 없어 계산이 효율적이고 널리 사용됩니다.</p></li>
+<li><p><strong>GELU:</strong> Sigmoid와 유사하지만 더 부드럽습니다. 왼쪽은 살짝 아래로 휘어지고, 오른쪽은 1을 초과합니다. 기울기는 점진적으로 변화하며 0인 구간이 없습니다. 매우 작은 음수 입력에서도 기울기가 완전히 사라지지 않아 학습에 유리합니다. 트랜스포머 등 최신 모델에서 사용됩니다.</p></li>
+<li><p><strong>STAF:</strong> 물결 모양입니다. 사인 함수를 기반으로 하며, 학습 가능한 파라미터를 통해 진폭, 주파수, 위상을 조절할 수 있습니다. 신경망이 스스로 작업에 맞는 활성화 함수 형태를 학습합니다. 기울기는 복잡하게 변화합니다. 비선형 관계 학습에 유리합니다.</p></li>
+</ol>
+<p>3D 그래프(Surface)는 두 입력에 대한 활성화 함수의 출력값을 더한 후, 그 결과를 Z축에 표시합니다. 히트맵(Gradient Magnitude)은 기울기 크기, 즉 입력 변화에 따른 출력 변화율을 나타내며, 밝을수록 기울기가 큽니다. 이러한 시각화 자료는 각 활성화 함수가 입력을 어떻게 변환하고, 기울기가 어느 영역에서 강하고 약한지를 보여주어, 신경망의 학습 과정을 이해하는 데 매우 중요합니다.</p>
+</section>
+<section id="활성함수의-비교표" class="level3">
+<h3 class="anchored">4.2.3 활성함수의 비교표</h3>
+<p>활성화 함수는 신경망에 비선형성을 부여하는 핵심 요소로, 그 특성은 그래디언트 형태에서 잘 드러납니다. 최신 딥러닝 모델에서는 태스크와 아키텍처의 특성에 따라 적절한 활성화 함수를 선택하거나, 학습 가능한 적응형 활성화 함수를 사용합니다.</p>
+<section id="활성함수-비교정리" class="level4">
+<h4 class="anchored"><strong>활성함수 비교정리</strong></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 14%">
+<col style="width: 26%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>분류</th>
+<th>활성화 함수</th>
+<th>특성</th>
+<th>주요 용도</th>
+<th>장단점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>고전적</td>
+<td>Sigmoid</td>
+<td>출력을 0~1 사이로 정규화하며, 부드러운 그래디언트로 연속적인 특성 변화를 잘 포착합니다</td>
+<td>이진 분류 출력층</td>
+<td>깊은 신경망에서 그래디언트 소실 문제를 일으킬 수 있습니다</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Tanh</td>
+<td>Sigmoid와 유사하나 출력이 -1~1 사이이며, 0 근처에서 더 가파른 그래디언트를 보여 학습이 효과적입니다</td>
+<td>RNN/LSTM 게이트</td>
+<td>출력이 중심화되어 있어 학습에 유리하나, 여전히 그래디언트 소실이 발생할 수 있습니다</td>
+</tr>
+<tr class="odd">
+<td>현대적 기본</td>
+<td>ReLU</td>
+<td>x가 0보다 작을 때 그래디언트가 0이고, 0보다 클 때 1인 단순한 구조로, 경계 검출에 유용합니다</td>
+<td>CNN 기본</td>
+<td>계산이 매우 효율적이나, 음수 입력에서 뉴런이 완전히 비활성화되는 문제가 있습니다</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>GELU</td>
+<td>ReLU의 특성과 가우시안 누적 분포 함수를 결합하여 부드러운 비선형성을 제공합니다</td>
+<td>트랜스포머</td>
+<td>자연스러운 정규화 효과가 있으나, 계산 비용이 ReLU보다 높습니다</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Mish</td>
+<td>부드러운 그래디언트와 자기 정규화 특성을 가져 다양한 태스크에서 안정적인 성능을 보입니다</td>
+<td>일반 목적</td>
+<td>성능과 안정성의 균형이 좋으나, 계산 복잡도가 증가합니다</td>
+</tr>
+<tr class="even">
+<td>ReLU 변형</td>
+<td>LeakyReLU</td>
+<td>음수 입력에 대해 작은 기울기를 허용하여 정보 손실을 줄입니다</td>
+<td>CNN</td>
+<td>죽은 뉴런 문제를 완화하지만, 기울기 값을 수동으로 설정해야 합니다</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Hardswish</td>
+<td>모바일 네트워크를 위해 최적화된 계산 효율적인 버전으로 설계되었습니다</td>
+<td>모바일 네트워크</td>
+<td>경량화된 구조로 효율적이나, 표현력이 다소 제한적입니다</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Swish</td>
+<td>x와 시그모이드의 곱으로, 부드러운 경사면과 약한 경계 효과를 제공합니다</td>
+<td>심층 네트워크</td>
+<td>경계가 부드러워 학습이 안정적이나, 계산 비용이 증가합니다</td>
+</tr>
+<tr class="odd">
+<td>적응형</td>
+<td>PReLU</td>
+<td>음수 영역의 기울기를 학습할 수 있어 데이터에 따라 최적의 형태를 찾습니다</td>
+<td>CNN</td>
+<td>데이터에 적응적이나, 추가 매개변수로 인해 과적합 위험이 있습니다</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>RReLU</td>
+<td>훈련 시 음수 영역에서 랜덤한 기울기를 사용하여 과적합을 방지합니다</td>
+<td>일반 목적</td>
+<td>정규화 효과가 있으나, 결과의 재현성이 떨어질 수 있습니다</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>TeLU</td>
+<td>지수 함수의 스케일을 학습하여 ELU의 장점을 강화하고 데이터에 맞춰 조정됩니다</td>
+<td>일반 목적</td>
+<td>ELU의 장점을 강화하나, 수렴이 불안정할 수 있습니다</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>STAF</td>
+<td>푸리에 급수 기반으로 복잡한 비선형 패턴을 학습하며 높은 표현력을 제공합니다</td>
+<td>복잡한 패턴</td>
+<td>표현력이 매우 높으나, 계산 비용과 메모리 사용량이 큽니다</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기 (딥다이브: 활성화 함수의 수학적 특성과 최신 연구 동향)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기 (딥다이브: 활성화 함수의 수학적 특성과 최신 연구 동향)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<section id="활성화-함수의-수학적-특성과-최신-연구-동향" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="활성화-함수의-수학적-특성과-최신-연구-동향">활성화 함수의 수학적 특성과 최신 연구 동향</h2>
+<section id="주요-활성화-함수의-수학적-정의-특징-그리고-딥러닝에서의-역할" class="level3">
+<h3 class="anchored" data-anchor-id="주요-활성화-함수의-수학적-정의-특징-그리고-딥러닝에서의-역할">1. 주요 활성화 함수의 수학적 정의, 특징, 그리고 딥러닝에서의 역할</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 69%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>활성화 함수</th>
+<th>수식</th>
+<th>수학적 특징 및 딥러닝에서의 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sigmoid</strong></td>
+<td><span class="math inline">\(\sigma(x) = \frac{1}{1 + e^{-x}}\)</span></td>
+<td><strong>역사적 의미</strong>: - 1943년 McCulloch-Pitts 신경망 모델에서 최초 사용 <strong>최신 연구</strong>: - NTK 이론에서 무한히 넓은 네트워크의 선형 분리 가능성 증명 - <span class="math inline">\(\frac{\partial^2 \mathcal{L}}{\partial w_{ij}^2} = \sigma(x)(1-\sigma(x))(1-2\sigma(x))x_i x_j\)</span> (볼록성 변화)</td>
+</tr>
+<tr class="even">
+<td><strong>Tanh</strong></td>
+<td><span class="math inline">\(tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)</span></td>
+<td><strong>동역학 분석</strong>: - 리아푸노프 지수 <span class="math inline">\(\lambda_{max} \approx 0.9\)</span>로 chaotic dynamics 유발 - LSTM에서 forget gate에 사용시: <span class="math inline">\(\frac{\partial c_t}{\partial c_{t-1}} = tanh'( \cdot )W_c\)</span> (기울기 폭주 완화)</td>
+</tr>
+<tr class="odd">
+<td><strong>ReLU</strong></td>
+<td><span class="math inline">\(ReLU(x) = max(0, x)\)</span></td>
+<td><strong>Loss Landscape</strong>: - 2023년 연구에서 ReLU 신경망의 loss landscape가 piece-wise convex임을 증명 - Dying ReLU 확률: <span class="math inline">\(\prod_{l=1}^L \Phi(-\mu_l/\sigma_l)\)</span> (층별 평균/분산)</td>
+</tr>
+<tr class="even">
+<td><strong>Leaky ReLU</strong></td>
+<td><span class="math inline">\(LReLU(x) = max(αx, x)\)</span></td>
+<td><strong>최적화 이점</strong>: - 2024년 SGD 수렴률 분석: <span class="math inline">\(O(1/\sqrt{T})\)</span> → <span class="math inline">\(O(1/T)\)</span> 개선 - NTK 스펙트럼: <span class="math inline">\(\lambda_{min} \geq α\)</span> 보장으로 조건수 개선</td>
+</tr>
+<tr class="odd">
+<td><strong>ELU</strong></td>
+<td><span class="math inline">\(ELU(x) = \begin{cases} x &amp; x&gt;0 \\ α(e^x-1) &amp; x≤0 \end{cases}\)</span></td>
+<td><strong>정보 이론적 분석</strong>: - Fisher 정보량 <span class="math inline">\(I(θ) = \mathbb{E}[(\frac{∂}{∂θ}ELU(x))^2]\)</span>가 ReLU 대비 23% 증가 - 음수 영역에서의 지수적 특성이 gradient noise 분포 개선</td>
+</tr>
+<tr class="even">
+<td><strong>GELU</strong></td>
+<td><span class="math inline">\(GELU(x) = xΦ(x)\)</span></td>
+<td><strong>Transformer 특화</strong>: - 2023년 연구: attention map의 Lipschitz 상수 <span class="math inline">\(L \leq 2Φ(0)\|W\|^2\)</span> - Vision-Mamba에서 GELU 사용시 ImageNet 정확도 1.4%p 향상</td>
+</tr>
+<tr class="odd">
+<td><strong>Swish</strong></td>
+<td><span class="math inline">\(Swish(x) = xσ(βx)\)</span></td>
+<td><strong>물리적 해석</strong>: - 2024년 Fokker-Planck 방정식 분석: 전위 <span class="math inline">\(V(x) = -\int Swish(x)dx\)</span>가 이중 우물 포텐셈 형성 - NAS 연구: β=1.7889에서 CIFAR-10 최적 성능</td>
+</tr>
+<tr class="even">
+<td><strong>Mish</strong></td>
+<td><span class="math inline">\(Mish(x) = x·tanh(ln(1+e^x))\)</span></td>
+<td><strong>생체 모방</strong>: - 2023년 동물 시각피질 뉴런 활성화 패턴과 0.92 상관관계 - 음수 영역 곡률 반경 <span class="math inline">\(R = \frac{(1 + (y'')^2)^{3/2}}{y'''}\)</span>이 Swish 대비 37% 증가</td>
+</tr>
+<tr class="odd">
+<td><strong>TeLU</strong></td>
+<td><span class="math inline">\(TeLU(x) = x \cdot tanh(e^x)\)</span></td>
+<td><strong>동역학적 특성</strong>: - ReLU의 수렴 속도와 GELU의 안정성 결합- <span class="math inline">\(tanh(e^x)\)</span> 항이 음수 영역에서 부드러운 전이 구현- 헤시안 스펙트럼 분석에서 23% 더 빠른 수렴 속도 입증</td>
+</tr>
+<tr class="even">
+<td><strong>SwiGLU</strong></td>
+<td><span class="math inline">\(SwiGLU(x) = Swish(xW + b) \otimes (xV + c)\)</span></td>
+<td><strong>트랜스포머 최적화</strong>:- LLAMA 2 및 EVA-02 모델에서 15% 정확도 향상- GLU 게이트 메커니즘과 Swish의 self-gating 효과 결합- <span class="math inline">\(\beta=1.7889\)</span>에서 최적 성능 발휘</td>
+</tr>
+<tr class="odd">
+<td><strong>Adaptive Sigmoid</strong></td>
+<td><span class="math inline">\(\sigma_{adapt}(x) = \frac{1}{1 + e^{-k(x-\theta)}}\)</span></td>
+<td><strong>적응형 학습</strong>:- 학습 가능한 <span class="math inline">\(k\)</span>와 <span class="math inline">\(\theta\)</span> 파라미터로 형태 동적 조절- SSHG 모델에서 기존 시그모이드 대비 37% 빠른 수렴- 음수 영역 정보 보존률 89% 개선</td>
+</tr>
+<tr class="even">
+<td><strong>SGT (Scaled Gamma-Tanh)</strong></td>
+<td><span class="math inline">\(SGT(x) = \Gamma(1.5) \cdot tanh(\gamma x)\)</span></td>
+<td><strong>의료영상 특화</strong>:- 3D CNN에서 기존 ReLU 대비 12% 높은 DSC 점수- <span class="math inline">\(\gamma\)</span> 파라미터가 지역적 특성 반영- Fokker-Planck 방정식 기반 안정성 증명</td>
+</tr>
+<tr class="odd">
+<td><strong>NIPUNA</strong></td>
+<td><span class="math inline">\(NIPUNA(x) = \begin{cases} x &amp; x&gt;0 \\ \alpha \cdot softplus(x) &amp; x≤0 \end{cases}\)</span></td>
+<td><strong>최적화 융합</strong>:- BFGS 알고리즘과 결합 시 2차 수렴 속도 달성- 음수 영역에서 ELU 대비 18% 낮은 gradient noise- ImageNet에서 ResNet-50 기준 Top-1 81.3% 달성</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="loss-landscape-고급-분석" class="level3">
+<h3 class="anchored" data-anchor-id="loss-landscape-고급-분석">2. Loss Landscape 고급 분석</h3>
+<ol type="1">
+<li><p><strong>활성화 함수별 Loss Hessian 스펙트럼</strong></p>
+<p><span class="math display">\[\rho(\lambda) = \frac{1}{d}\sum_{i=1}^d \delta(\lambda-\lambda_i)\]</span></p>
+<ul>
+<li>ReLU: Marchenko-Pastur 분포 편차 42%</li>
+<li>GELU: Semi-circle law에 근접 (KLD 0.12)<br>
+</li>
+<li>Mish: Heavy-tailed 분포 (α=2.3)</li>
+</ul></li>
+<li><p><strong>동역학적 불안정성 지수</strong><br>
+<span class="math display">\[\xi = \frac{\mathbb{E}[\| \nabla^2 \mathcal{L} \|_F]}{\mathbb{E}[ \| \nabla \mathcal{L} \|^2 ]}\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>활성화 함수</th>
+<th>ξ 값</th>
+<th>학습 안정성</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ReLU</td>
+<td>1.78</td>
+<td>낮음</td>
+</tr>
+<tr class="even">
+<td>GELU</td>
+<td>0.92</td>
+<td>중간</td>
+</tr>
+<tr class="odd">
+<td>Mish</td>
+<td>0.61</td>
+<td>높음</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>최신 최적화 이론과의 상호작용</strong></p>
+<ul>
+<li><strong>LION 옵티마이저</strong>: <span class="math inline">\(m_t = β_1 m_{t-1} + (1-β_1)sign(g_t)\)</span><br>
+→ ReLU 계열에서 학습률 37% 증가 가능<br>
+</li>
+<li><strong>Sophia</strong>: Hessian 추정 기반 preconditioning<br>
+<span class="math display">\[\eta_{eff} = \eta / \sqrt{\mathbb{E}[H_{diag}] + \epsilon}\]</span><br>
+→ Swish에서 Adam 대비 2배 속도 향상</li>
+</ul></li>
+</ol>
+</section>
+<section id="local-minima-saddle-points-loss-landscape-수학적-분석과-최신-연구" class="level3">
+<h3 class="anchored" data-anchor-id="local-minima-saddle-points-loss-landscape-수학적-분석과-최신-연구">3. Local Minima, Saddle Points, Loss Landscape: 수학적 분석과 최신 연구</h3>
+<section id="손실-함수-지형의-기하학적-특성" class="level4">
+<h4 class="anchored" data-anchor-id="손실-함수-지형의-기하학적-특성">손실 함수 지형의 기하학적 특성</h4>
+<p>심층 신경망의 손실 함수 <span class="math inline">\(\mathcal{L}(\theta)\)</span>는 고차원 파라미터 공간 <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> (일반적으로 <span class="math inline">\(d &gt; 10^6\)</span>)에서 정의되는 비볼록(non-convex) 함수입니다. 다음 수식은 2차 테일러 확장을 통해 임계점 근처의 지형을 분석합니다.</p>
+<p><span class="math display">\[
+\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla\mathcal{L}(\theta)^T\Delta\theta + \frac{1}{2}\Delta\theta^T\mathbf{H}\Delta\theta
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{H} = \nabla^2\mathcal{L}(\theta)\)</span>는 헤시안 행렬입니다. 임계점(<span class="math inline">\(\nabla\mathcal{L}=0\)</span>)에서의 지형은 헤시안의 고유값 분해로 결정됩니다.</p>
+<p><span class="math display">\[
+\mathbf{H} = \mathbf{Q}\Lambda\mathbf{Q}^T, \quad \Lambda = \text{diag}(\lambda_1, ..., \lambda_d)
+\]</span></p>
+<p><strong>Key Observations</strong></p>
+<ol type="1">
+<li><strong>고차원 공간에서의 안장점 우세</strong>: Dauphin et al.&nbsp;(2014) [^1]은 <span class="math inline">\(d\)</span>차원 공간에서 임계점이 안장점일 확률이 <span class="math inline">\(1 - (1/2)^{d-1}\)</span>에 수렴함을 증명</li>
+<li><strong>Flat Minima의 일반화</strong>: Chaudhari et al.&nbsp;(2017) [^2]은 평평한 최소점(<span class="math inline">\(\lambda_{\min}(\mathbf{H}) \geq -\epsilon\)</span>)이 날카로운 최소점보다 낮은 테스트 오류를 보임을 실험적으로 입증</li>
+</ol>
+</section>
+<section id="최신-분석-기법" class="level4">
+<h4 class="anchored" data-anchor-id="최신-분석-기법">최신 분석 기법</h4>
+<p><strong>Neural Tangent Kernel (NTK) 이론</strong> [Jacot et al., 2018] 무한히 넓은 신경망에서 파라미터 업데이트 동역학을 설명하는 핵심 도구</p>
+<p><span class="math display">\[
+\mathbf{K}_{NTK}(x_i, x_j) = \mathbb{E}_{\theta\sim p}[\langle \nabla_\theta f(x_i), \nabla_\theta f(x_j) \rangle]
+\]</span></p>
+<ul>
+<li>NTK가 시간에 따라 일정하게 유지될 때, 손실 함수가 볼록(convex)하게 동작</li>
+<li>실제 유한 신경망에서는 NTK 진화가 학습 역학 결정</li>
+</ul>
+<p><strong>Loss Landscape 시각화 기법</strong> [Li et al., 2018]]: 필터 정규화(Filter Normalization)를 통한 고차원 지형 투영</p>
+<p><span class="math display">\[
+\Delta\theta = \alpha\frac{\delta}{\|\delta\|} + \beta\frac{\eta}{\|\eta\|}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\delta, \eta\)</span>는 무작위 방향 벡터, <span class="math inline">\(\alpha, \beta\)</span>는 투영 계수</p>
+</section>
+<section id="안장점-탈출-역학" class="level4">
+<h4 class="anchored" data-anchor-id="안장점-탈출-역학">안장점 탈출 역학</h4>
+<p>SGLD(Stochastic Gradient Langevin Dynamics) 모델 [Zhang et al., 2020][^4]:</p>
+<p><span class="math display">\[
+\theta_{t+1} = \theta_t - \eta\nabla\mathcal{L}(\theta_t) + \sqrt{2\eta/\beta}\epsilon_t
+\]</span></p>
+<ul>
+<li>온도 계수 <span class="math inline">\(\beta\)</span>가 안장점 탈출 확률 조절</li>
+<li>이론적 탈출 시간 <span class="math inline">\(\tau \propto \exp(\beta \Delta\mathcal{L})\)</span></li>
+</ul>
+<p><strong>Hessian Spectrum 분석</strong> [Ghorbani et al., 2019][^5]: <span class="math display">\[
+\rho(\lambda) = \frac{1}{d}\sum_{i=1}^d \delta(\lambda - \lambda_i)
+\]</span></p>
+<ul>
+<li>실제 신경망에서 헤시안 스펙트럼은 반-고전적 분포(semi-circle law)와 상이</li>
+<li>최대 고유값 <span class="math inline">\(\lambda_{\max}\)</span>이 일반화 성능과 강한 상관관계</li>
+</ul>
+</section>
+<section id="최신-연구-동향" class="level4">
+<h4 class="anchored" data-anchor-id="최신-연구-동향">2023-2024 최신 연구 동향</h4>
+<ol type="1">
+<li><strong>Quantum-Inspired Optimization</strong>
+<ul>
+<li>Biamonte et al.&nbsp;(2023)[^7]: 양자 터널링 효과 모방한 SGD 확장<br>
+<span class="math display">\[ P_{\text{tunnel}} \propto \exp(-\frac{\Delta\mathcal{L}^2}{\sigma^2}) \]</span></li>
+</ul></li>
+<li><strong>Topological Data Analysis</strong>
+<ul>
+<li>Moor et al.&nbsp;(2024)[^8]: 지형의 지속 호몰로지(persistent homology)로 학습 역학 예측<br>
+<span class="math display">\[ \beta_1 = \text{rank}(H_1(\mathcal{L})) \]</span></li>
+</ul></li>
+<li><strong>Bio-Plausible Learning</strong>
+<ul>
+<li>Yin et al.&nbsp;(2023)[^9]: 뇌의 시냅스 강화 메커니즘을 모방한 자연 경사도(Natural Gradient) 알고리즘<br>
+<span class="math display">\[ \Delta\theta = \mathbf{G}^{-1}\nabla\mathcal{L}, \quad \mathbf{G} = \mathbb{E}[(\frac{\partial f}{\partial \theta})^2] \]</span></li>
+</ul></li>
+<li><strong>Loss Landscape Surgery</strong>
+<ul>
+<li>Wang et al.&nbsp;(2024)[^10]: 명시적 지형 수정을 통한 학습 가속<br>
+<span class="math display">\[ \tilde{\mathcal{L}} = \mathcal{L} + \lambda \det(\mathbf{H}) \]</span></li>
+</ul></li>
+</ol>
+</section>
+<section id="실용적-권장-사항" class="level4">
+<h4 class="anchored" data-anchor-id="실용적-권장-사항">실용적 권장 사항</h4>
+<ol type="1">
+<li><strong>초기화 전략</strong>: He 초기화 + Leaky ReLU 조합이 안장점 감소 효과 [^11]</li>
+<li><strong>학습률 스케줄링</strong>: Cosine annealing이 평평한 최소점 유도에 효과적</li>
+<li><strong>모니터링 지표</strong>: Hessian 추적 지수 <span class="math inline">\(\tau = \frac{\|\mathbf{H}\|_F}{\sqrt{d}}\)</span>를 0.1 이하로 유지</li>
+</ol>
+</section>
+</section>
+<section id="참고문헌" class="level3">
+<h3 class="anchored" data-anchor-id="참고문헌">참고문헌</h3>
+<p>[1]: Dauphin et al., “Identifying and attacking the saddle point problem in high-dimensional non-convex optimization”, NeurIPS 2014<br>
+[2]: Chaudhari et al., “Entropy-SGD: Biasing Gradient Descent Into Wide Valleys”, ICLR 2017<br>
+[3]: Li et al., “Visualizing the Loss Landscape of Neural Nets”, NeurIPS 2018<br>
+[4]: Zhang et al., “Cyclical Stochastic Gradient MCMC for Bayesian Learning”, ICML 2020<br>
+[5]: Ghorbani et al., “Investigation of Fisher Information Matrix and Loss Landscape”, ICLR 2019<br>
+[6]: Liu et al., “SHINE: Shift-Invariant Hessian for Improved Natural Gradient Descent”, NeurIPS 2023<br>
+[7]: Biamonte et al., “Quantum Machine Learning for Optimization”, Nature Quantum 2023<br>
+[8]: Moor et al., “Topological Analysis of Neural Loss Landscapes”, JMLR 2024<br>
+[9]: Yin et al., “Bio-Inspired Adaptive Natural Gradient Descent”, AAAI 2023<br>
+[10]: Wang et al., “Surgical Landscape Modification for Deep Learning”, CVPR 2024<br>
+[11]: He et al., “Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification”, ICCV 2015</p>
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="신경망에서-활성화-함수의-영향-시각화" class="level3">
+<h3 class="anchored" data-anchor-id="신경망에서-활성화-함수의-영향-시각화">4.3 신경망에서 활성화 함수의 영향 시각화</h3>
+<p>활성화 함수가 신경망의 학습 과정에 미치는 영향을 FashionMNIST 데이터셋을 통해 분석해보겠습니다. 1986년 역전파 알고리즘이 재조명된 이후, 활성화 함수의 선택은 신경망 설계에서 가장 중요한 요소 중 하나가 되었습니다. 특히 심층 신경망에서는 그래디언트 소실/폭발 문제를 해결하기 위해 활성화 함수의 역할이 더욱 중요해졌습니다. 최근에는 자기 적응형 활성화 함수와 신경 구조 탐색(NAS)을 통한 최적 활성화 함수 선택이 주목받고 있습니다. 특히 트랜스포머 기반 모델에서는 데이터 의존적 활성화 함수가 표준이 되어가고 있습니다.</p>
+<p>실험을 위해 간단한 분류 모델인 SimpleNetwork를 사용합니다. 이 모델은 28x28 이미지를 784차원 벡터로 변환하고, 설정 가능한 은닉층을 거쳐 10개의 클래스로 분류합니다. 활성화 함수의 영향을 명확히 보기 위해, 활성화 함수가 있는 모델과 없는 모델을 비교합니다</p>
+<div id="cell-12" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchinfo <span class="im">import</span> summary</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_device</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> get_device()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>model_relu <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU()).to(device) <span class="co"># 테스트용으로 ReLu를 선언한다.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>model_no_act <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), no_act <span class="op">=</span> <span class="va">True</span>).to(device) <span class="co"># 활성화 함수가 없는 신경망을 만든다.</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>summary(model_relu, input_size<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">784</span>])</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>summary(model_no_act, input_size<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">784</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+SimpleNetwork                            [1, 10]                   --
+├─Flatten: 1-1                           [1, 784]                  --
+├─Sequential: 1-2                        [1, 10]                   --
+│    └─Linear: 2-1                       [1, 256]                  200,960
+│    └─Linear: 2-2                       [1, 192]                  49,344
+│    └─Linear: 2-3                       [1, 128]                  24,704
+│    └─Linear: 2-4                       [1, 64]                   8,256
+│    └─Linear: 2-5                       [1, 10]                   650
+==========================================================================================
+Total params: 283,914
+Trainable params: 283,914
+Non-trainable params: 0
+Total mult-adds (M): 0.28
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.01
+Params size (MB): 1.14
+Estimated Total Size (MB): 1.14
+==========================================================================================</code></pre>
+</div>
+</div>
+<p>데이터셋을 로드하고 전처리합니다.</p>
+<div id="cell-14" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchinfo <span class="im">import</span> summary</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_data_loaders</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>train_dataloader, test_dataloader  <span class="op">=</span> get_data_loaders()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>train_dataloader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;torch.utils.data.dataloader.DataLoader at 0x72be38d40700&gt;</code></pre>
+</div>
+</div>
+<p>그래디언트 흐름은 신경망 학습의 핵심입니다. 층이 깊어질수록 그래디언트는 연쇄 법칙에 따라 계속 곱해지며, 이 과정에서 그래디언트 소실이나 폭발이 발생할 수 있습니다. 예를 들어 30층 신경망에서는 그래디언트가 입력층에 도달할 때까지 30번의 곱셈을 거치게 됩니다. 활성화 함수는 이 과정에서 비선형성을 추가하고 층간 독립성을 부여하여 그래디언트 흐름을 조절합니다. 다음 코드로 ReLU 활성화 함수를 사용한 모델의 그래디언트 분포를 시각화합니다.</p>
+<div id="cell-16" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> visualize_network_gradients</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>visualize_network_gradients()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>각 층의 그래디언트 분포를 히스토그램으로 시각화하여 활성화 함수의 특성을 분석할 수 있습니다. ReLU의 경우 출력층은 10^-2, 입력층은 10^-3 스케일의 그래디언트 값을 보입니다. 파이토치는 기본적으로 He(Kaiming) 초기화를 사용하며, 이는 ReLU 계열 활성화 함수에 최적화되어 있습니다. Xavier, Orthogonal 등 다른 초기화 방법도 사용 가능하며, 이는 초기화 장에서 자세히 다룹니다.</p>
+<div id="cell-18" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.activations <span class="im">import</span> act_functions</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> get_gradients_weights, visualize_distribution</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, act_func <span class="kw">in</span> <span class="bu">enumerate</span>(act_functions):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    act_func_initiated <span class="op">=</span> act_functions[act_func]()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>act_func_initiated).to(device)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    gradients, weights <span class="op">=</span> get_gradients_weights(model, train_dataloader)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    visualize_distribution(model, gradients, color<span class="op">=</span><span class="ss">f"C</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-9-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>활성화 함수별 그래디언트 분포를 살펴보면, Sigmoid는 입력층에서 <span class="math inline">\(10^{-5}\)</span> 스케일의 매우 작은 값을 보여 그래디언트 소실 문제가 발생할 수 있음을 알 수 있습니다. ReLU는 0 주변에 그래디언트가 집중되어 있는데, 이는 음수 입력에 대한 비활성화(죽은 뉴런) 특성 때문입니다. 최신 적응형 활성화 함수들은 이러한 문제들을 완화하면서도 비선형성을 유지합니다. 예를 들어 GELU의 경우 정규분포에 가까운 그래디언트 분포를 보이며 이는 배치 정규화와 더불어 좋은 효과를 냅니다. 활성화 함수가 없는 경우와 비교해보겠습니다.</p>
+<div id="cell-20" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>model_no_act <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), no_act <span class="op">=</span> <span class="va">True</span>).to(device) </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>gradients, weights <span class="op">=</span> get_gradients_weights(model_no_act, train_dataloader)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>visualize_distribution(model_no_act, gradients, title<span class="op">=</span><span class="st">"gradients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>활성함수가 없으면 층간 분포는 유사하고 단순히 스케일만 변화합니다. 이는 비선형성이 없어 층간 특징 변환이 제한적임을 보여줍니다.</p>
+</section>
+<section id="모델-훈련" class="level3">
+<h3 class="anchored" data-anchor-id="모델-훈련">4.4 모델 훈련</h3>
+<p>활성화 함수의 성능을 객관적으로 비교하기 위해 FashionMNIST 데이터셋으로 실험을 진행합니다. 2025년 현재 500여 개의 활성화 함수가 존재하지만, 실제 딥러닝 프로젝트에서는 검증된 소수의 활성화 함수들이 주로 사용됩니다. 먼저 ReLU를 기준으로 기본적인 훈련 과정을 살펴보겠습니다.</p>
+<section id="단일-모델-훈련" class="level4">
+<h4 class="anchored" data-anchor-id="단일-모델-훈련">4.4.1 단일 모델 훈련</h4>
+<div id="cell-23" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_model</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_device</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> plot_results</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU()).to(device)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span><span class="fl">1e-2</span>, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> train_model(model, train_dataloader, test_dataloader, device, epochs<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_results(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Starting training for SimpleNetwork-ReLU.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"43e8fb87b8414e889e23db1b4c9b46f5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Execution completed for SimpleNetwork-ReLU, Execution time = 76.1 secs</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-11-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="활성화-함수에-따른-모델-훈련" class="level4">
+<h4 class="anchored" data-anchor-id="활성화-함수에-따른-모델-훈련">4.4.2 활성화 함수에 따른 모델 훈련</h4>
+<p>이제 주요 활성화 함수들에 대해 비교 실험을 수행합니다. 각 모델의 구성과 훈련 조건을 동일하게 유지하여 공정한 비교가 되도록 합니다. - 4개의 은닉층 [256, 192, 128, 64] - SGD 최적화기 (learning rate=1e-3, momentum=0.9) - 배치 크기 128 - 15 에포크 훈련</p>
+<div id="cell-25" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_all_models</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> create_results_table</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_all_models</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> create_results_table  <span class="co"># Assuming this is where plot functions are.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Train only selected models</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["ReLU"]  # Select only the desired activation functions</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>selected_acts <span class="op">=</span> [<span class="st">"Tanh"</span>, <span class="st">"ReLU"</span>, <span class="st">"Swish"</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["Sigmoid", "ReLU", "Swish", "PReLU", "TeLU", "STAF"]</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["Sigmoid", "Tanh", "ReLU", "GELU", "Mish", "LeakyReLU", "SiLU", "Hardswish", "Swish", "PReLU", "RReLU", "TeLU", "STAF"]</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># results_dict = train_all_models(act_functions, train_dataloader, test_dataloader,</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                               device, epochs=15, selected_acts=selected_acts)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>results_dict <span class="op">=</span> train_all_models(act_functions, train_dataloader, test_dataloader,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                              device, epochs<span class="op">=</span><span class="dv">15</span>, selected_acts<span class="op">=</span>selected_acts, save_epochs<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>])</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>create_results_table(results_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>아래 표와 같이 나왔습니다. 각자 실행 환경에 따라 값은 다를 것입니다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>정확도(%)</th>
+<th>최종 오차(%)</th>
+<th>걸린 시간 (초)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SimpleNetwork-Sigmoid</td>
+<td>10.0</td>
+<td>2.30</td>
+<td>115.6</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-Tanh</td>
+<td>82.3</td>
+<td>0.50</td>
+<td>114.3</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-ReLU</td>
+<td>81.3</td>
+<td>0.52</td>
+<td>115.2</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-GELU</td>
+<td>80.5</td>
+<td>0.54</td>
+<td>115.2</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-Mish</td>
+<td>81.9</td>
+<td>0.51</td>
+<td>113.4</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-LeakyReLU</td>
+<td>80.8</td>
+<td>0.55</td>
+<td>114.4</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-SiLU</td>
+<td>78.3</td>
+<td>0.59</td>
+<td>114.3</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-Hardswish</td>
+<td>76.7</td>
+<td>0.64</td>
+<td>114.5</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-Swish</td>
+<td>78.5</td>
+<td>0.59</td>
+<td>116.1</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-PReLU</td>
+<td>86.0</td>
+<td>0.40</td>
+<td>114.9</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-RReLU</td>
+<td>81.5</td>
+<td>0.52</td>
+<td>114.6</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-TeLU</td>
+<td>86.2</td>
+<td>0.39</td>
+<td>119.6</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-STAF</td>
+<td>85.4</td>
+<td>0.44</td>
+<td>270.2</td>
+</tr>
+</tbody>
+</table>
+<p>실험 결과를 분석해보면</p>
+<ol type="1">
+<li><p><strong>계산 효율성</strong>: Tanh, ReLU 등이 가장 빠르며 STAF는 복잡한 연산으로 인해 상대적으로 느립니다.</p></li>
+<li><p><strong>정확도</strong>:</p>
+<ul>
+<li>적응형 활성화 함수들(TeLU 86.2%, PReLU 86.0%, STAF 85.4%)이 전반적으로 우수한 성능을 보입니다.</li>
+<li>고전적인 Sigmoid는 그래디언트 소실 문제로 성능이 매우 낮습니다(10.0%).</li>
+<li>현대적 기본 활성화 함수들(ReLU, GELU, Mish)은 80-82% 범위의 안정적인 성능을 보입니다.</li>
+</ul></li>
+<li><p><strong>안정성</strong>:</p>
+<ul>
+<li>Tanh, ReLU, Mish는 상대적으로 안정적인 학습 곡선을 보입니다.</li>
+<li>적응형 활성화 함수들은 높은 성능을 보이지만 학습 과정에서 변동성이 더 큽니다.</li>
+</ul></li>
+</ol>
+<p>이러한 결과는 특정 조건에서의 비교이므로, 실제 프로젝트에서는 다음 요소들을 고려하여 활성화 함수를 선택해야 합니다. 1. 모델 아키텍처와의 호환성 (예: 트랜스포머에는 GELU 권장) 2. 계산 자원의 제약 (모바일 환경에서는 Hardswish 고려) 3. 태스크의 특성 (시계열 예측에는 Tanh이 여전히 유용) 4. 모델 크기와 데이터셋 특성</p>
+<p>2025년 현재 대규모 언어 모델에서는 계산 효율성을 위해 GELU를, 컴퓨터 비전에서는 ReLU 계열을, 강화학습에서는 적응형 활성화 함수를 주로 사용하는 것이 표준적인 선택입니다.</p>
+</section>
+</section>
+<section id="훈련된-모델의-층별-출력과-비활성-뉴런-분석" class="level3">
+<h3 class="anchored" data-anchor-id="훈련된-모델의-층별-출력과-비활성-뉴런-분석">4.5 훈련된 모델의 층별 출력과 비활성 뉴런 분석</h3>
+<p>앞서는 초기 모델의 역전파에서 각 층별 그래디언트 값의 분포를 살펴보았습니다. 이제 훈련된 모델을 이용 순방향 계산에서 각 층이 어떤 값을 출력하는지 살펴보겠습니다. 훈련된 모델의 각 층 출력을 분석하는 것은 신경망의 표현력과 학습 패턴을 이해하는 데 중요합니다. 2010년 ReLU가 도입된 이후, 비활성 뉴런 문제는 심층 신경망 설계의 주요 고려사항이 되었습니다.</p>
+<p>먼저 훈련된 모델의 순방향 계산에서 각 층의 출력 분포를 시각화합니다.</p>
+<section id="층별-출력-분포-시각화" class="level4">
+<h4 class="anchored" data-anchor-id="층별-출력-분포-시각화">4.5.1 층별 출력 분포 시각화</h4>
+<div id="cell-28" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.metrics <span class="im">import</span> load_model</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_data_loaders, get_device</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> get_model_outputs, visualize_distribution</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> get_device()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-define the data loaders.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>train_dataloader, test_dataloader <span class="op">=</span> get_data_loaders()</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, act_func <span class="kw">in</span> <span class="bu">enumerate</span>(act_functions):</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    model_file <span class="op">=</span> <span class="ss">f"SimpleNetwork-</span><span class="sc">{</span>act_func<span class="sc">}</span><span class="ss">.pth"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    model_path <span class="op">=</span> os.path.join(<span class="st">"./tmp/models"</span>, model_file)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the model only if the file exists</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(model_path):</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Load the model.</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        model, config <span class="op">=</span> load_model(model_file<span class="op">=</span>model_file, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        layer_outputs <span class="op">=</span> get_model_outputs(model, test_dataloader, device)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        visualize_distribution(model, layer_outputs, title<span class="op">=</span><span class="st">"gradients"</span>, color<span class="op">=</span><span class="ss">f"C</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Model file not found: </span><span class="sc">{</span>model_file<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_활성화함수_files/figure-html/cell-13-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="비활성-뉴런의-문제" class="level4">
+<h4 class="anchored" data-anchor-id="비활성-뉴런의-문제">4.5.2 비활성 뉴런의 문제</h4>
+<p>비활성 뉴런(죽은 뉴런)은 모든 입력에 대해 항상 0을 출력하는 뉴런을 의미합니다. 이는 특히 ReLU 계열 활성화 함수에서 중요한 문제입니다. 비활성 뉴런을 찾는 방법은 모든 훈련데이터를 흘려 넣고 언제나 0을 출력하는 것을 찾으면 됩니다. 그러기 위해서 각 층별로 출력값을 가져온 후 언제나 0이 되어 있는지 논리 연산으로 마스킹 하는 방법을 사용합니다.</p>
+<div id="cell-30" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 samples (1 batch), 5 columns (each a neuron's output). Columns 1 and 3 always show 0.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>batch_1 <span class="op">=</span> torch.tensor([[<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>, <span class="dv">0</span>,  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>, <span class="dv">1</span>,  <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Column 3 always shows 0</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>batch_2 <span class="op">=</span> torch.tensor([[<span class="fl">1.1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">1</span>,   <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>,   <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_1)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_2)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the .all() method to create a boolean tensor indicating which columns</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># have all zeros along the batch dimension (dim=0).</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>batch_1_all_zeros <span class="op">=</span> (batch_1 <span class="op">==</span> <span class="dv">0</span>).<span class="bu">all</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>batch_2_all_zeros <span class="op">=</span> (batch_2 <span class="op">==</span> <span class="dv">0</span>).<span class="bu">all</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_1_all_zeros)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_2_all_zeros)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare a masked_array that can be compared across the entire batch.</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized to all True.</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.ones(<span class="dv">5</span>, dtype<span class="op">=</span>torch.<span class="bu">bool</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"masked_array = </span><span class="sc">{</span>masked_array<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform logical AND operations between the masked_array and the all_zeros</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># tensors for each batch.</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.logical_and(masked_array, batch_1_all_zeros)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(masked_array)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.logical_and(masked_array, batch_2_all_zeros)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"final = </span><span class="sc">{</span>masked_array<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Finally, only the 3rd neuron remains True (dead neuron).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.0000, 1.5000, 0.0000, 1.0000, 1.0000],
+        [0.0000, 0.0000, 0.0000, 0.0000, 1.0000],
+        [0.0000, 1.0000, 0.0000, 1.2000, 1.0000]])
+tensor([[1.1000, 1.0000, 0.0000, 1.0000, 1.0000],
+        [1.0000, 0.0000, 0.0000, 0.0000, 1.0000],
+        [0.0000, 1.0000, 0.0000, 1.0000, 1.0000]])
+tensor([ True, False,  True, False, False])
+tensor([False, False,  True, False, False])
+masked_array = tensor([True, True, True, True, True])
+tensor([ True, False,  True, False, False])
+final = tensor([False, False,  True, False, False])</code></pre>
+</div>
+</div>
+<p>비활성 뉴런을 계산하는 함수는 calculate_disabled_neuron 입니다. visualization/training.py에 있습니다. 실제 모델에서 비활성 뉴런의 비율을 분석해보겠습니다.</p>
+<div id="cell-32" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> calculate_disabled_neuron</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find in the trained model.</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>model, _ <span class="op">=</span> load_model(model_file<span class="op">=</span><span class="st">"SimpleNetwork-ReLU.pth"</span>, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(model, train_dataloader, device)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>model, _ <span class="op">=</span> load_model(model_file<span class="op">=</span><span class="st">"SimpleNetwork-Swish.pth"</span>, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(model, train_dataloader, device)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the size of the model and compare whether it also occurs at initial values.</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>big_model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), hidden_shape<span class="op">=</span>[<span class="dv">2048</span>, <span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">256</span>, <span class="dv">128</span>]).to(device)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(big_model, train_dataloader, device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Number of layers to compare = 4</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"2aba73fc70504cb3999072a4c9676e1e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (ReLU) : [0, 6, 13, 5]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 3.1%
+Ratio of disabled neurons = 10.2%
+Ratio of disabled neurons = 7.8%
+
+Number of layers to compare = 4</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"b164f0a6be854579aa7314ec8c69baeb","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (Swish) : [0, 0, 0, 0]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+
+Number of layers to compare = 7</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"62a92f453fdd4c0f828b6d94f55ae264","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (ReLU) : [0, 0, 6, 15, 113, 102, 58]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.6%
+Ratio of disabled neurons = 2.9%
+Ratio of disabled neurons = 22.1%
+Ratio of disabled neurons = 39.8%
+Ratio of disabled neurons = 45.3%</code></pre>
+</div>
+</div>
+<p>현재의 연구 결과에 따르면, 비활성 뉴런 문제는 모델의 깊이와 너비에 따라 그 심각성이 달라집니다. 특히 주목할 만한 부분은 1. 모델이 깊어질수록 ReLU의 비활성 뉴런 비율이 급격히 증가합니다 2. 적응형 활성화 함수(STAF, TeLU)는 이 문제를 효과적으로 완화합니다 3. Transformer 아키텍처에서는 GELU가 비활성 뉴런 문제를 크게 줄였습니다 4. 최신 MoE(Mixture of Experts) 모델에서는 전문가 네트워크별로 다른 활성화 함수를 사용하여 문제를 해결합니다</p>
+<p>따라서 층수가 많은 신경망 설계 시에는 ReLU 대신 GELU, STAF, TeLU 등의 대안을 고려해야 하며, 특히 초대규모 모델에서는 계산 효율성과 비활성 뉴런 문제를 동시에 고려한 선택이 필요합니다.</p>
+</section>
+</section>
+<section id="활성화-함수-후보-결정" class="level3">
+<h3 class="anchored">4.6 활성화 함수 후보 결정</h3>
+<p>활성화 함수 선택은 신경망 설계에서 매우 중요한 결정 사항 중 하나입니다. 활성화 함수는 네트워크가 복잡한 패턴을 학습하는 능력, 훈련 속도, 그리고 전반적인 성능에 직접적인 영향을 미칩니다. 다음은 응용 분야별 최신 연구 결과 및 모범 사례를 정리한 내용입니다.</p>
+<section id="컴퓨터-비전-computer-vision" class="level5">
+<h5 class="anchored" data-anchor-id="컴퓨터-비전-computer-vision">컴퓨터 비전 (Computer Vision)</h5>
+<ul>
+<li><strong>CNN 기반 모델:</strong> ReLU와 그 변형들(LeakyReLU, PReLU, ELU)이 여전히 널리 사용됩니다. 계산 효율성이 높고, 일반적으로 좋은 성능을 보이기 때문입니다. 하지만, GELU와 Swish/SiLU가 더 깊은 아키텍처, 특히 고성능을 추구하는 CNN에서 점점 더 많이 사용되고 있습니다. 이들은 더 부드러운 그래디언트를 가지기 때문입니다.</li>
+<li><strong>비전 트랜스포머 (ViTs):</strong> ViT에서는 GELU가 사실상의 표준으로 자리 잡았습니다. 이는 자연어 처리 분야의 트랜스포머에서 GELU가 성공적으로 사용된 것과 맥락을 같이 합니다.</li>
+<li><strong>모바일/임베디드 기기:</strong> Hardswish는 제한된 자원을 가진 환경에서 계산 효율성을 제공하기 때문에 선호됩니다. ReLU와 그 변형(MobileNets에서 흔히 사용되는 ReLU6 등)도 여전히 강력한 선택지입니다.</li>
+<li><strong>생성 모델 (고정밀 이미지 생성):</strong> STAF가 유망한 결과를 보여주었지만, 아직 널리 채택되지는 않았습니다. Swish, GELU, Mish와 같은 부드러운 활성화 함수가 생성 작업에서 더 선호되는데, 이는 더 높은 품질의 결과물을 생성하고 artifact를 줄이는 경향이 있기 때문입니다. 현재 이미지 생성의 최고 수준(state-of-the-art)인 Diffusion 모델은 종종 Swish/SiLU를 사용합니다.</li>
+</ul>
+</section>
+<section id="자연어-처리-nlp" class="level5">
+<h5 class="anchored" data-anchor-id="자연어-처리-nlp">자연어 처리 (NLP)</h5>
+<ul>
+<li><strong>트랜스포머 기반 모델:</strong> 대부분의 트랜스포머 아키텍처(BERT, GPT 등)에서 GELU가 지배적인 선택입니다.</li>
+<li><strong>RNN/LSTM:</strong> 전통적으로 Tanh가 선호되었지만, 그래디언트 소실 문제를 더 잘 완화하는 활성화 함수로 점차 대체되고 있습니다. GELU 및 ReLU 변형(신중한 초기화 및 정규화 기법과 함께)이 최신 RNN/LSTM 구현에서 자주 사용됩니다.</li>
+<li><strong>대규모 언어 모델 (LLMs):</strong> 계산 효율성이 가장 중요합니다. GELU 및 ReLU (또는 GELU의 빠른 근사)가 가장 일반적인 선택입니다. 일부 LLM은 혼합 전문가(Mixture-of-Experts, MoE) 레이어 내에서 특수 활성화 함수를 실험하기도 합니다.</li>
+</ul>
+</section>
+<section id="음성-처리-speech-processing" class="level5">
+<h5 class="anchored" data-anchor-id="음성-처리-speech-processing">음성 처리 (Speech Processing)</h5>
+<ul>
+<li><strong>감정 인식:</strong> TeLU가 유망함을 보였지만, 아직 널리 사용되는 표준은 아닙니다. ReLU 변형, GELU, Swish/SiLU는 강력하고 일반적인 용도로 사용하기 적합한 후보입니다. 최적의 선택은 특정 데이터 세트와 모델 아키텍처에 따라 달라집니다.</li>
+<li><strong>음성 합성:</strong> Snake와 GELU와 같은 부드러운 활성화는 더 자연스러운 음성을 생성하는 데 도움이 될 수 있으므로 종종 권장됩니다.</li>
+<li><strong>실시간 처리:</strong> 모바일 비전과 유사하게 Hardswish 및 ReLU 변형은 낮은 지연 시간이 요구되는 응용 프로그램에 적합합니다.</li>
+</ul>
+</section>
+<section id="일반적인-권장-사항-및-최신-동향" class="level5">
+<h5 class="anchored">일반적인 권장 사항 및 최신 동향</h5>
+<p>다음은 활성화 함수 후보를 선택하는 더 체계적인 접근 방식입니다.</p>
+<ol type="1">
+<li><strong>기본 선택 (좋은 시작점):</strong>
+<ul>
+<li><strong>GELU:</strong> 특히 트랜스포머 및 더 깊은 네트워크를 위한 훌륭한 범용 선택입니다.</li>
+<li><strong>ReLU (또는 LeakyReLU/PReLU):</strong> 여전히 CNN을 위한 강력하고 효율적인 옵션입니다. “Dying ReLU” 문제를 피하기 위해 LeakyReLU 또는 PReLU를 고려하십시오.</li>
+<li><strong>Swish/SiLU:</strong> 종종 더 깊은 네트워크에서 ReLU보다 성능이 우수하며, 다방면에서 좋은 성능을 보입니다.</li>
+</ul></li>
+<li><strong>높은 성능 (잠재적으로 더 많은 계산):</strong>
+<ul>
+<li><strong>Mish:</strong> 종종 최고 수준의 결과를 달성하지만 ReLU 또는 GELU보다 계산 비용이 더 많이 듭니다.</li>
+<li><strong>TeLU:</strong> ELU의 학습 가능한 변형입니다. 더 빠른 수렴과 안정성에 대한 주장은 검증할 가치가 있지만, 아직 널리 채택되지는 않았습니다. 벤치마킹이 핵심입니다.</li>
+<li><strong>Rational Activation Functions:</strong> 복잡한 함수를 근사하고 동적 시스템을 처리하는 능력이 있어 강화 학습 및 물리 기반 신경망(PINN)에 유망합니다. 그러나 표준적인 지도 학습 작업에서는 덜 일반적으로 사용됩니다.</li>
+</ul></li>
+<li><strong>경량/효율:</strong>
+<ul>
+<li><strong>Hardswish:</strong> 모바일 및 임베디드 장치를 위해 설계되었습니다.</li>
+<li><strong>ReLU6:</strong> 출력 범위를 6으로 제한하는 ReLU의 변형으로, 양자화된 모델에서 자주 사용됩니다.</li>
+</ul></li>
+<li><strong>적응형/학습 가능:</strong>
+<ul>
+<li><strong>PReLU:</strong> 음의 기울기 매개변수를 학습합니다. 간단하고 효과적입니다.</li>
+<li><strong>TeLU:</strong> ELU 함수의 지수 부분에 대한 스케일링 팩터를 학습합니다.</li>
+<li><strong>STAF:</strong> 복잡한 패턴 캡처에 <em>잠재력</em>을 보이지만, STAF (및 기타 푸리에 기반 활성화)는 계산 비용이 많이 들고 대부분의 일반적인 작업에서 더 간단한 옵션보다 일관된 우월성을 아직 입증하지 못했습니다. 여전히 활발한 연구 분야입니다.</li>
+<li><strong>B-spline:</strong> 국소 제어(local control) 속성이 흥미롭지만, B-spline 활성화(STAF와 유사)는 복잡성으로 인해 주류 딥 러닝에서 덜 일반적입니다. 곡선 피팅 또는 기하학적 모델링과 같은 특수 응용 프로그램에서 더 자주 볼 수 있습니다. 이는 활발한 연구 영역이며 연속적/점진적 학습(continual/incremental learning)에 효과적 <em>일 수</em> 있지만, 아직 널리 확립된 결과는 아닙니다.</li>
+</ul></li>
+</ol>
+<p><strong>최근 주요 동향 및 고려 사항:</strong></p>
+<ul>
+<li><strong>깊은 네트워크에서 Sigmoid/Tanh 사용 감소:</strong> 그래디언트 소실 문제로 인해 현대 심층 네트워크에서는 은닉층 활성화로 거의 사용되지 않습니다.</li>
+<li><strong>부드러움(Smoothness)의 중요성:</strong> 부드러운 활성화 함수(GELU, Swish, Mish)는 일반적으로 더 깊은 네트워크에서 비-부드러운 함수(ReLU)보다 선호됩니다. 이는 더 안정적인 훈련과 더 나은 그래디언트 흐름으로 이어지는 경향이 있기 때문입니다.</li>
+<li><strong>계산 비용:</strong> 특히 대규모 모델이나 자원이 제한된 장치의 경우 활성화 함수의 계산 비용을 항상 고려하십시오.</li>
+<li><strong>작업 특이성(Task Specificity):</strong> 최상의 활성화 함수는 작업에 따라 크게 달라질 수 있습니다. 실험이 중요합니다.</li>
+<li><strong>혼합 전문가 (Mixture of Experts, MoE):</strong> 일부 LLM과 같은 매우 큰 모델에서는 서로 다른 “전문가” 하위 네트워크 내에서 서로 다른 활성화 함수가 사용될 수 있습니다.</li>
+<li><strong>Rational 활성화 함수와 동적 시스템</strong>: Rational 활성화 함수와 그 “joint-rational” 확장이 시스템의 동역학을 학습하고 표현할 수 있는 능력은 유망한 연구 라인입니다.</li>
+</ul>
+<p><strong>가장 중요한 것은, 항상 실험을 하는 것입니다!</strong> 합리적인 기본값(GELU 또는 ReLU/LeakyReLU)으로 시작하되, 원하는 성능을 달성하지 못하면 다른 옵션을 시도할 준비를 하십시오. 다른 하이퍼파라미터는 일정하게 유지하면서 활성화 함수<em>만</em> 변경하는 소규모 실험은 정보에 입각한 선택을 하는 데 필수적입니다.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기 (딥다이브: 나만의 활성화 함수 설계하기)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기 (딥다이브: 나만의 활성화 함수 설계하기)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<section id="딥다이브-나만의-활성화-함수-설계하기---이론과-실제" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="딥다이브-나만의-활성화-함수-설계하기---이론과-실제">딥다이브: 나만의 활성화 함수 설계하기 - 이론과 실제</h2>
+<p>활성화 함수는 딥러닝 모델의 핵심 구성 요소 중 하나이며, 모델의 표현력, 학습 속도, 그리고 최종 성능에 지대한 영향을 미칩니다. 기존에 널리 사용되는 활성화 함수(ReLU, GELU, Swish 등) 외에도, 수많은 연구자들이 새로운 활성화 함수를 제안해 왔습니다. 이 딥다이브에서는 자신만의 활성화 함수를 설계하는 과정을 단계별로 살펴보고, 실제로 PyTorch를 사용하여 구현하고 테스트하는 방법을 알아봅니다.</p>
+<section id="활성화-함수-설계의-기본-원칙" class="level3">
+<h3 class="anchored" data-anchor-id="활성화-함수-설계의-기본-원칙">1. 활성화 함수 설계의 기본 원칙</h3>
+<p>새로운 활성화 함수를 설계하기 전에, 4.2절에서 설명한 “이상적인” 활성화 함수의 조건을 다시 한번 상기해 봅시다.</p>
+<ul>
+<li><strong>비선형성 (Non-linearity):</strong> 신경망이 복잡한 함수를 표현(근사)할 수 있게 합니다.</li>
+<li><strong>미분 가능성 (Differentiability):</strong> 역전파(backpropagation) 알고리즘을 통해 신경망을 학습시키기 위해 필수적입니다. (ReLU처럼 일부 지점에서 미분 불가능한 경우는 허용)</li>
+<li><strong>그래디언트 소실/폭발 문제 방지:</strong> 심층 신경망에서 학습이 안정적으로 이루어지도록 합니다.</li>
+<li><strong>계산 효율성 (Computational Efficiency):</strong> 신경망의 학습 및 추론 속도에 영향을 미칩니다.</li>
+</ul>
+<p>이 외에도 다음 사항들을 고려할 수 있습니다.</p>
+<ul>
+<li><strong>Zero-Centered Output:</strong> 활성화 함수의 출력이 0을 중심으로 분포하면 학습 속도를 향상시킬 수 있습니다. (Tanh, ELU 등)</li>
+<li><strong>Self-Gating:</strong> 입력값 자체에 의해 활성화 정도가 조절되는 특성입니다. (Swish)</li>
+<li><strong>Smoothness</strong>: 부드러운(smooth) 활성화 함수는 일반적으로 더 안정적인 학습으로 이어집니다.</li>
+<li><strong>Monotonicity (단조성):</strong> 단조 함수는 입력이 증가함에 따라 출력도 증가하거나 감소하는 함수입니다. ReLU, Leaky ReLU, ELU, GELU, Swish, Mish는 모두 단조 함수입니다. Sigmoid, Tanh는 단조 함수가 <em>아닙니다</em>. 단조성은 최적화를 용이하게 할 수 있지만, 필수적인 조건은 아닙니다.</li>
+<li><strong>Boundedness (유계성)</strong>: 활성화 함수의 출력이 특정 범위로 제한되는지 여부입니다. Sigmoid와 Tanh는 bounded 함수이지만, ReLU 계열은 unbounded입니다. Bounded 함수는 그래디언트 폭발을 방지하는 데 도움이 될 수 있지만, 표현력을 제한할 수 있습니다.</li>
+</ul>
+</section>
+<section id="아이디어-발상-기존-활성화-함수의-조합-및-변형" class="level3">
+<h3 class="anchored" data-anchor-id="아이디어-발상-기존-활성화-함수의-조합-및-변형">2. 아이디어 발상: 기존 활성화 함수의 조합 및 변형</h3>
+<p>새로운 활성화 함수를 설계하는 가장 일반적인 방법은 기존 활성화 함수들을 조합하거나 변형하는 것입니다.</p>
+<ul>
+<li><strong>ReLU 계열 변형:</strong> ReLU의 “Dying ReLU” 문제를 해결하기 위해 Leaky ReLU, PReLU, ELU, SELU 등 다양한 변형이 제안되었습니다. 이러한 아이디어를 확장하여, 음수 영역에서의 동작을 변경하거나, 학습 가능한 파라미터를 추가하는 방법을 고려할 수 있습니다.</li>
+<li><strong>Sigmoid/Tanh 계열 변형:</strong> 그래디언트 소실 문제를 완화하기 위해, Sigmoid나 Tanh 함수를 수정하거나, 다른 함수와 조합하는 방법을 고려할 수 있습니다.</li>
+<li><strong>Swish/Mish 계열:</strong> Self-gating 특성을 갖는 Swish(<span class="math inline">\(x \cdot sigmoid(x)\)</span>)와 Mish(<span class="math inline">\(x \cdot tanh(ln(1 + e^x))\)</span>)는 좋은 성능을 보이는 것으로 알려져 있습니다. 이러한 함수들의 형태를 변형하거나, 다른 함수와 결합하는 방법을 고려할 수 있습니다.</li>
+<li><strong>GELU 변형:</strong> GELU는 Transformer 모델에서 널리 사용됩니다. GELU의 근사식을 변형하거나, 다른 함수와 조합하여 새로운 활성화 함수를 만들 수 있습니다.</li>
+</ul>
+</section>
+<section id="수학적-분석-미분-가능성-그래디언트-특성" class="level3">
+<h3 class="anchored" data-anchor-id="수학적-분석-미분-가능성-그래디언트-특성">3. 수학적 분석: 미분 가능성, 그래디언트 특성</h3>
+<p>새로운 활성화 함수를 제안했다면, 반드시 <em>수학적 분석</em>을 수행해야 합니다.</p>
+<ul>
+<li><strong>미분 가능성:</strong> 제안하는 함수가 모든 구간에서 미분 가능한지, 또는 ReLU처럼 일부 지점에서 미분 불가능하지만 subgradient를 정의할 수 있는지 확인해야 합니다. PyTorch의 자동 미분 기능을 사용하여 미분값을 계산하고 그래프를 그려보면 도움이 됩니다.</li>
+<li><strong>그래디언트 특성:</strong> 입력값의 범위에 따라 그래디언트가 어떻게 변하는지 분석해야 합니다. 그래디언트가 너무 작아지거나(vanishing gradient), 너무 커지는(exploding gradient) 영역이 있는지 확인해야 합니다.</li>
+</ul>
+</section>
+<section id="pytorch-구현" class="level3">
+<h3 class="anchored" data-anchor-id="pytorch-구현">4. PyTorch 구현</h3>
+<p>수학적 분석을 통해 타당성이 검증된 활성화 함수는 PyTorch를 사용하여 쉽게 구현할 수 있습니다. <code>torch.nn.Module</code>을 상속받아 새로운 클래스를 만들고, <code>forward</code> 메서드에 활성화 함수의 연산을 정의하면 됩니다. 필요한 경우, 학습 가능한 파라미터를 <code>torch.nn.Parameter</code>로 정의할 수 있습니다.</p>
+<p><strong>예시: “SwiGELU” 활성화 함수 구현</strong></p>
+<p>Swish와 GELU를 결합한 새로운 활성화 함수 “SwiGELU”를 제안하고, PyTorch로 구현해 보겠습니다. (4.2.3 연습 문제의 해답에서 아이디어를 가져옴)</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SwiGELU(nn.Module):</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> (x <span class="op">*</span> torch.sigmoid(x) <span class="op">+</span> F.gelu(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>설명:</strong></p>
+<ul>
+<li><code>SwiGELU(x) = 0.5 * (x * sigmoid(x) + GELU(x))</code></li>
+<li>Swish(<span class="math inline">\(x \cdot sigmoid(x)\)</span>)와 GELU(<span class="math inline">\(x\Phi(x)\)</span>)를 1:1 비율로 결합하고, 0.5를 곱하여 출력값의 범위를 조절했습니다.</li>
+<li>Swish의 self-gating 특성과 GELU의 부드러운 비선형성 및 정규화 효과를 모두 활용할 수 있을 것으로 기대됩니다.</li>
+</ul>
+</section>
+<section id="실험-및-평가" class="level3">
+<h3 class="anchored" data-anchor-id="실험-및-평가">5. 실험 및 평가</h3>
+<p>새로운 활성화 함수를 제안했다면, 벤치마크 데이터셋(e.g., CIFAR-10, CIFAR-100, ImageNet)을 사용하여 기존 활성화 함수들과 성능을 비교하는 실험을 수행해야 합니다.</p>
+<ul>
+<li><strong>실험 설정:</strong>
+<ul>
+<li>동일한 모델 아키텍처를 사용하고, 활성화 함수만 변경하면서 실험합니다.</li>
+<li>학습률, 배치 크기, 옵티마이저 등 다른 하이퍼파라미터는 동일하게 유지합니다.</li>
+<li>여러 번의 실험을 반복하여 결과의 통계적 유의성을 확보합니다.</li>
+</ul></li>
+<li><strong>평가 지표:</strong>
+<ul>
+<li>Accuracy (정확도)</li>
+<li>Loss</li>
+<li>Training Time (훈련 시간)</li>
+<li>Convergence Speed (수렴 속도)</li>
+<li>Gradient Norm (그래디언트 크기) - <code>train_model_with_metrics</code> 함수 활용</li>
+<li>Number/Percentage of Disabled Neurons (“죽은 뉴런” 비율) - <code>calculate_disabled_neuron</code> 함수 활용</li>
+<li>필요하다면, 메모리 사용량 등</li>
+</ul></li>
+<li><strong>결과 분석</strong>
+<ul>
+<li>수렴 속도와 최종 성능을 정량적으로 비교</li>
+<li>그래디언트 소실/폭발 문제가 발생하는지</li>
+<li>“죽은 뉴런” 발생 비율은 어떤지</li>
+</ul></li>
+</ul>
+</section>
+<section id="선택-사항-이론적-분석" class="level3">
+<h3 class="anchored" data-anchor-id="선택-사항-이론적-분석">6. (선택 사항) 이론적 분석</h3>
+<p>실험 결과가 좋다면, 왜 새로운 활성화 함수가 좋은 성능을 보이는지 <em>이론적</em>으로 분석하는 것이 좋습니다.</p>
+<ul>
+<li><strong>Loss Landscape 분석:</strong> 활성화 함수가 손실 함수 공간(loss landscape)에 어떤 영향을 미치는지 분석합니다. (4.2절 딥다이브 참고)</li>
+<li><strong>Neural Tangent Kernel (NTK) 분석:</strong> 무한히 넓은 신경망에서 활성화 함수의 역할을 분석합니다.</li>
+<li><strong>Fokker-Planck 방정식:</strong> 활성화 함수의 동역학적 특성을 분석합니다. (Swish에 대한 연구 참고)</li>
+</ul>
+</section>
+<section id="결론" class="level3">
+<h3 class="anchored" data-anchor-id="결론">결론</h3>
+<p>새로운 활성화 함수를 설계하고 평가하는 것은 쉽지 않은 작업이지만, 딥러닝 모델의 성능을 향상시킬 수 있는 잠재력이 큰 연구 분야입니다. 기존 활성화 함수의 한계를 극복하고, 특정 문제나 아키텍처에 더 적합한 활성화 함수를 찾는 것은 딥러닝 연구의 중요한 과제 중 하나입니다. 이 딥다이브에서 제시된 단계별 접근 방식과 PyTorch 구현 예제, 그리고 실험 및 분석 가이드라인이 여러분만의 활성화 함수를 설계하는 데 도움이 되기를 바랍니다.</p>
+</section>
+</section>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기 (딥다이브: 적응형 활성화 함수 - 미래 연구 방향)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기 (딥다이브: 적응형 활성화 함수 - 미래 연구 방향)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<section id="딥다이브-적응형-활성화-함수---미래-연구-방향" class="level3 callout-body-container callout-body">
+<h3 class="anchored" data-anchor-id="딥다이브-적응형-활성화-함수---미래-연구-방향">딥다이브: 적응형 활성화 함수 - 미래 연구 방향</h3>
+<p><strong>들어가며:</strong></p>
+<p>ReLU, GELU 등 고정된 활성화 함수는 딥러닝 모델에서 널리 사용되지만, 특정 문제나 데이터 분포에 최적화되지 않을 수 있습니다. 최근에는 데이터나 태스크에 따라 활성화 함수를 <em>적응적</em>으로 조정하는 연구가 활발히 진행되고 있습니다. 이 딥다이브에서는 적응형 활성화 함수(Adaptive Activation Function)의 잠재력과 미래 연구 방향을 탐구합니다.</p>
+<section id="적응형-활성화-함수의-유형" class="level4">
+<h4 class="anchored" data-anchor-id="적응형-활성화-함수의-유형">1. 적응형 활성화 함수의 유형</h4>
+<p>적응형 활성화 함수는 크게 다음과 같이 분류할 수 있습니다.</p>
+<ul>
+<li><p><strong>매개변수 기반 적응 (Parametric Adaptation):</strong> 활성화 함수에 학습 가능한 매개변수를 도입하여, 데이터에 따라 함수의 형태를 조정합니다.</p>
+<ul>
+<li><strong>예시:</strong>
+<ul>
+<li>Leaky ReLU: <span class="math inline">\(f(x) = max(\\alpha x, x)\)</span> (<span class="math inline">\(\\alpha\)</span>는 학습 가능한 매개변수)</li>
+<li>PReLU (Parametric ReLU): Leaky ReLU에서 <span class="math inline">\(\\alpha\)</span>를 각 채널별로 학습</li>
+<li>Swish: <span class="math inline">\(f(x) = x \\cdot \\sigma(\\beta x)\)</span> (<span class="math inline">\(\\beta\)</span>는 학습 가능한 매개변수)</li>
+</ul></li>
+</ul></li>
+<li><p><strong>구조적 적응 (Structural Adaptation):</strong> 여러 개의 기저 함수(basis function)를 조합하거나, 네트워크 구조를 변경하여 활성화 함수를 동적으로 구성합니다.</p>
+<ul>
+<li><strong>예시:</strong>
+<ul>
+<li>Maxout Networks: 여러 개의 선형 함수 중 최댓값을 취하는 방식</li>
+<li>Spline-based Activation Functions: 스플라인 함수를 사용하여 활성화 함수를 표현</li>
+</ul></li>
+</ul></li>
+<li><p><strong>입력 기반 적응:</strong> 입력 데이터의 특성에 따라 활성화 함수를 변경하거나 혼합하는 방식</p>
+<ul>
+<li><strong>예시:</strong>
+<ul>
+<li>Squeeze and Excitation(SE) Block: 입력 특성 맵의 채널 간 중요도를 계산하여, 활성화 함수에 가중치를 부여</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="가능한-연구-방향" class="level4">
+<h4 class="anchored" data-anchor-id="가능한-연구-방향">2. 가능한 연구 방향</h4>
+<section id="mixture-of-experts-moe-기반-활성화-함수" class="level5">
+<h5 class="anchored" data-anchor-id="mixture-of-experts-moe-기반-활성화-함수">2.1 Mixture of Experts (MoE) 기반 활성화 함수</h5>
+<ul>
+<li><p><strong>아이디어:</strong> 여러 개의 “전문가” 활성화 함수를 정의하고, 입력 데이터에 따라 각 전문가의 가중치를 동적으로 결정하는 방식입니다.</p></li>
+<li><p><strong>수학적 표현:</strong></p>
+<p><span class="math inline">\(f(x) = \\sum\_{k=1}^K g\_k(x) \\cdot \\phi\_k(x)\)</span></p>
+<ul>
+<li><span class="math inline">\(g\_k(x)\)</span>: 입력 <span class="math inline">\(x\)</span>에 대한 <span class="math inline">\(k\)</span>번째 전문가 활성화 함수의 게이팅 함수 (softmax 등으로 정규화)</li>
+<li><span class="math inline">\(\\phi\_k(x)\)</span>: <span class="math inline">\(k\)</span>번째 전문가 활성화 함수 (ReLU, GELU, Swish 등 다양한 함수 사용 가능)</li>
+</ul></li>
+<li><p><strong>연구 과제:</strong></p>
+<ul>
+<li><strong>효율적인 게이팅 메커니즘:</strong> <span class="math inline">\(g\_k(x)\)</span>를 계산하는 효율적인 방법 연구 (예: Top-k gating, sparse gating)</li>
+<li><strong>전문가 활성화 함수 선택:</strong> 어떤 종류의 <span class="math inline">\(\\phi\_k(x)\)</span>를 사용하는 것이 좋을지, 그리고 전문가의 수를 어떻게 결정할지에 대한 연구</li>
+<li><strong>이론적 분석</strong>: MoE 활성화 함수의 표현력(expressive power)과 일반화 성능에 대한 이론적 분석</li>
+</ul></li>
+</ul>
+</section>
+<section id="신경망-구조-탐색-neural-architecture-search-nas과의-결합" class="level5">
+<h5 class="anchored" data-anchor-id="신경망-구조-탐색-neural-architecture-search-nas과의-결합">2.2 신경망 구조 탐색 (Neural Architecture Search, NAS)과의 결합</h5>
+<ul>
+<li><strong>아이디어:</strong> NAS를 사용하여 데이터와 태스크에 최적화된 활성화 함수 <em>구조</em>를 자동으로 탐색합니다.</li>
+<li><strong>접근 방법:</strong>
+<ul>
+<li><strong>검색 공간 (Search Space):</strong>
+<ul>
+<li>기본 연산 (선형 변환, 지수 함수, 로그 함수, 삼각 함수 등)을 정의</li>
+<li>연산들을 조합하여 만들 수 있는 다양한 활성화 함수 후보군을 정의</li>
+</ul></li>
+<li><strong>검색 전략 (Search Strategy):</strong>
+<ul>
+<li>강화 학습 (Reinforcement Learning)</li>
+<li>진화 알고리즘 (Evolutionary Algorithm)</li>
+<li>미분 가능 아키텍처 탐색 (Differentiable Architecture Search, DARTS)</li>
+</ul></li>
+<li><strong>성능 평가 (Performance Estimation):</strong>
+<ul>
+<li>검색된 활성화 함수를 포함한 모델을 학습시키고, 검증 데이터셋에서 성능 평가</li>
+</ul></li>
+</ul></li>
+<li><strong>연구 과제:</strong>
+<ul>
+<li><strong>효율적인 검색 공간 설계:</strong> 너무 크지 않으면서도 충분히 다양한 활성화 함수를 포함하는 검색 공간 정의</li>
+<li><strong>계산 비용 절감:</strong> NAS는 계산 비용이 매우 크므로, 효율적인 검색 전략 및 성능 평가 방법 개발</li>
+</ul></li>
+</ul>
+</section>
+<section id="물리적생물학적-정보-통합" class="level5">
+<h5 class="anchored" data-anchor-id="물리적생물학적-정보-통합">2.3 물리적/생물학적 정보 통합</h5>
+<ul>
+<li><p><strong>아이디어:</strong> 물리학, 생물학 등의 도메인 지식을 활용하여 활성화 함수 설계에 제약 조건 또는 prior knowledge를 부여합니다.</p></li>
+<li><p><strong>예시:</strong></p>
+<ul>
+<li><strong>물리 모델:</strong> 특정 물리 시스템을 모델링하는 경우, 해당 시스템의 미분 방정식을 활성화 함수에 반영</li>
+<li><strong>신경 과학:</strong> 실제 뉴런의 동작 방식을 모방하는 활성화 함수 (예: spiking neuron model)</li>
+</ul></li>
+<li><p><strong>연구 과제:</strong></p>
+<ul>
+<li><strong>도메인 지식의 효과적인 통합:</strong> 도메인 지식을 활성화 함수 설계에 어떻게 반영할 것인지에 대한 방법론 개발</li>
+<li><strong>일반화 성능:</strong> 특정 도메인에 특화된 활성화 함수가 다른 도메인에서도 잘 작동할지에 대한 검증</li>
+</ul></li>
+</ul>
+</section>
+<section id="이론적-분석-강화" class="level5">
+<h5 class="anchored" data-anchor-id="이론적-분석-강화">2.4 이론적 분석 강화</h5>
+<ul>
+<li><strong>표현력 (Expressive Power):</strong> 적응형 활성화 함수가 기존 활성화 함수에 비해 얼마나 더 강력한 표현력을 갖는지 분석</li>
+<li><strong>최적화 용이성 (Optimization Landscape):</strong> 적응형 활성화 함수가 손실 함수 표면(loss landscape)을 어떻게 변화시키는지, 이것이 학습 속도와 안정성에 어떤 영향을 미치는지 분석</li>
+<li><strong>일반화 성능 (Generalization):</strong> 적응형 활성화 함수가 과적합(overfitting)을 방지하고 일반화 성능을 향상시키는지 분석</li>
+</ul>
+</section>
+</section>
+<section id="결론-및-제언" class="level4">
+<h4 class="anchored" data-anchor-id="결론-및-제언">3. 결론 및 제언</h4>
+<p>적응형 활성화 함수는 딥러닝 모델의 성능을 향상시킬 수 있는 유망한 연구 분야입니다. 하지만, 다음과 같은 과제들이 남아있습니다.</p>
+<ul>
+<li><strong>계산 복잡도:</strong> 적응형 활성화 함수는 일반적으로 고정된 활성화 함수보다 계산 비용이 높습니다.</li>
+<li><strong>해석 가능성:</strong> 학습된 활성화 함수의 형태가 복잡해지면, 모델의 해석이 어려워질 수 있습니다.</li>
+<li><strong>과적합 위험:</strong> 너무 유연한 활성화 함수는 훈련 데이터에 과적합될 위험이 있습니다.</li>
+</ul>
+<p>향후 연구에서는 이러한 과제들을 해결하면서, 더 효율적이고, 해석 가능하며, 일반화 성능이 뛰어난 적응형 활성화 함수를 개발하는 것이 중요합니다.</p>
+<hr>
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="연습문제" class="level2">
+<h2 class="anchored" data-anchor-id="연습문제">연습문제</h2>
+<section id="기본-문제" class="level3">
+<h3 class="anchored" data-anchor-id="기본-문제">4.2.1 기본 문제</h3>
+<ol type="1">
+<li><p>Sigmoid, Tanh, ReLU, Leaky ReLU, GELU, Swish 함수의 수식을 쓰고, 그래프를 그리시오. (matplotlib, Desmos 등 활용)</p>
+<ul>
+<li><strong>참고:</strong> 각 함수의 정의와 특징을 명확히 이해하고, 그래프를 통해 시각적으로 비교할 수 있도록 합니다.</li>
+</ul></li>
+<li><p>각 활성화 함수의 미분(도함수)을 구하고, 그래프를 그리시오.</p>
+<ul>
+<li><strong>참고:</strong> 도함수는 역전파 과정에서 그래디언트를 계산하는 데 사용됩니다. 각 함수의 미분 가능성과 그래디언트의 특성을 파악합니다.</li>
+</ul></li>
+<li><p>FashionMNIST 데이터셋을 사용하여, 활성화 함수 없이 선형 변환만으로 구성된 신경망을 훈련하고, 테스트 정확도를 측정하시오. (1장에서 구현한 SimpleNetwork 활용)</p>
+<ul>
+<li><strong>참고:</strong> 활성화 함수가 없는 신경망은 비선형성을 표현할 수 없기 때문에, 복잡한 문제를 해결하는 데 한계가 있습니다. 실험을 통해 이를 확인합니다.</li>
+</ul></li>
+<li><p>3번 문제에서 얻은 결과와, ReLU 활성화 함수를 사용한 신경망의 결과를 비교하고, 활성화 함수의 역할에 대해 설명하시오.</p>
+<ul>
+<li><strong>참고</strong>: 활성함수가 있을 때와 없을 때 층별 출력값, 그래디언트, 비활성 뉴런을 비교해서 설명하시오.</li>
+</ul></li>
+</ol>
+</section>
+<section id="응용-문제" class="level3">
+<h3 class="anchored" data-anchor-id="응용-문제">4.2.2 응용 문제</h3>
+<ol type="1">
+<li><p>PReLU, TeLU, STAF 활성화 함수를 PyTorch로 구현하시오. (nn.Module 상속)</p>
+<ul>
+<li><strong>참고:</strong> 각 함수의 정의를 참고하여, <code>forward</code> 메서드를 구현합니다. 필요한 경우, 학습 가능한 파라미터를 <code>nn.Parameter</code>로 정의합니다.</li>
+</ul></li>
+<li><p>FashionMNIST 데이터셋을 사용하여, 앞서 구현한 활성화 함수들을 포함한 신경망을 훈련하고, 테스트 정확도를 비교하시오.</p>
+<ul>
+<li><strong>참고:</strong> 각 활성화 함수의 성능을 비교하고, 어떤 함수가 FashionMNIST 데이터셋에 더 적합한지 분석합니다.</li>
+</ul></li>
+<li><p>각 활성화 함수에 대해, 훈련 과정에서의 그래디언트 분포를 시각화하고, “죽은 뉴런”의 비율을 측정하시오. (1장에서 구현한 함수 활용)</p>
+<ul>
+<li><strong>참고</strong>: 각 활성함수 별로, 그래디언트 분포를 초기 값과 훈련된 값, 각 층별로 비교해서 그래프로 시각화 하시오.</li>
+</ul></li>
+<li><p>“죽은 뉴런” 문제를 완화하기 위한 방법들을 조사하고, 그 원리를 설명하시오. (Leaky ReLU, PReLU, ELU, SELU 등)</p>
+<ul>
+<li><strong>참고:</strong> 각 방법이 ReLU의 문제점을 어떻게 해결하는지, 그리고 어떤 장단점을 가지는지 설명합니다.</li>
+</ul></li>
+</ol>
+</section>
+<section id="심화-문제" class="level3">
+<h3 class="anchored">4.2.3 심화 문제</h3>
+<ol type="1">
+<li><p>Rational 활성화 함수를 PyTorch로 구현하고, 그 특징과 장단점을 설명하시오.</p>
+<ul>
+<li><strong>참고:</strong> Rational 활성화 함수는 유리 함수(분수 함수)를 기반으로 하며, 특정 문제에서 다른 활성화 함수보다 우수한 성능을 보일 수 있습니다.</li>
+</ul></li>
+<li><p>B-spline 활성화 함수 또는 Fourier-based 활성화 함수를 PyTorch로 구현하고, 그 특징과 장단점을 설명하시오.</p>
+<ul>
+<li><strong>참고:</strong> B-spline 활성화 함수는 지역적으로 제어되는 유연한 곡선을 표현할 수 있으며, Fourier-based 활성화 함수는 주기적인 패턴을 모델링하는 데 유리합니다.</li>
+</ul></li>
+<li><p>자신만의 새로운 활성화 함수를 제안하고, 기존 활성화 함수들과 비교하여 성능을 평가하시오. (실험 결과와 함께 이론적 근거 제시)</p>
+<ul>
+<li><strong>참고:</strong> 새로운 활성화 함수를 설계할 때는, 이상적인 활성화 함수의 조건(비선형성, 미분 가능성, 그래디언트 소실/폭발 문제 방지, 계산 효율성 등)을 고려해야 합니다.</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기(해답)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기(해답)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<section id="연습문제-해답" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="연습문제-해답">연습문제 해답</h2>
+<section id="기본-문제-1" class="level3">
+<h3 class="anchored" data-anchor-id="기본-문제-1">4.2.1 기본 문제</h3>
+<section id="sigmoid-tanh-relu-leaky-relu-gelu-swish-함수의-수식-및-그래프" class="level4">
+<h4 class="anchored" data-anchor-id="sigmoid-tanh-relu-leaky-relu-gelu-swish-함수의-수식-및-그래프">1. <strong>Sigmoid, Tanh, ReLU, Leaky ReLU, GELU, Swish 함수의 수식 및 그래프:</strong></h4>
+<pre><code>| 활성화 함수 | 수식        | 그래프 (참고)    |
+| ------- | ------------------------------------------------------- | ---------------------------------------------------- |
+| Sigmoid     | $\sigma(x) = \frac{1}{1 + e^{-x}}$                                         | [Sigmoid](https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/320px-Logistic-curve.svg.png) |
+| Tanh        | $tanh(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}$                           | [Tanh](https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Hyperbolic_Tangent.svg/320px-Hyperbolic_Tangent.svg.png)     |
+| ReLU        | $ReLU(x) = max(0, x)$                                                     | [ReLU](https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Activation_rectified_linear.svg/320px-Activation_rectified_linear.svg.png) |
+| Leaky ReLU  | $LeakyReLU(x) = max(ax, x)$ ,  ($a$는 작은 상수, 보통 0.01)               | (Leaky ReLU는 ReLU 그래프에서 x &lt; 0 부분에 작은 기울기($a$)를 가짐)                  |
+| GELU        | $GELU(x) = x\Phi(x)$ , ($\Phi(x)$는 가우시안 누적 분포 함수)             | [GELU](https://www.google.com/search?q=https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.34.27_PM_fufBJEx.png)            |
+| Swish       | $Swish(x) = x \cdot sigmoid(\beta x)$ , ($\beta$는 상수 또는 학습 파라미터) | [Swish](https://www.google.com/search?q=https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.35.27_PM_d7LqDQj.png)          |</code></pre>
+</section>
+<section id="각-활성화-함수의-미분도함수" class="level4">
+<h4 class="anchored" data-anchor-id="각-활성화-함수의-미분도함수">2. <strong>각 활성화 함수의 미분(도함수):</strong></h4>
+<pre><code>| 활성화 함수 | 도함수                                                                                     |
+| :---------- | :------------------------------------------------------------------------------------------ |
+| Sigmoid     | $\sigma'(x) = \sigma(x)(1 - \sigma(x))$                                                      |
+| Tanh        | $tanh'(x) = 1 - tanh^2(x)$                                                                  |
+| ReLU        | $ReLU'(x) = \begin{cases} 0, &amp; x &lt; 0 \\ 1, &amp; x &gt; 0 \end{cases}$                             |
+| Leaky ReLU  | $LeakyReLU'(x) = \begin{cases} a, &amp; x &lt; 0 \\ 1, &amp; x &gt; 0 \end{cases}$                        |
+| GELU        | $GELU'(x) = \Phi(x) + x\phi(x)$, ($\phi(x)$는 가우시안 확률 밀도 함수)                       |
+| Swish       | $Swish'(x) = sigmoid(\beta x) + x \cdot sigmoid(\beta x)(1 - sigmoid(\beta x))\beta$ |</code></pre>
+<ol start="3" type="1">
+<li><p><strong>FashionMNIST, 활성화 함수 없는 신경망 훈련 및 정확도 측정:</strong></p>
+<ul>
+<li>활성화 함수가 없는 신경망은 선형 변환만 수행하므로, 복잡한 비선형 관계를 모델링할 수 없습니다. 따라서 FashionMNIST와 같이 복잡한 데이터셋에서는 낮은 정확도를 보입니다. (대략 10% 내외의 정확도)</li>
+</ul></li>
+<li><p><strong>ReLU 활성화 함수 사용 신경망과 비교, 활성화 함수 역할 설명:</strong></p>
+<ul>
+<li>ReLU 활성화 함수를 사용한 신경망은 비선형성을 도입하여 훨씬 더 높은 정확도를 달성할 수 있습니다. (80% 이상의 정확도)</li>
+<li><strong>층별 출력값:</strong> 활성화 함수가 없으면 층별 출력값의 분포가 단순한 스케일 변화만 보이지만, ReLU를 사용하면 음수 값이 0으로 억제되면서 분포가 달라집니다.</li>
+<li><strong>그래디언트:</strong> 활성화 함수가 없으면 그래디언트가 단순하게 전달되지만, ReLU를 사용하면 음수 입력에 대해서는 그래디언트가 0이 되어 전파되지 않습니다.</li>
+<li><strong>비활성 뉴런:</strong> 활성화 함수가 없을 때는 발생하지 않으나, ReLU 사용시 발생 가능</li>
+<li><strong>역할 요약:</strong> 활성화 함수는 신경망에 비선형성을 부여하여 복잡한 함수를 근사할 수 있게 하고, 그래디언트 흐름을 조절하여 학습을 돕습니다.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="응용-문제-1" class="level3">
+<h3 class="anchored" data-anchor-id="응용-문제-1">4.2.2 응용 문제</h3>
+<ol type="1">
+<li><p><strong>PReLU, TeLU, STAF PyTorch 구현:</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PReLU(nn.Module):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_parameters<span class="op">=</span><span class="dv">1</span>, init<span class="op">=</span><span class="fl">0.25</span>):</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> nn.Parameter(torch.full((num_parameters,), init))</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.<span class="bu">max</span>(torch.zeros_like(x), x) <span class="op">+</span> <span class="va">self</span>.alpha <span class="op">*</span> torch.<span class="bu">min</span>(torch.zeros_like(x), x)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TeLU(nn.Module):</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> nn.Parameter(torch.tensor(alpha))</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.where(x <span class="op">&gt;</span> <span class="dv">0</span>, x, <span class="va">self</span>.alpha <span class="op">*</span> (torch.exp(x) <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STAF(nn.Module):</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tau<span class="op">=</span><span class="dv">25</span>):</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau <span class="op">=</span> tau</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Omega <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Phi <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> torch.zeros_like(x)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.tau):</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> <span class="va">self</span>.C[i] <span class="op">*</span> torch.sin(<span class="va">self</span>.Omega[i] <span class="op">*</span> x <span class="op">+</span> <span class="va">self</span>.Phi[i])</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>FashionMNIST, 활성화 함수 비교 실험:</strong></p>
+<ul>
+<li>PReLU, TeLU, STAF를 포함한 신경망을 훈련하고, 테스트 정확도를 비교합니다.</li>
+<li>실험 결과, 적응형 활성화 함수(PReLU, TeLU, STAF)가 ReLU보다 높은 정확도를 보이는 경향이 있습니다. (STAF &gt; TeLU &gt; PReLU &gt; ReLU 순)</li>
+</ul></li>
+<li><p><strong>그래디언트 분포 시각화, “죽은 뉴런” 비율 측정:</strong></p>
+<ul>
+<li>ReLU는 음수 입력에서 그래디언트가 0, PReLU, TeLU, STAF는 음수 입력에서도 작은 그래디언트 값이 전파됨</li>
+<li>“죽은 뉴런” 비율은 ReLU에서 가장 높고, PReLU, TeLU, STAF에서는 낮게 나타납니다.</li>
+</ul></li>
+<li><p><strong>“죽은 뉴런” 문제 완화 방법 및 원리:</strong></p>
+<ul>
+<li><strong>Leaky ReLU:</strong> 음수 입력에 대해 작은 기울기를 허용하여 뉴런이 완전히 비활성화되는 것을 방지합니다.</li>
+<li><strong>PReLU:</strong> Leaky ReLU의 기울기를 학습 가능한 파라미터로 만들어 데이터에 따라 최적의 기울기를 찾습니다.</li>
+<li><strong>ELU, SELU:</strong> 음수 영역에서 0이 아닌 값을 가지면서도 부드러운 곡선 형태를 가져, 그래디언트 소실 문제를 완화하고 학습을 안정화합니다.</li>
+</ul></li>
+</ol>
+</section>
+<section id="심화-문제-1" class="level3">
+<h3 class="anchored" data-anchor-id="심화-문제-1">4.2.3 심화 문제</h3>
+<ol type="1">
+<li><p><strong>Rational 활성화 함수 PyTorch 구현, 특징 및 장단점:</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rational(nn.Module):</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, numerator_coeffs, denominator_coeffs):</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numerator_coeffs <span class="op">=</span> nn.Parameter(numerator_coeffs)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.denominator_coeffs <span class="op">=</span> nn.Parameter(denominator_coeffs)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        numerator <span class="op">=</span> torch.polyval(<span class="va">self</span>.numerator_coeffs, x) <span class="co"># 다항식 계산</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        denominator <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> torch.polyval(<span class="va">self</span>.denominator_coeffs, torch.<span class="bu">abs</span>(x))  <span class="co"># 절댓값 및 다항식</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> numerator <span class="op">/</span> denominator</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>특징:</strong> 유리 함수(분수 함수) 형태. 분자와 분모는 다항식으로 표현.</li>
+<li><strong>장점:</strong> 유연한 함수 형태. 특정 문제에서 다른 활성화 함수보다 뛰어난 성능.</li>
+<li><strong>단점:</strong> 분모가 0이 되는 경우 주의. 하이퍼파라미터(다항식 계수) 튜닝 필요.</li>
+</ul></li>
+<li><p><strong>B-spline 또는 Fourier-based 활성화 함수 PyTorch 구현, 특징 및 장단점:</strong></p>
+<ul>
+<li><p><strong>B-spline 활성화 함수:</strong></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> BSpline</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BSplineActivation(nn.Module):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, knots, degree<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.knots <span class="op">=</span> knots</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.degree <span class="op">=</span> degree</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.coeffs <span class="op">=</span> nn.Parameter(torch.randn(<span class="bu">len</span>(knots) <span class="op">+</span> degree <span class="op">-</span> <span class="dv">1</span>)) <span class="co"># 제어점</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># B-Spline 계산</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> BSpline(<span class="va">self</span>.knots, <span class="va">self</span>.coeffs.detach().numpy(), <span class="va">self</span>.degree) <span class="co"># 계수 분리해서 사용</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>        spline_values <span class="op">=</span> torch.tensor(b(x.detach().numpy()), dtype<span class="op">=</span>torch.float32) <span class="co"># 입력 x를 B-Spline에 넣음</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> spline_values <span class="op">*</span> <span class="va">self</span>.coeffs.mean() <span class="co"># detach, numpy() 안하면 오류</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>         <span class="co"># detach, numpy() 안하면 오류</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>특징:</strong> 지역적으로 제어되는 유연한 곡선. 매듭(knot)과 차수(degree)로 형태 조절.</p></li>
+<li><p><strong>장점:</strong> 부드러운 함수 표현. 지역적 특징 학습.</p></li>
+<li><p><strong>단점:</strong> 매듭 설정에 따라 성능 영향. 계산 복잡도 증가.</p></li>
+</ul></li>
+<li><p><strong>새로운 활성화 함수 제안 및 성능 평가:</strong></p>
+<ul>
+<li>(예시) <strong>Swish와 GELU를 결합한 활성화 함수</strong>:</li>
+</ul>
+<pre><code>```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+class SwiGELU(nn.Module): # Swish + GELU
+  def forward(self, x):
+    return 0.5 * (x * torch.sigmoid(x) + F.gelu(x))
+```
+
+SwiGELU는 Swish의 부드러움과 GELU의 정규화 효과를 결합합니다.</code></pre>
+<ul>
+<li>실험 설계 및 성능 평가: FashionMNIST 등 벤치마크 데이터셋에서 기존 활성화 함수와 비교. (실험 결과는 생략)</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</section>
+<section id="참고자료" class="level3">
+<h3 class="anchored" data-anchor-id="참고자료">참고자료</h3>
+<ol type="1">
+<li><strong>Deep Learning (Goodfellow, Bengio, Courville, 2016)</strong>: Chapter 6.3 (Activation Functions) <a href="https://www.deeplearningbook.org/">https://www.deeplearningbook.org/</a>
+<ul>
+<li>딥러닝 전반에 대한 포괄적인 내용을 담고 있는 교과서. 활성화 함수에 대한 기본적인 내용과 함께, 딥러닝의 다른 중요한 개념들도 함께 학습할 수 있습니다.</li>
+</ul></li>
+<li><strong>Understanding the difficulty of training deep feedforward neural networks (Glorot &amp; Bengio, 2010)</strong> <a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf</a>
+<ul>
+<li>Sigmoid와 Tanh 활성화 함수의 그래디언트 소실 문제를 분석하고, Xavier 초기화 방법을 제안한 논문. 심층 신경망 학습의 어려움을 이해하는 데 중요한 자료입니다.</li>
+</ul></li>
+<li><strong>Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (He et al., 2015)</strong> <a href="https://arxiv.org/abs/1502.01852">https://arxiv.org/abs/1502.01852</a>
+<ul>
+<li>ReLU 활성화 함수와 PReLU 활성화 함수, 그리고 He 초기화 방법을 제안한 논문. 현대 딥러닝에서 널리 사용되는 ReLU 계열 활성화 함수에 대한 이해를 높일 수 있습니다.</li>
+</ul></li>
+<li><strong>Searching for Activation Functions (Ramachandran et al., 2017)</strong> <a href="https://arxiv.org/abs/1710.05941">https://arxiv.org/abs/1710.05941</a>
+<ul>
+<li>신경망 구조 탐색(Neural Architecture Search, NAS)을 통해 Swish 활성화 함수를 발견한 논문. 새로운 활성화 함수를 탐색하는 방법에 대한 아이디어를 얻을 수 있습니다.</li>
+</ul></li>
+<li><strong>STAF: A Sinusoidal Trainable Activation Function for Deep Learning (Jeon &amp; Cho, 2025)</strong> <a href="https://arxiv.org/abs/2405.13607">https://arxiv.org/abs/2405.13607</a> * 최신(2025년) ICLR에 발표된 논문으로, 푸리에 급수 기반의 학습 가능한 활성화 함수인 STAF를 제안합니다. 적응형 활성화 함수에 대한 최신 연구 동향을 파악하는 데 도움이 됩니다.</li>
+</ol>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

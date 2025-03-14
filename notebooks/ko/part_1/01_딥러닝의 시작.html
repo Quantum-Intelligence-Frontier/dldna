@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>quarto-input26322134d91d485c – Deep Learning DNA: Surviving Architectures and Essential Principles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f507c7d0488cb7630e20aad62ad8c2aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>window.MathJax = {loader: {load: ['[tex]/boldsymbol']},tex: {packages: {'[+]': ['boldsymbol']}}};</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">1. 딥러닝의 시작</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">한국어</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_de.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deutsch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Español</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">한국어</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_zh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">中文</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/00_서론.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">서론</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">part_1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1. 딥러닝의 시작</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/02_딥러닝의 수학.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. 딥러닝의 수학</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/03_딥러닝프레임워크.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. 딥러닝프레임워크</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/04_활성화함수.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. 활성화함수</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/05_최적화와 시각화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. 최적화와 시각화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/06_과적합과 해결 기법의 발전.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. 과적합과 해결 기법의 발전</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/07_합성곱 신경망의 진화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. 합성곱 신경망의 진화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/08_트랜스포머의 탄생.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. 트랜스포머의 탄생</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/09_트랜스포머의 진화.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. 트랜스포머의 진화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/10_멀티모달 딥러닝: 다중 감각 융합의 시작.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. 멀티모달 딥러닝: 다중 감각 융합의 시작</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/part_1/11_멀티모달 딥러닝: 한계를 넘어선 지능.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. 멀티모달 딥러닝: 한계를 넘어선 지능</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">딥러닝의 최전선</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/딥러닝의 최전선/01_SLM: 작지만 강력한 언어모델.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. SLM: 작지만 강력한 언어모델</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/ko/딥러닝의 최전선/02_자율주행.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. 자율주행</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#딥러닝의-시작-근본-원리와-기술-진화의-맥락" id="toc-딥러닝의-시작-근본-원리와-기술-진화의-맥락" class="nav-link active" data-scroll-target="#딥러닝의-시작-근본-원리와-기술-진화의-맥락">1. 딥러닝의 시작: 근본 원리와 기술 진화의 맥락</a>
+  <ul class="collapse">
+  <li><a href="#이-책의-목적" id="toc-이-책의-목적" class="nav-link" data-scroll-target="#이-책의-목적">1.1 이 책의 목적</a></li>
+  <li><a href="#딥러닝의-역사" id="toc-딥러닝의-역사" class="nav-link" data-scroll-target="#딥러닝의-역사">1.2 딥러닝의 역사</a></li>
+  <li><a href="#hebbian-learning" id="toc-hebbian-learning" class="nav-link" data-scroll-target="#hebbian-learning">1.3 Hebbian Learning</a>
+  <ul class="collapse">
+  <li><a href="#헤브-학습-규칙" id="toc-헤브-학습-규칙" class="nav-link" data-scroll-target="#헤브-학습-규칙">1.3.1 헤브 학습 규칙</a></li>
+  <li><a href="#뇌-가소성과의-연관성" id="toc-뇌-가소성과의-연관성" class="nav-link" data-scroll-target="#뇌-가소성과의-연관성">1.3.2 뇌 가소성과의 연관성</a></li>
+  </ul></li>
+  <li><a href="#신경망nn-neural-network" id="toc-신경망nn-neural-network" class="nav-link" data-scroll-target="#신경망nn-neural-network">1.4 신경망(NN, Neural Network)</a>
+  <ul class="collapse">
+  <li><a href="#신경망의-기본-구조" id="toc-신경망의-기본-구조" class="nav-link" data-scroll-target="#신경망의-기본-구조">1.4.1 신경망의 기본 구조</a></li>
+  <li><a href="#선형-근사기linear-approximator를-이용한-주택값-예측" id="toc-선형-근사기linear-approximator를-이용한-주택값-예측" class="nav-link" data-scroll-target="#선형-근사기linear-approximator를-이용한-주택값-예측">1.4.2 선형 근사기(linear approximator)를 이용한 주택값 예측</a></li>
+  <li><a href="#신경망으로-가는-길-행렬-연산의-과정" id="toc-신경망으로-가는-길-행렬-연산의-과정" class="nav-link" data-scroll-target="#신경망으로-가는-길-행렬-연산의-과정">1.4.3 신경망으로 가는 길 : 행렬 연산의 과정</a></li>
+  <li><a href="#넘파이로-구현" id="toc-넘파이로-구현" class="nav-link" data-scroll-target="#넘파이로-구현">1.3.4 넘파이로 구현</a></li>
+  </ul></li>
+  <li><a href="#심층신경망" id="toc-심층신경망" class="nav-link" data-scroll-target="#심층신경망">1.5 심층신경망</a>
+  <ul class="collapse">
+  <li><a href="#심층-신경망의-구조" id="toc-심층-신경망의-구조" class="nav-link" data-scroll-target="#심층-신경망의-구조">1.5.1 심층 신경망의 구조</a></li>
+  </ul></li>
+  <li><a href="#신경망의-구현" id="toc-신경망의-구현" class="nav-link" data-scroll-target="#신경망의-구현">1.5.2 신경망의 구현</a>
+  <ul class="collapse">
+  <li><a href="#신경망-훈련" id="toc-신경망-훈련" class="nav-link" data-scroll-target="#신경망-훈련">1.5.3 신경망 훈련</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제">연습문제</a>
+  <ul class="collapse">
+  <li><a href="#기초-문제" id="toc-기초-문제" class="nav-link" data-scroll-target="#기초-문제">1. 기초 문제</a></li>
+  <li><a href="#응용-문제" id="toc-응용-문제" class="nav-link" data-scroll-target="#응용-문제">2. 응용 문제</a></li>
+  <li><a href="#심화-문제" id="toc-심화-문제" class="nav-link" data-scroll-target="#심화-문제">3. 심화 문제</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/ko/part_1/01_딥러닝의 시작.html">1. 딥러닝의 시작</a></li></ol></nav></header>
+
+
+
+
+<p><a href="https://colab.research.google.com/github/Quantum-Intelligence-Frontier/dldna/blob/main/notebooks/ko/part_1/01_딥러닝의 시작.ipynb" target="_parent"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
+<section id="딥러닝의-시작-근본-원리와-기술-진화의-맥락" class="level1">
+<h1>1. 딥러닝의 시작: 근본 원리와 기술 진화의 맥락</h1>
+<p><strong>딥러닝 DNA 탐구의 시작</strong></p>
+<blockquote class="blockquote">
+<p>“기술의 진정한 혁신은 과거의 실패에서 태어난다” - 제프리 힌튼, 2018 튜링상 수상 연설</p>
+</blockquote>
+<section id="이-책의-목적" class="level2">
+<h2 class="anchored" data-anchor-id="이-책의-목적">1.1 이 책의 목적</h2>
+<p>딥러닝은 머신러닝의 한 분야로, 최근 놀라운 성과를 보이며 급격히 발전하고 있습니다. GPT-4, Gemini와 같은 거대 언어 모델(LLM)이 등장했고, 일반 인공지능(AGI)에 대한 기대와 우려가 공존하고 있습니다. 연구 논문과 기술이 빠르게 발전하면서 전문가들도 따라가기 어려운 상황입니다.</p>
+<p>이러한 상황은 1980년대 후반 PC와 프로그래밍 언어가 대중화되던 시기와 유사합니다. 당시 수많은 기술이 등장했지만, 결국 소수의 핵심 기술만이 현대 컴퓨팅의 기반이 되었습니다. 마찬가지로 현재의 신경망, CNN, RNN, 트랜스포머, 디퓨전, 멀티모달과 같은 다양한 딥러닝 아키텍처 중에서도, <strong>핵심적인 DNA를 공유하는 소수만이 AI의 근간으로 남아 지속적으로 발전할 것입니다.</strong></p>
+<p>이 책은 이러한 관점에서 시작되었습니다. 단순한 API 사용법이나 기초 이론, 예제보다는 <strong>기술 발전의 DNA</strong>를 해부합니다. 1943년 McCulloch-Pitts 뉴런 모델에서 2025년 최신 멀티모달 아키텍처까지, <em>마치 생명체의 진화 과정처럼</em> 각 기술이 등장하게 된 <strong>배경</strong>, 해결하고자 했던 <strong>본질적 문제</strong>, 그리고 이전 기술과의 <strong>연결 고리</strong>에 초점을 맞춥니다. 즉, 딥러닝 기술 계통도를 그려 나가는 것입니다. 1.2절에서는 그 내용을 간략하게 요약합니다.</p>
+<p>이를 위해 이 책은 다음과 같은 특징을 가집니다.</p>
+<ul>
+<li><strong>DNA 관점의 설명:</strong> 단순 기술 나열이 아닌, 각 기술이 <em>왜</em> 등장했고, <em>어떤 문제</em>를 해결했으며, <em>이전 기술과 어떤 관계</em>를 맺는지, 즉, 기술의 <em>계통(phylogeny)</em>을 중심으로 설명합니다.</li>
+<li><strong>간결하면서도 깊이 있는 설명:</strong> 핵심 개념과 원리를 명확히 이해하도록 돕되, 불필요한 세부 사항은 과감히 생략합니다.</li>
+<li><strong>최신 기술 동향 반영:</strong> 2025년 현재까지의 최신 기술(e.g., Retentive Networks, Mixture of Experts, Multimodal Models)을 포함하여, 딥러닝 발전의 최전선을 다룹니다.</li>
+<li><strong>실무와 연구를 잇는 가교:</strong> 실용적인 코드 예제와 수학적 직관을 균형 있게 제시하여, 이론과 실제를 연결합니다.</li>
+<li><strong>고급 예제</strong>: 단순히 동작하는 코드를 넘어, 실제 연구나 개발에 바로 적용할 수 있을 만큼 충분히 발전된 형태의 예제를 제공합니다.</li>
+</ul>
+<p>이를 통해 실무자와 연구자들이 전문성을 높이는 데 도움이 되고자 합니다. 또한 AI 기술이 가진 윤리적, 사회적 영향과 기술 민주화에 대한 고민도 함께 다루고자 합니다.</p>
+</section>
+<section id="딥러닝의-역사" class="level2">
+<h2 class="anchored" data-anchor-id="딥러닝의-역사">1.2 딥러닝의 역사</h2>
+<blockquote class="blockquote">
+<p><strong>도전과제:</strong> 어떻게 하면 기계가 인간처럼 생각하고 학습하게 만들 수 있을까?</p>
+<p><strong>연구자의 고뇌:</strong> 인간 뇌의 복잡한 작동 방식을 모방하는 것은 극도로 어려운 과제였습니다. 초기 연구자들은 단순한 규칙 기반 시스템이나 제한된 지식 데이터베이스에 의존했지만, 이는 실제 세상의 다양성과 복잡성을 처리하는 데 한계가 있었습니다. 진정으로 지능적인 시스템을 만들기 위해서는 데이터로부터 스스로 학습하고, 복잡한 패턴을 인식하며, 추상적인 개념을 이해하는 능력이 필요했습니다. 이를 어떻게 구현할 수 있을지가 핵심적인 난제였습니다.</p>
+</blockquote>
+<p>딥러닝의 역사는 1943년 Warren McCulloch와 Walter Pitts가 <strong>McCulloch-Pitts 뉴런</strong>이라는 수학적 모델로 뉴런 작동 방식을 설명하면서 시작되었습니다. 이는 신경망의 기본 구성 요소를 정의한 것입니다. 1949년, Donald Hebb은 <strong>Hebbian Learning</strong> 규칙을 제시, 시냅스 가중치 조절, 즉 학습의 기본 원리를 설명했습니다. 1958년 Frank Rosenblatt의 퍼셉트론(Perceptron)은 최초의 실용적 신경망이었으나, XOR 문제 같은 비선형 분류 한계에 직면했습니다.</p>
+<p>1980년대는 중요한 돌파구가 마련된 시기입니다. 1980년, Kunihiko Fukushima는 <strong>Neocognitron (Convolution Principle의 기반)</strong> 을 제안, 이는 훗날 CNN의 핵심 아이디어가 됩니다. 가장 중요한 발전은 1986년 Geoffrey Hinton 연구팀의 <strong>오차역전파(backpropagation) 알고리즘</strong> 개발입니다. 다층 신경망의 효과적 학습을 가능하게 한 이 알고리즘은 <em>신경망 학습의 핵심으로 자리 잡았습니다</em>. 2006년 Hinton이 “딥러닝” 용어를 제안하면서 새로운 전기를 맞았습니다.</p>
+<p>이후, 대규모 데이터와 컴퓨팅 파워의 발전으로 딥러닝은 급성장합니다. 2012년, AlexNet은 ImageNet 대회에서 압도적 성능으로 우승, 딥러닝의 실용성을 입증했습니다. 이후, <strong>Recurrent Networks 계열</strong>의 <strong>LSTM (1997)</strong>, <strong>Attention Mechanism (2014)</strong>을 사용한 혁신적인 아키텍처들이 등장합니다. 특히, 2017년 구글의 <strong>트랜스포머(Transformer)</strong>는 자연어 처리 패러다임을 완전히 바꾸었습니다. <em>이는 Self-Attention을 통해 입력 시퀀스의 각 부분을 다른 부분과 직접 연결, 장거리 의존성 문제를 해결했습니다</em>.</p>
+<p>트랜스포머를 기반으로 BERT, GPT 시리즈가 등장, 언어 모델 성능이 비약적으로 발전합니다. <strong>2013년 Word2Vec</strong>은 단어 임베딩의 새로운 지평을 열었습니다. <strong>Generative Models</strong> 분야에서는 <strong>2014년 GAN</strong>의 등장이후, <strong>2020년 Diffusion Models</strong>로 고품질 이미지 생성이 가능해졌습니다. 2021년에는 <strong>Vision Transformer (ViT)</strong> 가 나오면서, 트랜스포머가 이미지 처리에도 성공적으로 적용되기 시작, <strong>Multimodal Learning</strong>의 발전을 가속화 시켰습니다.</p>
+<p>최근 GPT-4, Gemini 같은 거대 언어 모델은 AGI 실현 가능성에 대한 기대를 높입니다. 이들은 <strong>2023년의 Retentive Networks</strong>와 같은 발전된 아키텍처, <strong>2023년 이후 FlashAttention</strong>과 같은 효율성 기술, 그리고 <strong>2024년 Mixture of Experts (MoE)</strong> 등의 기법을 활용하여 더욱 정교해지고 있습니다. 또한, 텍스트, 이미지, 오디오 등 다양한 형태의 데이터를 통합 처리하는 <strong>Multimodal</strong> 모델(2024년 Gemini Ultra 2.0, 2025년의 Gemini 2.0까지)로 진화하면서 단순한 질의응답을 넘어 추론, 창작, 문제 해결 등 고차원적인 인지 능력을 보여주고 있습니다.</p>
+<p>딥러닝 발전은 다음 핵심 요소에 기반합니다.</p>
+<ol type="1">
+<li>대규모 데이터 가용성 증가</li>
+<li>GPU 등 고성능 컴퓨팅 자원 발전</li>
+<li><strong>Backpropagation, Attention, Transformer</strong> 등 효율적 학습 알고리즘 및 <strong>Core Architecture</strong>, <strong>Generative Models</strong> 개발</li>
+</ol>
+<p>이러한 발전은 계속되지만, 여전히 해결해야 할 과제가 있습니다. 모델 설명 가능성(Interpretability), 데이터 효율성, 에너지 소비, 그리고 <strong>Efficiency &amp; Advanced Concepts</strong> 발전 문제는 중요한 숙제입니다.</p>
+<p>다음은 기술적 DNA 계통도를 시각화 한 것입니다.</p>
+<div id="cell-3" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2025 Deep Learning Technology DNA Tree (Multimodal Updated)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> anytree <span class="im">import</span> Node, RenderTree</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Core Mathematical Foundations &amp; Algorithms ====</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>root <span class="op">=</span> Node(<span class="st">"1943: McCulloch-Pitts Neuron"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>math_lineage <span class="op">=</span> Node(<span class="st">"Mathematical Foundations &amp; Algorithms"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>hebbian <span class="op">=</span> Node(<span class="st">"1949: Hebbian Learning"</span>, parent<span class="op">=</span>math_lineage)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>backprop <span class="op">=</span> Node(<span class="st">"1986: Backpropagation (Rumelhart, Hinton, Williams)"</span>, parent<span class="op">=</span>math_lineage)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>neuroplasticity <span class="op">=</span> Node(<span class="st">"1958: Cortical Plasticity Theory (Mountcastle)"</span>, parent<span class="op">=</span>math_lineage)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sparsity <span class="op">=</span> Node(<span class="st">"2023: Sparse Symbolic Representations (DeepMind)"</span>, parent<span class="op">=</span>backprop)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>liquid_clocks <span class="op">=</span> Node(<span class="st">"2024: Liquid Time-constant Networks"</span>, parent<span class="op">=</span>sparsity)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dynamic_manifolds <span class="op">=</span> Node(<span class="st">"2025: Dynamic Neural Manifolds"</span>, parent<span class="op">=</span>liquid_clocks)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Core Architecture ====</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>core_arch <span class="op">=</span> Node(<span class="st">"Core Architecture"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>conv_principle <span class="op">=</span> Node(<span class="st">"1980: Convolution Principle (Neocognitron - Fukushima)"</span>, parent<span class="op">=</span>core_arch)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>attention <span class="op">=</span> Node(<span class="st">"2014: Attention Mechanism (Bahdanau)"</span>, parent<span class="op">=</span>core_arch)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>transformer <span class="op">=</span> Node(<span class="st">"2017: Transformer (Vaswani)"</span>, parent<span class="op">=</span>attention)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>retentive_net <span class="op">=</span> Node(<span class="st">"2023: Retentive Networks (Microsoft)"</span>, parent<span class="op">=</span>transformer)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>hybrid_ssm <span class="op">=</span> Node(<span class="st">"2024: Hybrid State-Space Models"</span>, parent<span class="op">=</span>retentive_net)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Computer Vision ====</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>cv_lineage <span class="op">=</span> Node(<span class="st">"Computer Vision"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>lenet <span class="op">=</span> Node(<span class="st">"1998: LeNet-5 (LeCun)"</span>, parent<span class="op">=</span>cv_lineage)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>alexnet <span class="op">=</span> Node(<span class="st">"2012: AlexNet (Krizhevsky)"</span>, parent<span class="op">=</span>lenet)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>resnet <span class="op">=</span> Node(<span class="st">"2015: ResNet (He)"</span>, parent<span class="op">=</span>alexnet)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>vision_transformer <span class="op">=</span> Node(<span class="st">"2021: ViT (Vision Transformer) (Dosovitskiy)"</span>, parent<span class="op">=</span>resnet)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>vit22b <span class="op">=</span> Node(<span class="st">"2023: ViT-22B (Google)"</span>, parent<span class="op">=</span>vision_transformer)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>masked_autoenc <span class="op">=</span> Node(<span class="st">"2024: MAE v3 (Meta)"</span>, parent<span class="op">=</span>vit22b)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>vit40b <span class="op">=</span> Node(<span class="st">"2025: ViT-40B (Google/Sydney)"</span>, parent<span class="op">=</span>masked_autoenc)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>efficient_vit <span class="op">=</span> Node(<span class="st">"2025: EfficientViT-XXL"</span>, parent<span class="op">=</span>vit40b)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== NLP ====</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>nlp_lineage <span class="op">=</span> Node(<span class="st">"NLP"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>word2vec <span class="op">=</span> Node(<span class="st">"2013: Word2Vec (Mikolov)"</span>, parent<span class="op">=</span>nlp_lineage)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>bert <span class="op">=</span> Node(<span class="st">"2018: BERT (Devlin)"</span>, parent<span class="op">=</span>word2vec)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>gpt3 <span class="op">=</span> Node(<span class="st">"2020: GPT-3 (OpenAI)"</span>, parent<span class="op">=</span>bert)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>gpt5 <span class="op">=</span> Node(<span class="st">"2023: GPT-5 (OpenAI)"</span>, parent<span class="op">=</span>gpt3)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>gpt55_turbo <span class="op">=</span> Node(<span class="st">"2024: GPT-5.5 Turbo"</span>, parent<span class="op">=</span>gpt5)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>gpt6 <span class="op">=</span> Node(<span class="st">"2025: GPT-6 (Multimodal Agent)"</span>, parent<span class="op">=</span>gpt55_turbo)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Multimodal Learning ====</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>mm_lineage <span class="op">=</span> Node(<span class="st">"Multimodal Learning"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>clip <span class="op">=</span> Node(<span class="st">"2021: CLIP (OpenAI)"</span>, parent<span class="op">=</span>mm_lineage)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>flamingo <span class="op">=</span> Node(<span class="st">"2022: Flamingo (DeepMind)"</span>, parent<span class="op">=</span>clip)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>kosmos <span class="op">=</span> Node(<span class="st">"2023: Kosmos-2.5 (Microsoft)"</span>, parent<span class="op">=</span>flamingo)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>gemini <span class="op">=</span> Node(<span class="st">"2024: Gemini Ultra 2.0 (Google)"</span>, parent<span class="op">=</span>kosmos)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>gemini_multiverse <span class="op">=</span> Node(<span class="st">"2025: Gemini Multiverse (Google)"</span>, parent<span class="op">=</span>gemini)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>project_starline <span class="op">=</span> Node(<span class="st">"2025: Project Starline 2.0 (3D Multimodal)"</span>, parent<span class="op">=</span>gemini_multiverse)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Generative Models ====</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>gen_lineage <span class="op">=</span> Node(<span class="st">"Generative Models"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>vae <span class="op">=</span> Node(<span class="st">"2013: VAE (Kingma)"</span>, parent<span class="op">=</span>gen_lineage)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>gan <span class="op">=</span> Node(<span class="st">"2014: GAN (Goodfellow)"</span>, parent<span class="op">=</span>vae)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>stylegan <span class="op">=</span> Node(<span class="st">"2018: StyleGAN (Karras)"</span>, parent<span class="op">=</span>gan)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>diffusion <span class="op">=</span> Node(<span class="st">"2020: Diffusion Models (Ho)"</span>, parent<span class="op">=</span>stylegan)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>sdxl_turbo <span class="op">=</span> Node(<span class="st">"2023: SDXL-Turbo (Stability AI)"</span>, parent<span class="op">=</span>diffusion)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>meta3d_diff <span class="op">=</span> Node(<span class="st">"2024: Meta 3D Diffusion"</span>, parent<span class="op">=</span>sdxl_turbo)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>holo_gen <span class="op">=</span> Node(<span class="st">"2025: HoloGen (Neural Holography)"</span>, parent<span class="op">=</span>meta3d_diff)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Reinforcement Learning ====</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>rl_lineage <span class="op">=</span> Node(<span class="st">"Reinforcement Learning"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>tdlearn <span class="op">=</span> Node(<span class="st">"1988: TD Learning (Sutton)"</span>, parent<span class="op">=</span>rl_lineage)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>dqn <span class="op">=</span> Node(<span class="st">"2013: DQN (DeepMind)"</span>, parent<span class="op">=</span>tdlearn)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>alphago <span class="op">=</span> Node(<span class="st">"2016: AlphaGo (Silver)"</span>, parent<span class="op">=</span>dqn)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>muzero <span class="op">=</span> Node(<span class="st">"2019: MuZero (DeepMind)"</span>, parent<span class="op">=</span>alphago)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>robot_transformer <span class="op">=</span> Node(<span class="st">"2023: RT-2 (Google)"</span>, parent<span class="op">=</span>muzero)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>agentic_cortex <span class="op">=</span> Node(<span class="st">"2024: Agentic Cortex (DeepMind)"</span>, parent<span class="op">=</span>robot_transformer)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>autogpt5 <span class="op">=</span> Node(<span class="st">"2025: AutoGPT-5 (Fully Autonomous Agent)"</span>, parent<span class="op">=</span>agentic_cortex)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Efficiency &amp; Advanced Concepts ====</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>eff_lineage <span class="op">=</span> Node(<span class="st">"Efficiency &amp; Advanced Concepts"</span>, parent<span class="op">=</span>root)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>flash_attn3 <span class="op">=</span> Node(<span class="st">"2023: FlashAttention-v3"</span>, parent<span class="op">=</span>eff_lineage)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>moa <span class="op">=</span> Node(<span class="st">"2024: MoA (Mixture of Agents)"</span>, parent<span class="op">=</span>flash_attn3)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>nas3 <span class="op">=</span> Node(<span class="st">"2025: Neural Architecture Search 3.0"</span>, parent<span class="op">=</span>moa)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co"># ==== Print Tree Structure ====</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2025 Neural Network Evolution Tree:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pre, _, node <span class="kw">in</span> RenderTree(root):</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>pre<span class="sc">}{</span>node<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2025 Neural Network Evolution Tree:
+
+1943: McCulloch-Pitts Neuron
+├── Mathematical Foundations &amp; Algorithms
+│   ├── 1949: Hebbian Learning
+│   ├── 1986: Backpropagation (Rumelhart, Hinton, Williams)
+│   │   └── 2023: Sparse Symbolic Representations (DeepMind)
+│   │       └── 2024: Liquid Time-constant Networks
+│   │           └── 2025: Dynamic Neural Manifolds
+│   └── 1958: Cortical Plasticity Theory (Mountcastle)
+├── Core Architecture
+│   ├── 1980: Convolution Principle (Neocognitron - Fukushima)
+│   └── 2014: Attention Mechanism (Bahdanau)
+│       └── 2017: Transformer (Vaswani)
+│           └── 2023: Retentive Networks (Microsoft)
+│               └── 2024: Hybrid State-Space Models
+├── Computer Vision
+│   └── 1998: LeNet-5 (LeCun)
+│       └── 2012: AlexNet (Krizhevsky)
+│           └── 2015: ResNet (He)
+│               └── 2021: ViT (Vision Transformer) (Dosovitskiy)
+│                   └── 2023: ViT-22B (Google)
+│                       └── 2024: MAE v3 (Meta)
+│                           └── 2025: ViT-40B (Google/Sydney)
+│                               └── 2025: EfficientViT-XXL
+├── NLP
+│   └── 2013: Word2Vec (Mikolov)
+│       └── 2018: BERT (Devlin)
+│           └── 2020: GPT-3 (OpenAI)
+│               └── 2023: GPT-5 (OpenAI)
+│                   └── 2024: GPT-5.5 Turbo
+│                       └── 2025: GPT-6 (Multimodal Agent)
+├── Multimodal Learning
+│   └── 2021: CLIP (OpenAI)
+│       └── 2022: Flamingo (DeepMind)
+│           └── 2023: Kosmos-2.5 (Microsoft)
+│               └── 2024: Gemini Ultra 2.0 (Google)
+│                   └── 2025: Gemini Multiverse (Google)
+│                       └── 2025: Project Starline 2.0 (3D Multimodal)
+├── Generative Models
+│   └── 2013: VAE (Kingma)
+│       └── 2014: GAN (Goodfellow)
+│           └── 2018: StyleGAN (Karras)
+│               └── 2020: Diffusion Models (Ho)
+│                   └── 2023: SDXL-Turbo (Stability AI)
+│                       └── 2024: Meta 3D Diffusion
+│                           └── 2025: HoloGen (Neural Holography)
+├── Reinforcement Learning
+│   └── 1988: TD Learning (Sutton)
+│       └── 2013: DQN (DeepMind)
+│           └── 2016: AlphaGo (Silver)
+│               └── 2019: MuZero (DeepMind)
+│                   └── 2023: RT-2 (Google)
+│                       └── 2024: Agentic Cortex (DeepMind)
+│                           └── 2025: AutoGPT-5 (Fully Autonomous Agent)
+└── Efficiency &amp; Advanced Concepts
+    └── 2023: FlashAttention-v3
+        └── 2024: MoA (Mixture of Agents)
+            └── 2025: Neural Architecture Search 3.0</code></pre>
+</div>
+</div>
+</section>
+<section id="hebbian-learning" class="level2">
+<h2 class="anchored" data-anchor-id="hebbian-learning">1.3 Hebbian Learning</h2>
+<p>1943년 워렌 맥컬록(Warren McCulloch)과 월터 피츠(Walter Pitts)의 인공신경망 모델(McCulloch-Pitts Neuron)이 제안된 이후, 1949년 캐나다의 심리학자 도널드 헵(Donald O. Hebb)은 그의 저서 “The Organization of Behavior”에서 신경망 학습의 기본 원리를 제시했습니다. 이 원리는 <strong>헵의 규칙(Hebb’s Rule)</strong>, 또는 <strong>헤브 학습(Hebbian Learning)</strong>이라고 불리며, 딥러닝을 포함한 인공신경망 연구에 지대한 영향을 미쳤습니다.</p>
+<section id="헤브-학습-규칙" class="level3">
+<h3 class="anchored" data-anchor-id="헤브-학습-규칙">1.3.1 헤브 학습 규칙</h3>
+<p>헤브 학습의 핵심 아이디어는 매우 간단합니다. 두 뉴런이 동시에, 또는 반복적으로 활성화되면, 그 뉴런 사이의 연결 강도가 증가한다는 것입니다. 반대로, 두 뉴런이 서로 다른 시점에 활성화되거나, 한 뉴런만 활성화되고 다른 뉴런은 활성화되지 않으면, 연결 강도는 약화되거나 사라집니다.</p>
+<p>이를 수식으로 표현하면 다음과 같습니다.</p>
+<p><span class="math display">\[
+\Delta w_{ij} = \eta \cdot x_i \cdot y_j
+\]</span></p>
+<p>여기서,</p>
+<ul>
+<li><span class="math inline">\(\Delta w_{ij}\)</span>는 뉴런 <span class="math inline">\(i\)</span>와 뉴런 <span class="math inline">\(j\)</span> 사이의 연결 강도(가중치) 변화량입니다.</li>
+<li><span class="math inline">\(\eta\)</span>는 학습률(learning rate)로, 연결 강도 변화의 크기를 조절하는 상수입니다.</li>
+<li><span class="math inline">\(x_i\)</span>는 뉴런 <span class="math inline">\(i\)</span>의 활성화 값(입력)입니다.</li>
+<li><span class="math inline">\(y_j\)</span>는 뉴런 <span class="math inline">\(j\)</span>의 활성화 값(출력)입니다.</li>
+</ul>
+<p>이 수식은 뉴런 <span class="math inline">\(i\)</span>와 뉴런 <span class="math inline">\(j\)</span>가 모두 활성화될 때(<span class="math inline">\(x_i\)</span>와 <span class="math inline">\(y_j\)</span>가 모두 양수일 때), 연결 강도가 증가(<span class="math inline">\(\Delta w_{ij}\)</span>가 양수)한다는 것을 보여줍니다. 반대로, 둘 중 하나만 활성화되거나, 둘 다 비활성화되면 연결 강도는 감소하거나 변하지 않습니다. 헤브 학습은 <strong>비지도 학습(unsupervised learning)</strong>의 초기 형태 중 하나입니다. 즉, 정답(label)이 주어지지 않은 상태에서, 입력 데이터의 패턴을 통해 신경망 스스로 연결 강도를 조절하며 학습합니다.</p>
+</section>
+<section id="뇌-가소성과의-연관성" class="level3">
+<h3 class="anchored" data-anchor-id="뇌-가소성과의-연관성">1.3.2 뇌 가소성과의 연관성</h3>
+<p>헤브 학습은 단순한 수학적 규칙을 넘어, 실제 뇌의 동작 방식을 설명하는 데 중요한 통찰을 제공합니다. 뇌는 경험과 학습을 통해 끊임없이 변화하는데, 이러한 변화를 <strong>뇌 가소성(brain plasticity)</strong> 또는 <strong>신경 가소성(neural plasticity)</strong>이라고 합니다. 헤브 학습은 신경 가소성의 한 형태인 <strong>시냅스 가소성(synaptic plasticity)</strong>을 설명하는 데 핵심적인 역할을 합니다. 시냅스는 뉴런 사이의 연결 부위로, 정보 전달의 효율성을 결정하는 중요한 요소입니다. 헤브 학습은 시냅스 가소성의 기본 원리, 즉, <strong>“함께 활성화되는 뉴런은 함께 연결된다”</strong>는 원리를 명확하게 보여줍니다.장기 강화(Long-Term Potentiation, LTP)와 장기 억제(Long-Term Depression, LTD)는 시냅스 가소성의 대표적인 예시입니다. LTP는 헤브 학습 규칙에 따라 시냅스 연결이 강화되는 현상이고, LTD는 그 반대 현상입니다. LTP와 LTD는 학습과 기억, 그리고 뇌 발달 과정에서 중요한 역할을 합니다.</p>
+</section>
+</section>
+<section id="신경망nn-neural-network" class="level2">
+<h2 class="anchored" data-anchor-id="신경망nn-neural-network">1.4 신경망(NN, Neural Network)</h2>
+<p>신경망은 입력을 받아 원하는 출력에 최대한 가까운 값을 생성하는 함수 근사기(function approximator)입니다. 이는 수학적으로 <span class="math inline">\(f_\theta\)</span>로 표현되며, <span class="math inline">\(f\)</span>는 함수를, <span class="math inline">\(\theta\)</span>는 가중치(weight)와 편향(bias)으로 구성된 파라미터를 의미합니다. 신경망의 핵심은 데이터를 통해 이러한 파라미터를 자동으로 학습할 수 있다는 점입니다.</p>
+<p>1944년 Warren McCullough와 Walter Pitts가 처음 제안한 신경망은 생물학적 뉴런에서 영감을 받았지만, 현대의 신경망은 순수하게 수학적 모델입니다. 실제로 신경망은 연속 함수를 근사할 수 있는 강력한 수학적 도구로, 이는 보편 근사 정리(Universal Approximation Theorem)로 증명되었습니다.</p>
+<section id="신경망의-기본-구조" class="level3">
+<h3 class="anchored">1.4.1 신경망의 기본 구조</h3>
+<p>신경망은 입력층, 은닉층, 출력층으로 구성된 계층적 구조를 가집니다. 각 층은 노드(뉴런)들로 구성되며, 이들은 서로 연결되어 정보를 전달합니다. 기본적으로 신경망은 선형 변환과 비선형 활성화 함수의 조합으로 이루어져 있습니다.</p>
+<p>수학적으로 보면 신경망의 각 층은 다음과 같은 선형 변환을 수행합니다.</p>
+<p><span class="math display">\[ y = Wx + b \]</span></p>
+<p>여기서:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> 는 입력 벡터</li>
+<li><span class="math inline">\(W\)</span> 는 가중치 행렬</li>
+<li><span class="math inline">\(b\)</span> 는 편향 벡터</li>
+<li><span class="math inline">\(y\)</span> 는 출력 벡터</li>
+</ul>
+<p>이러한 구조는 단순해 보이지만, 충분한 뉴런과 층을 가진 신경망은 어떠한 연속 함수도 원하는 정확도로 근사할 수 있습니다. 이는 신경망이 복잡한 패턴을 학습하고 다양한 문제를 해결할 수 있는 이유가 됩니다.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기(딥다이브 : 보편 근사 정리)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기(딥다이브 : 보편 근사 정리)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<section id="보편-근사-정리" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="보편-근사-정리">보편 근사 정리</h2>
+<blockquote class="blockquote">
+<p><strong>도전과제:</strong> 신경망이 실제로 어떠한 복잡한 함수라도 근사할 수 있다는 것을 어떻게 증명할 수 있을까?</p>
+<p><strong>연구자의 고뇌:</strong> 신경망이 아무리 많은 층과 뉴런을 가지고 있더라도, 그것이 실제로 <em>모든</em> 연속 함수를 표현할 수 있는지는 자명하지 않았습니다. 단순한 선형 변환의 조합만으로는 복잡한 비선형성을 표현하는 데 한계가 있을 수 있다는 우려가 있었습니다. 이론적인 보장 없이 경험적인 결과에만 의존하는 것은 신경망 연구의 발전에 큰 걸림돌이었습니다.</p>
+</blockquote>
+<p><strong>보편 근사 정리 (Universal Approximation Theorem)</strong></p>
+<p>보편 근사 정리(Universal Approximation Theorem)는 신경망의 강력한 표현력을 뒷받침하는 핵심적인 이론입니다. 이 정리는, <em>충분히 넓은 은닉층을 가진 단층 신경망</em>이, <strong>어떤 연속 함수든</strong> 원하는 정확도로 근사할 수 있다는 것을 증명합니다.</p>
+<p><strong>핵심 아이디어:</strong></p>
+<ul>
+<li><strong>비선형 활성화 함수:</strong> ReLU, sigmoid, tanh와 같은 비선형 활성화 함수는 신경망이 비선형성을 표현할 수 있게 하는 핵심 요소입니다. 이러한 활성화 함수가 없다면, 아무리 많은 층을 쌓아도 선형 변환의 조합에 불과하게 됩니다.</li>
+<li><strong>충분히 넓은 은닉층:</strong> 은닉층의 뉴런 수가 충분히 많다면, 신경망은 임의의 복잡한 함수를 표현할 수 있는 “유연성”을 갖게 됩니다. 마치, 충분히 많은 조각들로 어떠한 형태의 모자이크 그림도 만들 수 있는 것과 유사합니다.</li>
+</ul>
+<p><strong>수학적 표현:</strong></p>
+<p><strong>정리 (보편 근사 정리):</strong></p>
+<p><span class="math inline">\(f : K \rightarrow \mathbb{R}\)</span> 가 유계 닫힌 집합(compact set) <span class="math inline">\(K \subset \mathbb{R}^d\)</span> 에서 정의된 임의의 연속 함수라고 하자. 그리고 임의의 오차 한계 <span class="math inline">\(\epsilon &gt; 0\)</span> 이 주어졌을 때, 다음 조건을 만족하는 <em>단층 신경망</em> <span class="math inline">\(F(x)\)</span> 가 <em>존재한다</em>.</p>
+<p><span class="math inline">\(|f(x) - F(x)| &lt; \epsilon\)</span>, 모든 <span class="math inline">\(x \in K\)</span> 에 대해.</p>
+<p>여기서 <span class="math inline">\(F(x)\)</span> 는 다음과 같은 형태를 가진다.</p>
+<p><span class="math inline">\(F(x) = \sum_{i=1}^{N} w_i \cdot \sigma(v_i^T x + b_i)\)</span></p>
+<p><strong>상세 설명:</strong></p>
+<ul>
+<li><p><strong><span class="math inline">\(f : K \rightarrow \mathbb{R}\)</span>:</strong></p>
+<ul>
+<li><span class="math inline">\(f\)</span>는 근사하고자 하는 대상 함수(target function)입니다.</li>
+<li><span class="math inline">\(K\)</span>는 함수의 <em>정의역(domain)</em>으로, <span class="math inline">\(\mathbb{R}^d\)</span> (d차원 실수 공간)의 <em>유계 닫힌 집합(compact set)</em>입니다. 유계 닫힌 집합은 직관적으로 “경계가 있고, 닫혀 있는” 집합을 의미합니다. 예를 들어, 1차원에서는 닫힌 구간 [a, b]가 유계 닫힌 집합입니다. 이 조건은 현실적인 상황에서 큰 제약이 되지 않습니다. 대부분의 실제 입력 데이터는 제한된 범위를 가지기 때문입니다.</li>
+<li><span class="math inline">\(\mathbb{R}\)</span>은 실수의 집합입니다. 즉, 함수 <span class="math inline">\(f\)</span>는 <span class="math inline">\(K\)</span>의 각 점(<span class="math inline">\(x\)</span>)을 실수 값(<span class="math inline">\(f(x)\)</span>)으로 대응시킵니다. (다변수 함수, 다중 출력의 경우는 아래에서 추가 설명합니다.)</li>
+</ul></li>
+<li><p><strong><span class="math inline">\(\epsilon &gt; 0\)</span>:</strong> 근사의 <em>정확도</em>를 나타내는 임의의 양수입니다. <span class="math inline">\(\epsilon\)</span>이 작을수록 더 정확한 근사가 됩니다.</p></li>
+<li><p><strong><span class="math inline">\(|f(x) - F(x)| &lt; \epsilon\)</span>:</strong> 모든 <span class="math inline">\(x \in K\)</span> 에 대해, 실제 함수값 <span class="math inline">\(f(x)\)</span>와 신경망의 출력 <span class="math inline">\(F(x)\)</span>의 차이가 <span class="math inline">\(\epsilon\)</span>보다 작다는 것을 의미합니다. 즉, 신경망이 함수 <span class="math inline">\(f\)</span>를 오차 범위 <span class="math inline">\(\epsilon\)</span> 안에서 근사할 수 있다는 것입니다.</p></li>
+<li><p><strong><span class="math inline">\(F(x) = \sum_{i=1}^{N} w_i \cdot \sigma(v_i^T x + b_i)\)</span>:</strong> 단층 신경망의 구조를 나타냅니다.</p>
+<ul>
+<li><strong><span class="math inline">\(N\)</span>:</strong> 은닉층의 뉴런(유닛) 개수입니다. 보편 근사 정리는 <em>충분히 큰</em> <span class="math inline">\(N\)</span>이 존재함을 보장하지만, 구체적으로 얼마만큼 커야 하는지는 알려주지 않습니다.</li>
+<li><strong><span class="math inline">\(w_i \in \mathbb{R}\)</span>:</strong> <span class="math inline">\(i\)</span>번째 은닉층 뉴런과 출력층 뉴런 사이의 <em>출력층 가중치(output weight)</em> 입니다. 스칼라 값입니다.</li>
+<li><strong><span class="math inline">\(\sigma\)</span>:</strong> <em>비선형 활성화 함수(activation function)</em> 입니다. ReLU, sigmoid, tanh, leaky ReLU 등 다양한 함수가 사용될 수 있습니다. 보편 근사 정리가 성립하기 위해서는 <span class="math inline">\(\sigma\)</span>는 <strong>비다항식(non-polynomial)</strong> 이어야 하며, <strong>유계(bounded)</strong> 이거나 <strong>구간적으로 연속(piecewise continuous)</strong> 이어야 합니다.</li>
+<li><strong><span class="math inline">\(v_i \in \mathbb{R}^d\)</span>:</strong> <span class="math inline">\(i\)</span>번째 은닉층 뉴런의 <em>입력층 가중치 벡터(input weight vector)</em> 입니다. 입력 <span class="math inline">\(x\)</span>와 같은 차원을 가집니다.</li>
+<li><strong><span class="math inline">\(v_i^T x\)</span>:</strong> 벡터 <span class="math inline">\(v_i\)</span>와 입력 벡터 <span class="math inline">\(x\)</span>의 내적(inner product, dot product)입니다.</li>
+<li><strong><span class="math inline">\(b_i \in \mathbb{R}\)</span>:</strong> <span class="math inline">\(i\)</span>번째 은닉층 뉴런의 <em>편향(bias)</em> 입니다. 스칼라 값입니다.</li>
+</ul></li>
+</ul>
+<p><strong>추가 설명 (다변수 함수, 다중 출력):</strong></p>
+<ul>
+<li><p><strong>다변수 함수:</strong> 입력 <span class="math inline">\(x\)</span>가 벡터인 경우(<span class="math inline">\(x \in \mathbb{R}^d\)</span>, <span class="math inline">\(d &gt; 1\)</span>)에도 보편 근사 정리는 성립합니다. <span class="math inline">\(v_i^T x\)</span> (내적) 연산이 다변수 입력을 자연스럽게 처리합니다.</p></li>
+<li><p><strong>다중 출력:</strong> 함수 <span class="math inline">\(f\)</span>가 여러 개의 출력 값을 가지는 경우 (<span class="math inline">\(f : K \rightarrow \mathbb{R}^m\)</span>, <span class="math inline">\(m &gt; 1\)</span>), 각 출력에 대해 별도의 출력층 뉴런과 가중치를 사용하면 됩니다. 즉, <span class="math inline">\(F(x)\)</span>는 벡터 형태의 출력을 가지게 되며 각 출력에 대한 근사 오차가 <span class="math inline">\(\epsilon\)</span>보다 작도록 만들 수 있습니다.</p></li>
+</ul>
+<p><strong>오차 수렴 속도 (Barron의 정리):</strong></p>
+<p>Barron의 정리에 따르면, 특정 조건 하에서(활성화 함수와 근사하려는 함수의 푸리에 변환에 대한 조건), 오차 <span class="math inline">\(\epsilon\)</span>은 뉴런 수 <span class="math inline">\(N\)</span>에 대해 다음과 같은 관계를 가집니다.</p>
+<p><span class="math inline">\(\epsilon(N) = O(N^{-1/2})\)</span></p>
+<p>이는 뉴런 수가 증가함에 따라 오차가 <span class="math inline">\(N^{-1/2}\)</span>의 비율로 감소한다는 것을 의미합니다. 즉, 뉴런 수를 4배 늘리면 오차는 대략 절반으로 줄어듭니다. 이것은 <em>일반적인</em> 경우의 수렴 속도이며, 특정 함수나 활성화 함수에 대해서는 더 빠르거나 느린 수렴 속도를 보일 수 있습니다.</p>
+<p><strong>반례 및 한계:</strong></p>
+<ul>
+<li><p><strong>경계 근사 불가:</strong> <span class="math inline">\(e^{-1/x^2}\)</span> 와 같이 <span class="math inline">\(x=0\)</span> 에서 무한 번 미분 가능하지만, 급격하게 변하는 함수는 <span class="math inline">\(x=0\)</span> 근처에서 신경망으로 근사하기 어려울 수 있습니다. 이러한 함수의 테일러 급수는 0이지만, 함수 자체는 0이 아니기 때문에 발생하는 문제입니다.</p></li>
+<li><p><strong>이산 함수의 지수적 복잡성:</strong> <span class="math inline">\(n\)</span>-변수 부울 함수(Boolean function)를 근사하는 데 필요한 뉴런 수는 최악의 경우 <span class="math inline">\(2^n / n\)</span> 에 비례할 수 있습니다. 이는 입력 변수의 수가 증가함에 따라 필요한 뉴런 수가 <em>지수적</em>으로 증가할 수 있음을 의미합니다. 이는 신경망이 모든 함수를 효율적으로 근사할 수 있는 것은 아니라는 것을 보여줍니다.</p></li>
+</ul>
+<p><strong>핵심 요약:</strong></p>
+<p>보편 근사 정리는, <em>충분히 넓은 은닉층</em>을 가진 <em>단층 신경망</em>이, <em>유계 닫힌 집합</em>에서 정의된 <em>임의의 연속 함수</em>를 <em>원하는 정확도</em>로 근사할 수 있음을 보장합니다. 활성화 함수는 <em>비다항식</em>이어야 합니다. 이는 신경망이 매우 강력한 표현력(representational power)을 가지고 있음을 의미하며, 딥러닝의 이론적 토대를 제공합니다. Barron의 정리는 오차 수렴 속도에 대한 통찰력을 제공합니다.</p>
+<p><strong>중요한 점</strong></p>
+<ul>
+<li><strong>존재성 증명:</strong> 보편 근사 정리는 <em>존재성</em>을 증명하는 것이며 <em>학습 알고리즘</em>을 제시하는 것은 아닙니다. 그러한 신경망이 <em>존재한다</em>는 것을 보장하지만, 실제로 그 신경망을 어떻게 찾아낼 수 있는지는 별개의 문제입니다. (역전파 알고리즘과 경사 하강법이 이 문제를 해결하는 방법입니다.)</li>
+<li><strong>단층 vs.&nbsp;다층:</strong> 실제로는 <em>단층</em> 신경망보다 <em>다층</em> 신경망(deep neural network)이 더 효율적이고 일반화 성능이 좋은 경우가 많습니다. 보편 근사 정리는 딥러닝의 이론적 토대를 제공하지만 딥러닝의 성공은 다층 구조, 특수한 아키텍처, 효율적인 학습 알고리즘 등 다양한 요소들의 결합으로 이루어진 결과입니다. 단층 신경망은 이론적으로는 모든 것을 표현할 <em>수</em> 있지만, 실제로 학습시키기는 훨씬 더 어렵습니다.</li>
+<li><strong>한계 인식:</strong> 보편 근사 정리는 강력한 결과이지만, 모든 함수를 <em>효율적으로</em> 근사할 수 있다는 것을 보장하지는 않습니다. 반례에서 보듯이, 특정 함수들은 근사하는 데 매우 많은 뉴런이 필요할 수 있습니다.</li>
+</ul>
+<p><strong>레퍼런스:</strong></p>
+<ol type="1">
+<li><strong>Cybenko, G. (1989).</strong> Approximation by superpositions of a sigmoidal function. <em>Mathematics of Control, Signals, and Systems</em>, 2(4), 303-314. (Sigmoid 활성화 함수에 대한 초기 보편 근사 정리)</li>
+<li><strong>Hornik, K., Stinchcombe, M., &amp; White, H. (1989).</strong> Multilayer feedforward networks are universal approximators. <em>Neural Networks</em>, 2(5), 359-366. (더 일반적인 활성화 함수에 대한 보편 근사 정리)</li>
+<li><strong>Barron, A. R. (1993).</strong> Universal approximation bounds for superpositions of a sigmoidal function. <em>IEEE Transactions on Information Theory</em>, 39(3), 930-945. (오차 수렴 속도에 관한 Barron의 정리)</li>
+<li><strong>Pinkus, A. (1999).</strong> Approximation theory of the MLP model in neural networks. <em>Acta Numerica</em>, 8, 143-195. (보편 근사 정리에 대한 더 깊이 있는 리뷰)</li>
+<li><strong>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016).</strong> <em>Deep Learning</em>. MIT Press. (챕터 6.4: 딥러닝 교과서. 보편 근사 정리와 관련된 내용 포함)</li>
+</ol>
+</section>
+</div>
+</div>
+</section>
+<section id="선형-근사기linear-approximator를-이용한-주택값-예측" class="level3">
+<h3 class="anchored" data-anchor-id="선형-근사기linear-approximator를-이용한-주택값-예측">1.4.2 선형 근사기(linear approximator)를 이용한 주택값 예측</h3>
+<p>신경망의 기본 개념을 이해하기 위해 간단한 선형 회귀(Linear Regression) 문제를 살펴보겠습니다. 여기서는 <code>scikit-learn</code> 라이브러리의 캘리포니아 주택 가격 데이터셋을 사용합니다. 이 데이터셋은 주택의 여러 특성(feature)들을 포함하고 있으며, 이 특성들을 이용하여 주택 가격을 예측하는 모델을 만들 수 있습니다. 간단한 예시를 위해, 주택 가격이 주택의 중간 소득(<code>MedInc</code>)이라는 하나의 특성으로만 결정된다고 가정하고 선형 근사기를 구현해 보겠습니다.</p>
+<div id="cell-8" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the California housing dataset</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> housing.frame</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use only Median Income (MedInc) and Median House Value (MedHouseVal)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[[<span class="st">"MedInc"</span>, <span class="st">"MedHouseVal"</span>]]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first 5 rows of the data</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training and testing sets</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    data[[<span class="st">"MedInc"</span>]], data[<span class="st">"MedHouseVal"</span>], test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and train a linear regression model</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions on the test data</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for visualization</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plot_data <span class="op">=</span> pd.DataFrame({<span class="st">'MedInc'</span>: X_test[<span class="st">'MedInc'</span>], <span class="st">'MedHouseVal'</span>: y_test, <span class="st">'Predicted'</span>: y_pred})</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort for better line plot visualization.  Crucially, sort *after* prediction.</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plot_data <span class="op">=</span> plot_data.sort_values(by<span class="op">=</span><span class="st">'MedInc'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize using Seaborn</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">'MedInc'</span>, y<span class="op">=</span><span class="st">'MedHouseVal'</span>, data<span class="op">=</span>plot_data, label<span class="op">=</span><span class="st">'Actual'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span><span class="st">'MedInc'</span>, y<span class="op">=</span><span class="st">'Predicted'</span>, data<span class="op">=</span>plot_data, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Predicted'</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'California Housing Prices Prediction (Linear Regression)'</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Median Income (MedInc)'</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Median House Value (MedHouseVal)'</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the trained weight (coefficient) and bias (intercept)</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Weight (Coefficient):"</span>, model.coef_[<span class="dv">0</span>])</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias (Intercept):"</span>, model.intercept_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   MedInc  MedHouseVal
+0  8.3252        4.526
+1  8.3014        3.585
+2  7.2574        3.521
+3  5.6431        3.413
+4  3.8462        3.422</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_딥러닝의 시작_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Weight (Coefficient): 0.4193384939381271
+Bias (Intercept): 0.4445972916907879</code></pre>
+</div>
+</div>
+<p>위 코드는 먼저 <code>fetch_california_housing</code> 함수로 캘리포니아 주택 가격 데이터셋을 불러옵니다. <code>as_frame=True</code>로 Pandas DataFrame 형태로 데이터를 가져온 후, 주택 가격(<code>MedHouseVal</code>)과 중간 소득(<code>MedInc</code>) 특성만 선택합니다. <code>train_test_split</code> 함수로 데이터를 훈련 및 테스트 세트로 분할한 뒤, <code>LinearRegression</code> 클래스로 선형 회귀 모델을 생성, <code>fit</code> 메서드로 훈련 데이터를 학습시킵니다. 학습된 모델은 <code>predict</code> 메서드로 테스트 데이터에 대한 예측을 수행하고, Seaborn을 통해 실제 값과 예측값을 시각화합니다. 마지막으로 학습된 모델의 가중치와 편향을 출력합니다.</p>
+<p>이처럼 단순한 선형 변환으로도 어느 정도 예측이 가능합니다. 신경망은 여기에 비선형 활성화 함수를 추가하고 여러 층을 쌓아 훨씬 복잡한 함수를 근사합니다.</p>
+</section>
+<section id="신경망으로-가는-길-행렬-연산의-과정" class="level3">
+<h3 class="anchored" data-anchor-id="신경망으로-가는-길-행렬-연산의-과정">1.4.3 신경망으로 가는 길 : 행렬 연산의 과정</h3>
+<p>신경망의 전단계는 선형 근사기입니다. 여기서는 앞 예제가 어떻게 실제값에 도달하는지를 자세히 살펴보겠습니다. 실제값 <span class="math inline">\(\boldsymbol y\)</span> 에 대해 가장 단순한 선형식은 <span class="math inline">\(\boldsymbol y = \boldsymbol x \boldsymbol W + \boldsymbol b\)</span> 입니다.</p>
+<p>여기서 <span class="math inline">\(\boldsymbol W\)</span> 는 가중치(weight parameter), <span class="math inline">\(\boldsymbol b\)</span> 는 편향(bias)입니다. 이 두 파라미터를 데이터를 통해 최적화하는 것이 신경망 학습의 핵심입니다. 1.4에서 살펴보겠지만 신경망은 선형변환에 활성화 함수를 추가해서 비선형성을 도입하고 역전파를 통해 파라미터를 최적화 합니다. 여기서는 선형변환과 역전파만으로 단순 계산과정을 살펴보겠습니다.</p>
+<p>초기에는 임의의 값으로 파라미터를 설정합니다.</p>
+<p><span class="math display">\[ \boldsymbol W =  \begin{bmatrix}
+   0.1  \\
+   0.1   \\
+   \end{bmatrix} \]</span></p>
+<p><span class="math display">\[ \boldsymbol b =  \begin{bmatrix}
+   0  \\
+   0   \\
+   0   \\
+   \end{bmatrix} \]</span></p>
+<p>이 값으로 예측을 수행하면</p>
+<p><span class="math display">\[ \hat{\boldsymbol y} =  \begin{bmatrix}
+   1.5 &amp; 1  \\
+   2.4 &amp; 2  \\
+   3.5 &amp; 3   \\
+   \end{bmatrix}
+   \begin{bmatrix}
+   0.1  \\
+   0.1   \\
+   \end{bmatrix} +
+   \begin{bmatrix}
+   0  \\
+   0   \\
+   0   \\
+   \end{bmatrix} =
+    \begin{bmatrix}
+   0.25  \\
+   0.44   \\
+   0.65   \\
+   \end{bmatrix}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{\boldsymbol y}\)</span> 는 예측값을 나타냅니다. 실제값과의 차이(loss)는 다음 입니다.</p>
+<p><span class="math display">\[ L = \boldsymbol y - \hat {\boldsymbol y}  = \begin{bmatrix}
+   2.1  \\
+   4.2   \\
+   5.9   \\
+   \end{bmatrix} -
+   \begin{bmatrix}
+   0.25  \\
+   0.44   \\
+   0.65   \\
+   \end{bmatrix} =
+  \begin{bmatrix}
+   1.85  \\
+   3.76  \\
+   5.25  \\
+   \end{bmatrix} \]</span></p>
+<p>파라미터 최적화는 그래디언트(gradient)를 이용합니다. <strong>그래디언트는 오차가 증가하는 방향을 가리키므로</strong>, 이를 현재 파라미터에서 빼주어 오차를 감소시킵니다. 학습률(<span class="math inline">\(\eta\)</span>) 을 도입하면</p>
+<p><span class="math display">\[ \text{new parameters} = \text{current parameters} - \eta \times \text{gradients} \]</span></p>
+<p>예를 들어 <span class="math inline">\(\eta=0.01\)</span>일 때, 가중치 업데이트는 다음과 같습니다.</p>
+<p><span class="math display">\[ \begin{bmatrix}
+   0.30116    \\
+   0.26746667    \\
+   \end{bmatrix} =
+   \begin{bmatrix}
+    0.1    \\
+    0.1    \\
+   \end{bmatrix} - 0.01 \times
+    \begin{bmatrix}
+    -20.116   \\
+    -16.74666667   \\
+   \end{bmatrix}\]</span></p>
+<p>편향도 같은 방식으로 업데이트됩니다. 이러한 정방향(forward) 계산과 역방향(backward) 계산을 반복하여 파라미터를 최적화하는 것이 신경망의 학습 과정입니다.</p>
+</section>
+<section id="넘파이로-구현" class="level3">
+<h3 class="anchored">1.3.4 넘파이로 구현</h3>
+<p>넘파이를 이용한 선형 근사기의 구현을 살펴보겠습니다. 먼저 입력 데이터와 타겟값을 준비합니다.</p>
+<div id="cell-11" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set input values and target values</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="dv">1</span>], [<span class="fl">2.4</span>, <span class="dv">2</span>], [<span class="fl">3.5</span>, <span class="dv">3</span>]])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">5.9</span>])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.01</span>  <span class="co">#  Adding the learning_rate variable here, even though it's unused, for consistency.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X ="</span>, X)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y ="</span>, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>X = [[1.5 1. ]
+ [2.4 2. ]
+ [3.5 3. ]]
+y = [2.1 4.2 5.9]</code></pre>
+</div>
+</div>
+<p>학습률은 0.01로 설정했습니다. 학습률은 모델의 학습 속도와 안정성에 영향을 미치는 하이퍼파라미터입니다. 가중치와 편향을 초기화합니다.</p>
+<div id="cell-13" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> X.shape</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize weights and bias</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> np.array([<span class="fl">0.1</span>, <span class="fl">0.1</span>])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>bias <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Corrected: Bias should be a single scalar value.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X.shape ="</span>, X.shape)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Initial weights ="</span>, weights)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Initial bias ="</span>, bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>X.shape = (3, 2)
+Initial weights = [0.1 0.1]
+Initial bias = 0.0</code></pre>
+</div>
+</div>
+<p>정방향 계산은 선형 변환을 수행합니다. 수식으로는 다음과 같습니다. <span class="math display">\[ \boldsymbol y = \boldsymbol X \boldsymbol W + \boldsymbol b \]</span></p>
+<div id="cell-15" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y_predicted <span class="op">=</span> np.dot(X, weights) <span class="op">+</span> bias</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted values ="</span>, y_predicted)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> y <span class="op">-</span> y_predicted</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Error ="</span>, error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Predicted values = [0.25 0.44 0.65]
+Error = [1.85 3.76 5.25]</code></pre>
+</div>
+</div>
+<p>손실까지 계산했습니다. 그 다음은 손실로 부터 그래디언트를 계산합니다. 어떻게 할까요? 가중치와 편향의 그래디언트는 다음과 같습니다.</p>
+<p><span class="math inline">\(\nabla_w = -\frac{2}{m}\mathbf{X}^T\mathbf{e}\)</span></p>
+<p><span class="math inline">\(\nabla_b = -\frac{2}{m}\mathbf{e}\)</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{e}\)</span>는 오차 벡터입니다. 그래디언트를 구했으면 기존 파라미터에서 그래디언트 값을 빼서 파라미터의 업데이트된 새로운 값을 얻습니다.</p>
+<div id="cell-17" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>weights_gradient <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>m <span class="op">*</span> np.dot(X.T, error)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bias_gradient <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>m <span class="op">*</span> error.<span class="bu">sum</span>()  <span class="co"># Corrected: Sum the errors for bias gradient</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>weights <span class="op">-=</span> learning_rate <span class="op">*</span> weights_gradient</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>bias <span class="op">-=</span> learning_rate <span class="op">*</span> bias_gradient</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Updated weights ="</span>, weights)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Updated bias ="</span>, bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Updated weights = [0.50232    0.43493333]
+Updated bias = 0.14479999999999998</code></pre>
+</div>
+</div>
+<p>위 단계가 역방향(backward) 계산입니다. 그래디언트를 역으로 순차적으로 전달 계산한다고 해서 역전파(backpropogation)라고 부르기도 합니다. 이제 전체 훈련 과정을 함수로 구현합니다.</p>
+<div id="cell-19" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(X: np.ndarray, y: np.ndarray, lr: <span class="bu">float</span>, iters: <span class="bu">int</span> <span class="op">=</span> <span class="dv">100</span>, verbose: <span class="bu">bool</span> <span class="op">=</span> <span class="va">False</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Linear regression training function.</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">        X: Input data, shape (m, n)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">        y: Target values, shape (m,)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">        lr: Learning rate</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">        iters: Number of iterations</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">        verbose: Whether to print intermediate steps</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Tuple: Trained weights and bias</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    m, n <span class="op">=</span> X.shape</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> np.array([<span class="fl">0.1</span>, <span class="fl">0.1</span>])</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    bias <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Corrected: Bias should be a scalar</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iters):</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        y_predicted <span class="op">=</span> np.dot(X, weights) <span class="op">+</span> bias</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> y <span class="op">-</span> y_predicted</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward pass</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        weights_gradient <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>m <span class="op">*</span> np.dot(X.T, error)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        bias_gradient <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>m <span class="op">*</span> error </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        weights <span class="op">-=</span> lr <span class="op">*</span> weights_gradient</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        bias <span class="op">-=</span> lr <span class="op">*</span> bias_gradient</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> verbose:</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Iteration </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Weights gradient ="</span>, weights_gradient)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Bias gradient ="</span>, bias_gradient)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Updated weights ="</span>, weights)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Updated bias ="</span>, bias)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> weights, bias</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>훈련된 모델을 테스트합니다.</p>
+<div id="cell-21" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>weights, bias <span class="op">=</span> train(X, y, learning_rate, iters<span class="op">=</span><span class="dv">2000</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trained weights:"</span>, weights)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trained bias:"</span>, bias)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test predictions</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>test_X <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="dv">1</span>], [<span class="fl">2.4</span>, <span class="dv">2</span>], [<span class="fl">3.5</span>, <span class="dv">3</span>]])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>test_y <span class="op">=</span> np.dot(test_X, weights) <span class="op">+</span> bias</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predictions:"</span>, test_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Trained weights: [0.93453357 0.83998906]
+Trained bias: [-0.14178921  0.27714103  0.10916541]
+Predictions: [2.10000021 4.19999973 5.9000001 ]</code></pre>
+</div>
+</div>
+<p>거의 실제값과 차이가 없음을 알 수 있습니다. 만약 반복횟수를 작게 하면 어떻게 될까요?</p>
+<div id="cell-23" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>weights, bias <span class="op">=</span> train(X, y, learning_rate, iters<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trained weights:"</span>, weights)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Trained bias:"</span>, bias)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test predictions</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>test_X <span class="op">=</span> np.array([[<span class="fl">1.5</span>, <span class="dv">1</span>], [<span class="fl">2.4</span>, <span class="dv">2</span>], [<span class="fl">3.5</span>, <span class="dv">3</span>]])</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>test_y <span class="op">=</span> np.dot(test_X, weights) <span class="op">+</span> bias</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predictions:"</span>, test_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Trained weights: [0.95069505 0.82053576]
+Trained bias: [-1.23073214e-04  1.51665327e-01  1.39109392e-01]
+Predictions: [2.24645526 4.07440496 5.92814933]</code></pre>
+</div>
+</div>
+<p>50번의 반복인 경우에 예측값과 실제값의 오차가 꽤 있는 것을 알 수 있습니다. 한가지 더 살펴볼 것은 학습률입니다. 왜 아주 작은 값을 그래디언트에 곱해주는 것일까요? 반복을 1회만 하고 계산되는 파라미터 값을 출력해 보겠습니다.</p>
+<div id="cell-25" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>num_iters <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>weights, bias <span class="op">=</span> train(X, y, learning_rate, iters<span class="op">=</span>num_iters, verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iteration 1:
+Weights gradient = [-20.116      -16.74666667]
+Bias gradient = [-1.23333333 -2.50666667 -3.5       ]
+Updated weights = [0.30116    0.26746667]
+Updated bias = [0.01233333 0.02506667 0.035     ]</code></pre>
+</div>
+</div>
+<p>1000번 반복훈련으로 얻은 훈련된 가중치, 편향의 값과 비교하면 그래디언트값이 매우 크다는 것을 알수 있습니다. 학습률로 그래디언트 값을 아주 작게 줄여주지 않으면 파라미터는 오차를 줄이지 못하고 계속 널을 뛸것입니다. 학습률을 큰 값으로 넣어서 테스트 해보시기 바랍니다.</p>
+<p>이 ’선형 근사기’가 신경망 근사기와 뭐가 다른걸까요? 다른 점은 한가지입니다. 선형계산을 한 후에 활성화 함수(activation function)를 통과시킨다는 것 뿐입니다. 수식으로는 다음으로 표현됩니다.</p>
+<p><span class="math display">\[ \boldsymbol y = f_{active} ( \boldsymbol x \boldsymbol W + \boldsymbol b ) \]</span></p>
+<p>코드로 만들어도 단순합니다. 활성화 함수는 여러 종류가 있는데 만약 tanh 함수를 쓴다면 다음과 같이 됩니다.</p>
+<div id="cell-27" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y_predicted <span class="op">=</span> np.tanh(np.dot(X, weights) <span class="op">+</span> bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>신경망은 선형변환, 활성화 함수를 적용하는 각 단계를 통상 레이어(layer)란 개념으로 표현합니다. 따라서 다음과 같이 두 단계로 구현을 하는 것이 레이어 표현에 더 적합해서 선호됩니다.</p>
+<div id="cell-29" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>out_1 <span class="op">=</span> np.dot(X, weights) <span class="op">+</span> bias  <span class="co"># First layer</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y_predicted <span class="op">=</span> np.tanh(out_1)       <span class="co"># Second layer (activation)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기(딥다이브 : 대뇌 피질 가소성 이론)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기(딥다이브 : 대뇌 피질 가소성 이론)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<section id="대뇌-피질-가소성-이론-cortical-plasticity-theory" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="대뇌-피질-가소성-이론-cortical-plasticity-theory">대뇌 피질 가소성 이론 (Cortical Plasticity Theory)</h2>
+<section id="mountcastle의-대뇌-피질-가소성-이론" class="level3">
+<h3 class="anchored" data-anchor-id="mountcastle의-대뇌-피질-가소성-이론">Mountcastle의 대뇌 피질 가소성 이론</h3>
+<p>버논 마운트캐슬(Vernon Mountcastle)은 20세기 후반 신경과학 분야에 큰 공헌을 한 과학자로, 특히 대뇌 피질의 기능적 조직에 대한 연구로 유명합니다. 마운트캐슬의 주요 업적 중 하나는 <strong>컬럼 구조(Columnar Organization)</strong> 발견입니다. 그는 대뇌 피질이 수직적인 컬럼(기둥) 형태로 조직되어 있으며, 같은 컬럼 내의 뉴런들은 유사한 자극에 반응한다는 것을 밝혀냈습니다.</p>
+<p>마운트캐슬의 이론은 대뇌 피질의 가소성을 이해하는 데 중요한 기반을 제공합니다. 그의 이론에 따르면:</p>
+<ul>
+<li><strong>기능적 단위로서의 컬럼:</strong> 대뇌 피질은 기본 기능 단위인 컬럼으로 구성됩니다. 각 컬럼은 특정 감각 양상(modality) 또는 특정 움직임 패턴에 반응하는 뉴런 집단을 포함합니다.</li>
+<li><strong>컬럼의 가소성:</strong> 컬럼의 구조와 기능은 경험에 따라 변할 수 있습니다. 특정 자극에 대한 반복적인 노출은 해당 자극을 처리하는 컬럼의 크기를 증가시키거나, 반응성을 강화시킬 수 있습니다. 반대로, 자극의 결핍은 컬럼의 크기를 감소시키거나 반응성을 약화시킬 수 있습니다.</li>
+<li><strong>경쟁적 상호작용:</strong> 인접한 컬럼들은 서로 경쟁적으로 상호작용합니다. 한 컬럼의 활동 증가는 다른 컬럼의 활동을 억제할 수 있으며, 이는 경험에 따른 피질 재조직(cortical reorganization)의 기저 메커니즘으로 작용합니다. 예를 들어, 특정 손가락을 자주 사용하면 해당 손가락을 담당하는 피질 영역이 확장되고, 다른 손가락을 담당하는 영역은 상대적으로 축소될 수 있습니다.</li>
+</ul>
+<p>마운트캐슬의 컬럼 구조와 가소성 이론은 다음과 같은 임상적 의미를 가집니다.</p>
+<ul>
+<li><strong>뇌 손상 후 회복:</strong> 뇌졸중이나 외상성 뇌 손상 후 기능 회복은 손상된 영역 주변의 피질이 기능을 재조직함으로써 일어날 수 있습니다.</li>
+<li><strong>감각 상실 및 재활:</strong> 시각이나 청각 상실 후, 해당 감각을 담당하던 피질 영역은 다른 감각을 처리하는 데 사용될 수 있습니다 (교차 양상 가소성, cross-modal plasticity).</li>
+<li><strong>학습 및 기술 습득:</strong> 새로운 기술을 배우거나 반복적인 훈련을 통해 특정 기능을 향상시키는 것은 해당 기능을 담당하는 피질 컬럼의 변화를 유도합니다.</li>
+</ul>
+</section>
+<section id="딥러닝과의-연결점" class="level3">
+<h3 class="anchored" data-anchor-id="딥러닝과의-연결점">딥러닝과의 연결점</h3>
+<p>마운트캐슬의 대뇌 피질 가소성 이론은 딥러닝, 특히 인공신경망(Artificial Neural Networks, ANN)의 구조와 학습 원리에 많은 영감을 주었습니다.</p>
+<ul>
+<li><strong>계층적 구조 (Hierarchical Structure):</strong> 대뇌 피질의 컬럼 구조는 딥러닝 모델의 계층적 구조와 유사합니다. 딥러닝 모델은 여러 층(layer)으로 구성되며, 각 층은 입력 데이터로부터 점차 추상적인 특징(feature)을 추출합니다. 이는 피질의 컬럼들이 감각 정보를 단계적으로 처리하여 복잡한 인지 기능을 수행하는 방식과 유사합니다.</li>
+<li><strong>가중치 조정 (Weight Adjustment):</strong> 딥러닝 모델은 학습 과정에서 연결 강도(가중치)를 조정하여 입력 데이터와 출력 사이의 관계를 학습합니다. 이는 마운트캐슬이 제시한 컬럼 내 뉴런 간 연결 강도 변화와 유사한 메커니즘입니다. 경험에 따라 특정 자극에 대한 뉴런의 반응성이 강화되거나 약화되는 것처럼, 딥러닝 모델도 학습 데이터를 통해 가중치를 조정하여 성능을 향상시킵니다.</li>
+<li><strong>경쟁 학습 (Competitive Learning):</strong> 딥러닝의 일부 모델, 특히 자기 조직화 지도(Self-Organizing Map, SOM)는 마운트캐슬의 컬럼 간 경쟁적 상호작용과 유사한 원리를 사용합니다. SOM은 입력 데이터의 특징을 기반으로 뉴런들이 경쟁적으로 학습하며, 승자 뉴런만이 활성화되고 그 주변 뉴런들의 가중치를 업데이트합니다. 이는 피질에서 인접한 컬럼들이 서로 억제하며 경쟁적으로 기능을 분담하는 방식과 유사합니다.</li>
+</ul>
+<p>마운트캐슬의 대뇌 피질 가소성 이론은 뇌의 기능적 조직과 학습 메커니즘에 대한 이해를 넓혔을 뿐만 아니라, 딥러닝 모델 개발에도 중요한 통찰력을 제공했습니다. 뇌의 작동 방식을 모방한 딥러닝 모델은 인공지능 분야의 발전에 크게 기여하고 있으며, 앞으로도 뇌과학과 인공지능 분야의 상호작용은 더욱 활발해질 것으로 기대됩니다.</p>
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="심층신경망" class="level2">
+<h2 class="anchored" data-anchor-id="심층신경망">1.5 심층신경망</h2>
+<p>딥러닝은 여러 층의 신경망을 쌓아 학습하는 방식입니다. 층이 깊다는 의미에서 ’deep’이라는 용어가 사용되었습니다. 기본 구성요소인 선형변환층은 완전연결층(Fully Connected Layer) 또는 밀집층(Dense Layer)이라고 부릅니다. 이러한 층들은 다음과 같은 구조로 연결됩니다.</p>
+<p>완전연결층 1 - 활성화층 1 - 완전연결층 2 - 활성화층 2 - …</p>
+<p>활성화층은 신경망에서 핵심적인 역할을 합니다. 만약 선형층만 연속해서 쌓는다면 수학적으로는 하나의 선형변환과 동일해집니다. 예를 들어 두 개의 선형층을 연결하면 다음과 같이 표현됩니다.</p>
+<p><span class="math display">\[ \boldsymbol y = (\boldsymbol X \boldsymbol W_1 + \boldsymbol b_1)\boldsymbol W_2 + \boldsymbol b_2 = \boldsymbol X(\boldsymbol W_1\boldsymbol W_2) + (\boldsymbol b_1\boldsymbol W_2 + \boldsymbol b_2) = \boldsymbol X\boldsymbol W + \boldsymbol b \]</span></p>
+<p>이는 결국 또 다른 하나의 선형변환이 됩니다. 따라서 여러 층을 쌓는 이점이 사라지게 됩니다. 활성화층은 이러한 선형성을 깨고 각 층이 독립적으로 학습될 수 있게 합니다. 딥러닝이 강력한 이유는 바로 이렇게 여러 층을 쌓을수록 더 복잡한 패턴을 학습할 수 있기 때문입니다.</p>
+<section id="심층-신경망의-구조" class="level3">
+<h3 class="anchored" data-anchor-id="심층-신경망의-구조">1.5.1 심층 신경망의 구조</h3>
+<p><img src="../../../assets/images/01_dnn.png" alt="image info" style="width: 800px;"></p>
+<p>각 층의 출력은 다음 층의 입력이 되어 순차적으로 계산됩니다. 순방향 전파는 비교적 단순한 연산의 연속입니다.</p>
+<p>역방향 전파에서는 각 층마다 두 종류의 그래디언트를 계산합니다.</p>
+<ol type="1">
+<li><p>가중치에 대한 그래디언트: <span class="math inline">\(\frac{\partial E}{\partial \boldsymbol W}\)</span> - 파라미터 업데이트에 사용</p></li>
+<li><p>입력에 대한 그래디언트: <span class="math inline">\(\frac{\partial E}{\partial \boldsymbol x}\)</span> - 이전 층으로 전파</p></li>
+</ol>
+<p>이러한 두 그래디언트는 각각 독립적으로 저장되고 관리되어야 합니다. 가중치 그래디언트는 옵티마이저가 파라미터를 업데이트하는 데 사용하고, 입력 그래디언트는 역전파 과정에서 이전 층의 학습에 사용됩니다.</p>
+</section>
+</section>
+<section id="신경망의-구현" class="level2">
+<h2 class="anchored" data-anchor-id="신경망의-구현">1.5.2 신경망의 구현</h2>
+<p>신경망의 기본 구조를 구현하기 위해 레이어 기반의 설계를 적용합니다. 먼저 모든 레이어가 상속받을 기본 클래스를 정의합니다.</p>
+<div id="cell-32" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BaseLayer():</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># __init__ can be omitted as it implicitly inherits from 'object' in Python 3</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>  <span class="co"># Should be implemented in derived classes</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>, output_error, lr):</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span>  <span class="co"># Should be implemented in derived classes</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> print_params(<span class="va">self</span>):</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Default implementation (optional).  Child classes should override.</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Layer parameters (Not implemented in BaseLayer)"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># raise NotImplementedError # Or keep NotImplementedError</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>BaseLayer는 순전파(forward)와 역전파(backward) 연산의 인터페이스를 정의합니다. 각 레이어는 이 인터페이스를 구현하여 고유한 연산을 수행합니다. 다음은 완전 연결층의 구현입니다.</p>
+<div id="cell-34" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FCLayer(BaseLayer):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, in_size, out_size):</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># super().__init__()  # No need to call super() for object inheritance</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.in_size <span class="op">=</span> in_size</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out_size <span class="op">=</span> out_size</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># He initialization (weights)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights <span class="op">=</span> np.random.randn(in_size, out_size) <span class="op">*</span> np.sqrt(<span class="fl">2.0</span> <span class="op">/</span> in_size)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Bias initialization (zeros)</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">=</span> np.zeros(out_size)  <span class="co"># or np.zeros((out_size,))</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.in_x <span class="op">=</span> x  <span class="co"># Store input for use in backward pass</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.dot(x, <span class="va">self</span>.weights) <span class="op">+</span> <span class="va">self</span>.bias</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>, out_error, lr):</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Matrix multiplication order: out_error (batch_size, out_size), self.weights (in_size, out_size)</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        in_x_gradient <span class="op">=</span> np.dot(out_error, <span class="va">self</span>.weights.T)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        weight_gradient <span class="op">=</span> np.dot(<span class="va">self</span>.in_x.T, out_error)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        bias_gradient <span class="op">=</span> np.<span class="bu">sum</span>(out_error, axis<span class="op">=</span><span class="dv">0</span>)  <span class="co"># Sum over all samples (rows)</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weights <span class="op">-=</span> lr <span class="op">*</span> weight_gradient</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">-=</span> lr <span class="op">*</span> bias_gradient</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> in_x_gradient</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> print_params(<span class="va">self</span>):</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Weights:</span><span class="ch">\n</span><span class="st">"</span>, <span class="va">self</span>.weights)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Bias:</span><span class="ch">\n</span><span class="st">"</span>, <span class="va">self</span>.bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>완전연결층은 가중치와 편향을 사용하여 입력을 변환합니다. 가중치 초기화는 He 초기화 방식을 적용했습니다1. 이는 2015년 He et al.이 제안한 방식으로, ReLU 활성화 함수와 함께 사용할 때 특히 효과적입니다.</p>
+<div id="cell-36" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(x):</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(x, <span class="dv">0</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu_deriv(x):</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(x <span class="op">&gt;</span> <span class="dv">0</span>, dtype<span class="op">=</span>np.float32)  <span class="co"># or dtype=int</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leaky_relu(x):</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(<span class="fl">0.01</span> <span class="op">*</span> x, x)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leaky_relu_deriv(x):</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">=</span> np.ones_like(x)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    dx[x <span class="op">&lt;</span> <span class="dv">0</span>] <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dx</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tanh(x):</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.tanh(x)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tanh_deriv(x):</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> np.tanh(x)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x):</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid_deriv(x):  <span class="co"># Numerically stable version</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> sigmoid(x)</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>ReLU는 2011년 처음 제안된 이후 딥러닝의 표준 활성화 함수가 되었습니다. 기울기 소실 문제를 효과적으로 해결하면서도 계산이 단순한 장점이 있습니다. 역방향 계산을 위해 활성화함수의 미분 함수 relu_deriv()룰 선언해 줍니다. ReLU는 입력값이 0보다 작으면 0을 그보다 크면 자기 자신을 리턴해주는 함수입니다. 따라서 미분함수는 0이하는 0, 0보다 크면 1을 반환해줍니다. 여기서는 활성화 함수로 Tanh를 사용합니다. 다음은 활성화 레이어입니다.</p>
+<div id="cell-38" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ActivationLayer(BaseLayer):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, activation, activation_deriv):</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.activation <span class="op">=</span> activation</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.activation_deriv <span class="op">=</span> activation_deriv</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, input_data):</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">input</span> <span class="op">=</span> input_data</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.activation(input_data)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>, output_error, lr):</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.activation_deriv(<span class="va">self</span>.<span class="bu">input</span>) <span class="op">*</span> output_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>활성화 레이어는 비선형성을 추가하여 신경망이 복잡한 함수를 근사할 수 있게 합니다. 역전파 과정에서는 연쇄 법칙에 따라 도함수와 출력 오차를 곱합니다.</p>
+<div id="cell-40" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse(y_label, y_pred):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (np.mean(np.power(y_label <span class="op">-</span> y_pred,<span class="dv">2</span>)))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse_deriv(y_label, y_pred):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">2</span><span class="op">/</span>y_label.size) <span class="op">*</span> (y_pred <span class="op">-</span> y_label) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>평균제곱오차(MSE)는 회귀 문제에서 널리 사용되는 손실 함수입니다. 예측값과 실제값의 차이를 제곱하여 평균을 구합니다. 이러한 구성 요소들을 통합하여 전체 신경망을 구현할 수 있습니다.</p>
+<div id="cell-42" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Network:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> []</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss_deriv <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_layer(<span class="va">self</span>, layer):</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers.append(layer)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_loss(<span class="va">self</span>, loss, loss_deriv):</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss <span class="op">=</span> loss</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss_deriv <span class="op">=</span> loss_deriv</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _forward_pass(<span class="va">self</span>, x):</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> x</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> layer <span class="kw">in</span> <span class="va">self</span>.layers:</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>            output <span class="op">=</span> layer.forward(output)</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, inputs):</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> []</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> inputs:</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>            output <span class="op">=</span> <span class="va">self</span>._forward_pass(x)</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>            predictions.append(output)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> predictions</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train(<span class="va">self</span>, x_train, y_train, epochs, lr):</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>            epoch_loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> x, y <span class="kw">in</span> <span class="bu">zip</span>(x_train, y_train):</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Forward pass</span></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>                output <span class="op">=</span> <span class="va">self</span>._forward_pass(x)</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Calculate loss</span></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>                epoch_loss <span class="op">+=</span> <span class="va">self</span>.loss(y, output)</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Backward pass</span></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>                error <span class="op">=</span> <span class="va">self</span>.loss_deriv(y, output)</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> layer <span class="kw">in</span> <span class="bu">reversed</span>(<span class="va">self</span>.layers):</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>                    error <span class="op">=</span> layer.backward(error, lr)</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Calculate average loss for the epoch</span></span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>            avg_loss <span class="op">=</span> epoch_loss <span class="op">/</span> <span class="bu">len</span>(x_train)</span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> epoch <span class="op">==</span> epochs <span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f'epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>epochs<span class="sc">}</span><span class="ss">   error=</span><span class="sc">{</span>avg_loss<span class="sc">:.6f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="신경망-훈련" class="level3">
+<h3 class="anchored" data-anchor-id="신경망-훈련">1.5.3 신경망 훈련</h3>
+<p>신경망의 훈련은 순전파와 역전파를 반복하여 가중치를 최적화하는 과정입니다. 먼저 XOR 문제를 통해 신경망의 학습 과정을 살펴보겠습니다.</p>
+<div id="cell-44" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># XOR training data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> np.array([[[<span class="dv">0</span>,<span class="dv">0</span>]], [[<span class="dv">0</span>,<span class="dv">1</span>]], [[<span class="dv">1</span>,<span class="dv">0</span>]], [[<span class="dv">1</span>,<span class="dv">1</span>]]])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> np.array([[[<span class="dv">0</span>]], [[<span class="dv">1</span>]], [[<span class="dv">1</span>]], [[<span class="dv">0</span>]]])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Network architecture</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> Network()</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>net.add_layer(FCLayer(<span class="dv">2</span>, <span class="dv">30</span>))                     <span class="co"># Input layer -&gt; Hidden layer</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>net.add_layer(ActivationLayer(tanh, tanh_deriv))  <span class="co"># tanh activation</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>net.add_layer(FCLayer(<span class="dv">30</span>, <span class="dv">1</span>))                     <span class="co"># Hidden layer -&gt; Output layer</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>net.add_layer(ActivationLayer(tanh, tanh_deriv))  <span class="co"># tanh activation</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Training settings and execution</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>net.set_loss(mse, mse_deriv)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>net.train(x_train, y_train, epochs<span class="op">=</span><span class="dv">2000</span>, lr<span class="op">=</span><span class="fl">5e-3</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Prediction test</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> net.predict(x_train)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"predict=</span><span class="sc">{</span>out<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>epoch 2000/2000   error=0.002251
+predict=[array([[0.00471695]]), array([[0.93254742]]), array([[0.93421712]]), array([[0.0080288]])]</code></pre>
+</div>
+</div>
+<p>활성화 함수는 tanh()를 사용해서 훈련을 시켰습니다. XOR 출력로직에 대해 비슷한 값을 낼 수 있게 신경망이 훈련된 것을 확인할 수 있습니다. 이제 MNIST 손글씨 분류 문제를 통해 실제 데이터셋에 대한 신경망 학습을 살펴보겠습니다.</p>
+<p>다음은 MNIST 손글씨 예제입니다. 파이토치를 사용하기 위해 필요한 라이브러리를 먼저 불러옵니다.</p>
+<div id="cell-47" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> MNIST</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> random_split</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> MNIST(root <span class="op">=</span> <span class="st">'data/'</span>, download <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(dataset))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>60000</code></pre>
+</div>
+</div>
+<div id="cell-48" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>image, label <span class="op">=</span> dataset[<span class="dv">10</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(image, cmap <span class="op">=</span> <span class="st">'gray'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Label:'</span>, label)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Label: 3</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_딥러닝의 시작_files/figure-html/cell-22-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>손글씨의 라벨은 정수형으로 카테코리 형태가 아닙니다. 케라스(keras)에서 쓰는 to_category와 유사한 함수를 만들어서 사용하겠습니다.</p>
+<div id="cell-50" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_categorical(y, num_classes):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" 1-hot encodes a tensor """</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.eye(num_classes, dtype<span class="op">=</span><span class="st">'uint8'</span>)[y]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-51" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">## MNIST dataset(images and labels)</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>mnist_dataset <span class="op">=</span> MNIST(root <span class="op">=</span> <span class="st">'data/'</span>, train <span class="op">=</span> <span class="va">True</span>, transform <span class="op">=</span> transforms.ToTensor())</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>train_data, test_data <span class="op">=</span> random_split(mnist_dataset , [<span class="dv">50000</span>, <span class="dv">10000</span>])</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">2000</span>, shuffle<span class="op">=</span><span class="va">True</span>, num_workers<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>test_loader <span class="op">=</span> torch.utils.data.DataLoader(train_data, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>, num_workers<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>train_images, train_labels <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(train_loader)) <span class="co"># 한번의 배치만 가져온다.</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> train_images.reshape(train_images.shape[<span class="dv">0</span>], <span class="dv">1</span>, <span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> to_categorical(train_labels, <span class="dv">10</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_train.shape)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>torch.Size([2000, 1, 784])
+(2000, 10)</code></pre>
+</div>
+</div>
+<p>데이터를 불러온 후에 훈련용과 테스트용으로 두개를 분리했습니다. 데이터를 로딩하는 파이토치의 DataLoader를 사용했습니다. 여기서는 훈련 데이터는 2000개만 사용하기 위해 batch_size를 2000으로 했습니다. next(iter(train_loader))로 단 한번의 배치만 가져와서 데이터 형태를 (1, 28, 28)에서 (1, 784)로 변경해 줍니다. 이를 평탄화라고 합니다. 이미지와 라벨 데이터를 각기 가공하고 나서 차원을 확인합니다.</p>
+<div id="cell-53" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # Network</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>net <span class="op">=</span> Network()</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>net.add_layer(FCLayer(<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>, <span class="dv">100</span>))                <span class="co"># input_shape=(1, 28*28)    ;   output_shape=(1, 100)</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>net.add_layer(ActivationLayer(tanh, tanh_deriv))</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>net.add_layer(FCLayer(<span class="dv">100</span>, <span class="dv">50</span>))                   <span class="co"># input_shape=(1, 100)      ;   output_shape=(1, 50)</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>net.add_layer(ActivationLayer(tanh, tanh_deriv))</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>net.add_layer(FCLayer(<span class="dv">50</span>, <span class="dv">10</span>))                    <span class="co"># input_shape=(1, 50)       ;   output_shape=(1, 10)</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>net.add_layer(ActivationLayer(tanh, tanh_deriv))</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>net.set_loss(mse, mse_deriv)</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>net.train(x_train[<span class="dv">0</span>:<span class="dv">1000</span>], y_train[<span class="dv">0</span>:<span class="dv">1000</span>], epochs<span class="op">=</span><span class="dv">35</span>, lr<span class="op">=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_936812/3322560381.py:14: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  return np.dot(x, self.weights) + self.bias
+/tmp/ipykernel_936812/3322560381.py:19: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  weight_gradient = np.dot(self.in_x.T, out_error)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>epoch 35/35   error=0.002069</code></pre>
+</div>
+</div>
+<div id="cell-54" class="cell" data-execution_count="30">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions with the trained model.</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>test_images, test_labels <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(test_loader))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> test_images.reshape(test_images.shape[<span class="dv">0</span>], <span class="dv">1</span>, <span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> to_categorical(test_labels, <span class="dv">10</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(x_test))</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use only the first 2 samples for prediction.</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> net.predict(x_test[:<span class="dv">2</span>])  <span class="co"># Corrected slicing: use [:2] for the first two samples</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted values : "</span>)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(out, end<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True values : "</span>)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_test[:<span class="dv">2</span>])  <span class="co"># Corrected slicing: use [:2] to match the prediction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+
+
+Predicted values : 
+[array([[-0.02857555,  0.04630796,  0.01640415,  0.34762487,  0.01307466,
+        -0.14719773,  0.01654099,  0.12845884,  0.74751837,  0.05102324]]), array([[ 0.01248236,  0.00248117,  0.70203826,  0.12074454,  0.088309  ,
+        -0.24138211, -0.04961493,  0.20394738,  0.28894724,  0.07850696]])]
+True values : 
+[[0 0 0 1 0 0 0 0 0 0]
+ [0 0 0 1 0 0 0 0 0 0]]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_936812/3322560381.py:14: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  return np.dot(x, self.weights) + self.bias</code></pre>
+</div>
+</div>
+<p>지금까지 우리는 가장 기본적인 형태의 신경망, 즉 선형 변환과 비선형 활성화 함수를 층층이 쌓아 올려 예측을 수행하는 “함수 근사기(function approximator)”를 직접 구현해 보았습니다. 단순한 XOR 문제부터 MNIST 손글씨 분류까지, 신경망이 어떻게 데이터를 통해 학습하고 복잡한 패턴을 인식하는지 그 핵심 원리를 살펴보았습니다. PyTorch, TensorFlow와 같은 딥러닝 프레임워크들은 이러한 과정을 훨씬 더 효율적이고 편리하게 만들어주지만, 그 근본적인 작동 방식은 우리가 직접 구현한 코드와 크게 다르지 않습니다.</p>
+<p>이 책은 여기서 멈추지 않고, 1943년 McCulloch-Pitts 뉴런에서 시작하여 2025년 최신 멀티모달 아키텍처에 이르기까지 딥러닝 기술 발전의 DNA를 추적해 나갈 것입니다. 각 기술이 왜 등장했고, 어떤 근본적인 문제를 해결하려 했으며, 이전 기술들과 어떤 연결 고리를 갖는지, 마치 생명체의 진화 과정을 탐구하듯 깊이 있게 파헤쳐 볼 것입니다.</p>
+<p>2장에서는 딥러닝을 이해하는 데 필수적인 수학적 기초를 다룹니다. 선형대수, 미적분, 확률 및 통계의 핵심 개념들을 딥러닝의 관점에서 간결하게 정리하여, 이어지는 내용들의 이해를 돕고자 합니다. 수학에 대한 배경지식이 부족하거나, 이론보다 실용적인 구현에 더 관심이 있다면, 3장으로 바로 넘어가도 좋습니다. 3장부터는 PyTorch와 Hugging Face 라이브러리를 활용하여, 최신 딥러닝 모델들을 직접 구현하고 실험하며 실전적인 감각을 익힐 수 있습니다. 하지만, 딥러닝의 깊이 있는 이해와 장기적인 발전을 위해서는, 수학적 기반을 다지는 것이 매우 중요합니다.</p>
+<p>각 장의 끝에는 연습문제를 통해 독자 여러분의 이해도를 점검하고, 추가적인 탐구를 위한 발판을 제공할 것입니다. 단순히 답을 찾는 것을 넘어, 문제 해결 과정에서 딥러닝의 원리를 더욱 깊이 체득하고, 창의적인 사고를 확장할 수 있기를 기대합니다.</p>
+</section>
+</section>
+<section id="연습문제" class="level2">
+<h2 class="anchored" data-anchor-id="연습문제">연습문제</h2>
+<section id="기초-문제" class="level3">
+<h3 class="anchored" data-anchor-id="기초-문제">1. 기초 문제</h3>
+<ol type="1">
+<li>퍼셉트론이 XOR 문제를 해결하지 못하는 이유를 수학적으로 설명하시오.<br>
+</li>
+<li>위 XOR 예제에서 relu, relu_deriv등 다른 활성화 함수로 바꾼 경우 결과에 대해 설명하시오.</li>
+<li>역전파 알고리즘에서 체인 룰이 어떻게 적용되는지 예시와 함께 설명하시오.</li>
+</ol>
+</section>
+<section id="응용-문제" class="level3">
+<h3 class="anchored" data-anchor-id="응용-문제">2. 응용 문제</h3>
+<ol start="4" type="1">
+<li>주택 가격 예측 모델 등애서 ReLU 대신 Swish 활성화 함수를 사용할 때의 장단점 분석<br>
+</li>
+<li>3층 신경망의 표현력이 2층 신경망보다 우수한 이유를 함수 공간 관점에서 설명</li>
+</ol>
+</section>
+<section id="심화-문제" class="level3">
+<h3 class="anchored">3. 심화 문제</h3>
+<ol start="6" type="1">
+<li>ResNet의 스킵 연결이 그래디언트 소실 문제를 해결하는 메커니즘을 수학적 유도로 증명<br>
+</li>
+<li>트랜스포머 아키텍처에서 attention 메커니즘이 시퀀스 모델링에 적합한 이유 분석</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="클릭하여 내용 보기(해답)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+클릭하여 내용 보기(해답)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<section id="해답" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="해답">해답</h2>
+<section id="기초-문제-해답" class="level3">
+<h3 class="anchored" data-anchor-id="기초-문제-해답">1. 기초 문제 해답</h3>
+<ol type="1">
+<li><p><strong>XOR 문제</strong>: 선형 분류기의 한계 → 비선형 결정 경계 필요</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>XOR_input <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">1</span>,<span class="dv">1</span>]])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 선형 결합으로는 0과 1을 구분 불가ㅁ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>ReLU 훈련 불가 문제</strong>: ReLU: 학습률에 민감하며, “Dead ReLU” 문제 (뉴런이 비활성화되어 학습이 안됨) 발생 가능성이 높음. 다른 활성화 함수 (Leaky ReLU, ELU, Swish 등)는 Dead ReLU 문제를 완화하여 ReLU보다 안정적으로 XOR 문제 해결 가능성이 높음. Sigmoid는 기울기 소실 문제로 학습이 어려울 수 있음. Tanh는 ReLU보다 안정적이나, 깊은 네트워크에서는 기울기 소실 문제가 발생할 수 있음.</p></li>
+<li><p><strong>역전파 체인 룰</strong>:<br>
+<span class="math inline">\(\frac{\partial L}{\partial W} = \frac{\partial L}{\partial y}\cdot\frac{\partial y}{\partial W}\)</span></p></li>
+</ol>
+</section>
+<section id="응용-문제-해답" class="level3">
+<h3 class="anchored" data-anchor-id="응용-문제-해답">2. 응용 문제 해답</h3>
+<ol start="4" type="1">
+<li><strong>Swish 함수 장점</strong>:
+<ul>
+<li>ReLU의 dying neuron 문제 완화<br>
+</li>
+<li>미분 가능한 곡선으로 학습 안정성 향상</li>
+</ul></li>
+<li><strong>3층 신경망 우수성</strong>:
+<ul>
+<li>Hilbert’s 13th Problem: 3변수 연속함수는 2층 네트워크로 표현 불가<br>
+</li>
+<li>Kolmogorov–Arnold 정리: 3층으로 임의 연속함수 근사 가능</li>
+</ul></li>
+</ol>
+</section>
+<section id="심화-문제-해답" class="level3">
+<h3 class="anchored" data-anchor-id="심화-문제-해답">3. 심화 문제 해답</h3>
+<ol start="6" type="1">
+<li><p><strong>ResNet 스킵 연결</strong>:<br>
+<span class="math inline">\(H(x) = F(x) + x\)</span> → <span class="math inline">\(\frac{\partial L}{\partial x} = \frac{\partial L}{\partial H} \cdot (F'(x) + 1)\)</span></p></li>
+<li><p><strong>트랜스포머 장점</strong>:</p>
+<ul>
+<li>병렬 처리 가능 (RNN의 순차적 처리 한계 극복)<br>
+</li>
+<li>장거리 의존성 캡처 (Attention 가중치로 중요도 학습)</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+<section id="필수-참고-자료" class="level4">
+<h4 class="anchored" data-anchor-id="필수-참고-자료">필수 참고 자료</h4>
+<ol type="1">
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=https://www.deeplearningbook.org/">Deep Learning (Goodfellow, Bengio, Courville, 2016)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=https://link.springer.com/article/10.1007/BF02551274">Approximation by superpositions of a sigmoidal function (Cybenko, 1989)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=https://www.sciencedirect.com/science/article/abs/pii/0893608089900208">Multilayer feedforward networks are universal approximators (Hornik, Stinchcombe, &amp; White, 1989)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">Understanding the difficulty of training deep feedforward neural networks (Glorot &amp; Bengio, 2010)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=https://arxiv.org/abs/1502.01852">Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (He et al., 2015)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning (Michael Nielsen, online book)</a></strong></p></li>
+<li><p><strong><a href="https://www.google.com/url?sa=E&amp;source=gmail&amp;q=https://explained.ai/matrix-calculus/">The Matrix Calculus You Need For Deep Learning (Parr &amp; Howard, 2018)</a></strong></p></li>
+</ol>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

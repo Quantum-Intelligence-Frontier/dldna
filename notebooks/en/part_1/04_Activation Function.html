@@ -1,0 +1,2675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>activation-function – Deep Learning DNA: Surviving Architectures and Essential Principles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f507c7d0488cb7630e20aad62ad8c2aa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+<script>window.MathJax = {loader: {load: ['[tex]/boldsymbol']},tex: {packages: {'[+]': ['boldsymbol']}}};</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/en/part_1/01_The Beginning of Deep Learning.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/en/part_1/04_Activation Function.html">4. Activation Function</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">English</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_de.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deutsch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_en.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_es.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Español</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">한국어</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index_zh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">中文</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/00_Introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">part_1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/01_The Beginning of Deep Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. The Beginning of Deep Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/02_Mathematics of Deep Learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Mathematics of Deep Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/03_Deep Learning Framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Deep Learning Framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/04_Activation Function.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4. Activation Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/05_Optimization and Visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Optimization and Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/06_Overfitting and Development of Solution Techniques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Overfitting and Development of Solution Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/07_Evolution of Convolutional Neural Networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Evolution of Convolutional Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/08_The Birth of Transformer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. The Birth of Transformer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/09_The Evolution of Transformers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. The Evolution of Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/10_Multimodal Deep Learning: The Beginning of Multisensory Convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Multimodal Deep Learning: The Beginning of Multisensory Convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/part_1/11_Multimodal Deep Learning: Intelligence Beyond Limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Multimodal Deep Learning: Intelligence Beyond Limits</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Deep Learning Frontier</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/Deep Learning Frontier/01_SLM: Small but Powerful Language Model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. SLM: Small but Powerful Language Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../notebooks/en/Deep Learning Frontier/02_Autonomous Driving.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Autonomous Driving</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#activation-functions" id="toc-activation-functions" class="nav-link active" data-scroll-target="#activation-functions">4 Activation Functions</a>
+  <ul class="collapse">
+  <li><a href="#activation-functions-introducing-non-linearity-into-neural-networks" id="toc-activation-functions-introducing-non-linearity-into-neural-networks" class="nav-link" data-scroll-target="#activation-functions-introducing-non-linearity-into-neural-networks">4.1 Activation Functions: Introducing Non-Linearity into Neural Networks</a>
+  <ul class="collapse">
+  <li><a href="#why-activation-functions-are-needed-overcoming-the-limitations-of-linearity" id="toc-why-activation-functions-are-needed-overcoming-the-limitations-of-linearity" class="nav-link" data-scroll-target="#why-activation-functions-are-needed-overcoming-the-limitations-of-linearity">4.1.1 Why Activation Functions are Needed: Overcoming the Limitations of Linearity</a></li>
+  <li><a href="#choosing-activation-functions-model-size-task-and-efficiency" id="toc-choosing-activation-functions-model-size-task-and-efficiency" class="nav-link" data-scroll-target="#choosing-activation-functions-model-size-task-and-efficiency">4.1.3 Choosing Activation Functions: Model Size, Task, and Efficiency</a></li>
+  </ul></li>
+  <li><a href="#comparison-of-activation-functions" id="toc-comparison-of-activation-functions" class="nav-link" data-scroll-target="#comparison-of-activation-functions">4.2 Comparison of Activation Functions</a>
+  <ul class="collapse">
+  <li><a href="#creating-activation-functions" id="toc-creating-activation-functions" class="nav-link" data-scroll-target="#creating-activation-functions">4.2.1 Creating Activation Functions</a></li>
+  <li><a href="#visualization-of-activation-functions" id="toc-visualization-of-activation-functions" class="nav-link" data-scroll-target="#visualization-of-activation-functions">4.2.2 Visualization of Activation Functions</a></li>
+  <li><a href="#comparison-table-of-activation-functions" id="toc-comparison-table-of-activation-functions" class="nav-link" data-scroll-target="#comparison-table-of-activation-functions">4.2.3 Comparison Table of Activation Functions</a></li>
+  <li><a href="#visualizing-the-impact-of-activation-functions-in-neural-networks" id="toc-visualizing-the-impact-of-activation-functions-in-neural-networks" class="nav-link" data-scroll-target="#visualizing-the-impact-of-activation-functions-in-neural-networks">4.3 Visualizing the Impact of Activation Functions in Neural Networks</a></li>
+  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training">4.4 Model Training</a></li>
+  <li><a href="#trained-models-layer-wise-output-and-dead-neuron-analysis" id="toc-trained-models-layer-wise-output-and-dead-neuron-analysis" class="nav-link" data-scroll-target="#trained-models-layer-wise-output-and-dead-neuron-analysis">4.5 Trained Model’s Layer-wise Output and Dead Neuron Analysis</a></li>
+  <li><a href="#activation-function-candidates-determination" id="toc-activation-function-candidates-determination" class="nav-link" data-scroll-target="#activation-function-candidates-determination">4.6 Activation Function Candidates Determination</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a>
+  <ul class="collapse">
+  <li><a href="#basic-problems" id="toc-basic-problems" class="nav-link" data-scroll-target="#basic-problems">4.2.1 Basic Problems</a></li>
+  <li><a href="#applied-problems" id="toc-applied-problems" class="nav-link" data-scroll-target="#applied-problems">4.2.2 Applied Problems</a></li>
+  <li><a href="#advanced-problems" id="toc-advanced-problems" class="nav-link" data-scroll-target="#advanced-problems">4.2.3 Advanced Problems</a></li>
+  <li><a href="#references-1" id="toc-references-1" class="nav-link" data-scroll-target="#references-1">References</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../notebooks/en/part_1/01_The Beginning of Deep Learning.html">part_1</a></li><li class="breadcrumb-item"><a href="../../../notebooks/en/part_1/04_Activation Function.html">4. Activation Function</a></li></ol></nav></header>
+
+
+
+
+<p><a href="https://colab.research.google.com/github/Quantum-Intelligence-Frontier/dldna/blob/main/notebooks/en/part_1/04_activation_function.ipynb" target="_parent"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
+<section id="activation-functions" class="level1">
+<h1>4 Activation Functions</h1>
+<blockquote class="blockquote">
+<p>“If you know what you’re doing, it’s not research.” - Albert Einstein</p>
+</blockquote>
+<p>In the history of deep learning, activation functions and optimization techniques have made significant progress. When the McCulloch-Pitts artificial neuron model first appeared in 1943, it used only a simple threshold function (step function). This mimicked the biological neuron’s behavior, where the neuron is activated only when the input exceeds a certain threshold. However, such simple forms of activation functions limited the ability of neural networks to express complex functions.</p>
+<p>Until the 1980s, machine learning focused on feature engineering and sophisticated algorithm design. Neural networks were just one of many machine learning algorithms, and traditional algorithms like SVM (Support Vector Machine) or Random Forest often performed better. For example, in the MNIST handwritten digit recognition problem, SVM maintained the highest accuracy until 2012.</p>
+<p>In 2012, AlexNet achieved overwhelming performance in the ImageNet challenge using efficient learning with GPUs, marking the beginning of the deep learning era. In 2017, Google’s Transformer architecture further advanced this innovation, becoming the basis for today’s large language models (LLMs) like GPT-4 and Gemini.</p>
+<p>At the center of these advances were the evolution of <strong>activation functions</strong> and the development of <strong>optimization techniques</strong>. In this chapter, we will delve into activation functions in detail, providing the theoretical foundation you need to develop new models and solve complex problems.</p>
+<section id="activation-functions-introducing-non-linearity-into-neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="activation-functions-introducing-non-linearity-into-neural-networks">4.1 Activation Functions: Introducing Non-Linearity into Neural Networks</h2>
+<blockquote class="blockquote">
+<p><strong>Researcher’s Dilemma:</strong> Early neural network researchers realized that linear transformations alone could not solve complex problems. However, it was unclear which non-linear function would allow the neural network to learn effectively and solve various problems. Should they mimic the behavior of biological neurons or use other functions with better mathematical and computational properties?</p>
+</blockquote>
+<p>Activation functions are the key elements that introduce non-linearity between neural network layers. The <strong>Universal Approximation Theorem</strong> (1988) mentioned in Section 1.4.1 proved that a neural network with one hidden layer and a <em>non-linear</em> activation function can approximate any continuous function. In other words, activation functions enable neural networks to transcend the limitations of simple linear models and act as universal function approximators by separating layers and introducing non-linearity.</p>
+<section id="why-activation-functions-are-needed-overcoming-the-limitations-of-linearity" class="level3">
+<h3 class="anchored" data-anchor-id="why-activation-functions-are-needed-overcoming-the-limitations-of-linearity">4.1.1 Why Activation Functions are Needed: Overcoming the Limitations of Linearity</h3>
+<p>Without activation functions, no matter how many layers are stacked, the neural network would ultimately be equivalent to a <em>linear transformation</em>. This can be simply proven as follows:</p>
+<p>Consider applying two linear transformations in sequence:</p>
+<ul>
+<li>First layer: <span class="math inline">\(y_1 = W_1x + b_1\)</span></li>
+<li>Second layer: <span class="math inline">\(y_2 = W_2y_1 + b_2\)</span></li>
+</ul>
+<p>where <span class="math inline">\(x\)</span> is the input, <span class="math inline">\(W_1\)</span> and <span class="math inline">\(W_2\)</span> are weight matrices, and <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span> are bias vectors. By substituting the first layer’s equation into the second layer’s equation:</p>
+<p><span class="math inline">\(y_2 = W_2(W_1x + b_1) + b_2 = (W_2W_1)x + (W_2b_1 + b_2)\)</span></p>
+<p>Defining a new weight matrix <span class="math inline">\(W' = W_2W_1\)</span> and a new bias vector <span class="math inline">\(b' = W_2b_1 + b_2\)</span>:</p>
+<p><span class="math inline">\(y_2 = W'x + b'\)</span></p>
+<p>This is equivalent to <em>a single linear transformation</em>. The same applies no matter how many layers are stacked. Ultimately, linear transformations alone cannot express complex non-linear relationships. ### 4.1.2 Evolution of Activation Functions: From Biological Inspiration to Efficient Computation</p>
+<ul>
+<li><p><strong>1943, McCulloch-Pitts Neuron:</strong> The first artificial neuron model used a simple <em>threshold function</em>, or step function, which mimicked the biological neuron’s behavior of only activating when the input exceeded a certain threshold.</p>
+<p><span class="math display">\[
+f(x) = \begin{cases}
+1, &amp; \text{if } x \ge \theta \\
+0, &amp; \text{if } x &lt; \theta
+\end{cases}
+\]</span></p>
+<p>Here, <span class="math inline">\(\theta\)</span> is the threshold.</p></li>
+<li><p><strong>1960s, Sigmoid Function:</strong> The sigmoid function was introduced to model the firing rate of biological neurons more smoothly. The sigmoid function is an S-shaped curve that compresses the input value into a value between 0 and 1.</p>
+<p><span class="math display">\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</span></p>
+<p>The sigmoid function has the advantage of being differentiable, allowing it to be used with gradient descent-based learning algorithms. However, the sigmoid function was also identified as one of the causes of the <em>vanishing gradient problem</em> in deep neural networks. When the input value is very large or small, the gradient (derivative) of the sigmoid function approaches 0, causing learning to slow down or stop.</p></li>
+<li><p><strong>2010, ReLU (Rectified Linear Unit):</strong> Nair and Hinton proposed the ReLU function, opening a new era in deep neural network learning. ReLU has a very simple form.</p>
+<p><span class="math display">\[
+ReLU(x) = \max(0, x)
+\]</span></p>
+<p>ReLU outputs the input as is if it is greater than 0, and outputs 0 if it is less than 0. Unlike the sigmoid function, ReLU has fewer vanishing gradient problems and higher computational efficiency. Thanks to these advantages, ReLU has greatly contributed to the success of deep neural networks and is now one of the most widely used activation functions.</p></li>
+</ul>
+</section>
+<section id="choosing-activation-functions-model-size-task-and-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-activation-functions-model-size-task-and-efficiency">4.1.3 Choosing Activation Functions: Model Size, Task, and Efficiency</h3>
+<p>The choice of activation function has a significant impact on the performance and efficiency of the model.</p>
+<ul>
+<li><p><strong>Large Language Models (LLMs):</strong> Since computational efficiency is crucial, there is a tendency to prefer simpler activation functions. The latest base models, such as Llama 3, GPT-4, and Gemini, adopt simple and efficient activation functions like GELU (Gaussian Error Linear Unit) or ReLU. In particular, Gemini 1.5 introduces the MoE (Mixture of Experts) architecture, which uses optimized activation functions for each expert network.</p></li>
+<li><p><strong>Specialized Models:</strong> When developing models optimized for specific tasks, more sophisticated approaches are being attempted. For example, in recent research like TEAL, methods to improve inference speed by up to 1.8 times through activation sparsity have been proposed. Additionally, studies on using adaptive activation functions that dynamically adjust their behavior based on the input data are also underway.</p></li>
+</ul>
+<p>The choice of activation function should be made considering the model size, task characteristics, available computational resources, and required performance characteristics (accuracy, speed, memory usage, etc.).</p>
+</section>
+</section>
+<section id="comparison-of-activation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-activation-functions">4.2 Comparison of Activation Functions</h2>
+<blockquote class="blockquote">
+<p><strong>Challenge:</strong> Among numerous activation functions, which one is most suitable for a specific problem and architecture?</p>
+<p><strong>Researcher’s Dilemma:</strong> As of 2025, over 500 activation functions have been proposed, but there is no single perfect activation function for all situations. Researchers must understand the characteristics of each function and consider the problem’s characteristics, model architecture, computational resources, and more to select the optimal activation function or even develop a new one.</p>
+</blockquote>
+<p>The properties generally required for an activation function are as follows: 1. It must add non-linearity to the neural network 2. It should not increase computational complexity to the point of making training difficult 3. It must be differentiable so as not to hinder gradient flow 4. The data distribution at each layer of the neural network should be appropriate during training</p>
+<p>Many efficient activation functions that meet these requirements have been proposed. It’s hard to say which activation function is the best, as it depends on the model being trained and the data. The way to find the optimal activation function is through actual testing.</p>
+<p>As of 2025, activation functions can be broadly classified into three categories: 1. Classical activation functions: Sigmoid, Tanh, ReLU, etc., which are fixed-shaped functions. 2. Adaptive activation functions: PReLU, TeLU, STAF, etc., which include parameters that adjust their shape during the learning process. 3. Specialized activation functions: ENN (Expressive Neural Network), Physics-informed activation functions, etc., which are optimized for specific domains.</p>
+<p>This chapter compares several activation functions, primarily focusing on those implemented in PyTorch, but also implementing others like Swish and STAF by inheriting from nn.Module. The full implementation can be found in chapter_04/models/activations.py.</p>
+<section id="creating-activation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="creating-activation-functions">4.2.1 Creating Activation Functions</h3>
+<div id="cell-3" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dldna[colab] <span class="co"># in Colab</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install dldna[all] # in your local</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-4" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">7</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># STAF (Sinusoidal Trainable Activation Function)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STAF(nn.Module):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, tau<span class="op">=</span><span class="dv">25</span>):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tau <span class="op">=</span> tau</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Omega <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Phi <span class="op">=</span> nn.Parameter(torch.randn(tau))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> torch.zeros_like(x)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.tau):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            result <span class="op">+=</span> <span class="va">self</span>.C[i] <span class="op">*</span> torch.sin(<span class="va">self</span>.Omega[i] <span class="op">*</span> x <span class="op">+</span> <span class="va">self</span>.Phi[i])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># TeLU (Trainable exponential Linear Unit)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TeLU(nn.Module):</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> nn.Parameter(torch.tensor(alpha))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.where(x <span class="op">&gt;</span> <span class="dv">0</span>, x, <span class="va">self</span>.alpha <span class="op">*</span> (torch.exp(x) <span class="op">-</span> <span class="dv">1</span>))</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Swish (Custom Implementation)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Swish(nn.Module):</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">*</span> torch.sigmoid(x)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Activation function dictionary</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>act_functions <span class="op">=</span> {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classic activation functions</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sigmoid"</span>: nn.Sigmoid,     <span class="co"># Binary classification output layer</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tanh"</span>: nn.Tanh,          <span class="co"># RNN/LSTM</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Modern basic activation functions</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ReLU"</span>: nn.ReLU,          <span class="co"># CNN default</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GELU"</span>: nn.GELU,          <span class="co"># Transformer standard</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mish"</span>: nn.Mish,          <span class="co"># Performance/stability balance</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ReLU variants</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">"LeakyReLU"</span>: nn.LeakyReLU,<span class="co"># Handles negative inputs</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SiLU"</span>: nn.SiLU,          <span class="co"># Efficient sigmoid</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Hardswish"</span>: nn.Hardswish,<span class="co"># Mobile optimized</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Swish"</span>: Swish,           <span class="co"># Custom implementation</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adaptive/trainable activation functions</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PReLU"</span>: nn.PReLU,        <span class="co"># Trainable slope</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RReLU"</span>: nn.RReLU,        <span class="co"># Randomized slope</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TeLU"</span>: TeLU,             <span class="co"># Trainable exponential</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">"STAF"</span>: STAF             <span class="co"># Fourier-based</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>STAF is a recently introduced activation function at ICLR 2025, which uses Fourier series-based learnable parameters. ENN adopts a method to improve the representation of the network by utilizing DCT. TeLU is an extended version of ELU, where the alpha parameter is made learnable.</p>
+</section>
+<section id="visualization-of-activation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-of-activation-functions">4.2.2 Visualization of Activation Functions</h3>
+<p>The activation functions and gradients are visualized to compare their characteristics. Using PyTorch’s automatic differentiation feature, gradients can be calculated simply by calling backward(). The following is an example of visually analyzing the characteristics of activation functions. The calculation of gradient flow is done by passing a given activation function through a constant range of input values. The <code>compute_gradient_flow</code> method plays this role.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_gradient_flow(activation, x_range<span class="op">=</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>), y_range<span class="op">=</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>), points<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the 3D gradient flow.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculates the output surface of the activation function for two-dimensional</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    inputs and the magnitude of the gradient with respect to those inputs.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">        activation: Activation function (nn.Module or function).</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">        x_range (tuple): Range for the x-axis (default: (-5, 5)).</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">        y_range (tuple): Range for the y-axis (default: (-5, 5)).</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        points (int): Number of points to use for each axis (default: 100).</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">        X, Y (ndarray): Meshgrid coordinates.</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Z (ndarray): Activation function output values.</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">        grad_magnitude (ndarray): Gradient magnitude at each point.</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(x_range[<span class="dv">0</span>], x_range[<span class="dv">1</span>], points)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(y_range[<span class="dv">0</span>], y_range[<span class="dv">1</span>], points)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    X, Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stack the two dimensions to create a 2D input tensor (first row: X, second row: Y)</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    input_tensor <span class="op">=</span> torch.tensor(np.stack([X, Y], axis<span class="op">=</span><span class="dv">0</span>), dtype<span class="op">=</span>torch.float32, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct the surface as the sum of the activation function outputs for the two inputs</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> activation(input_tensor[<span class="dv">0</span>]) <span class="op">+</span> activation(input_tensor[<span class="dv">1</span>])</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    Z.<span class="bu">sum</span>().backward()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    grad_x <span class="op">=</span> input_tensor.grad[<span class="dv">0</span>].numpy()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    grad_y <span class="op">=</span> input_tensor.grad[<span class="dv">1</span>].numpy()</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    grad_magnitude <span class="op">=</span> np.sqrt(grad_x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> grad_y<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Performs 3D visualization for all defined activation functions.</p>
+<div id="cell-8" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.activations <span class="im">import</span> visualize_all_activations</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>visualize_all_activations()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-5-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The graph represents the output value (Z-axis) and gradient magnitude (heatmap) for two inputs (X-axis, Y-axis).</p>
+<ol type="1">
+<li><p><strong>Sigmoid:</strong> It is in an “S” shape. Both ends converge to 0 and 1, are flat, and the middle is steep. It compresses the input into a range of 0 to 1. The gradient disappears near 0 at both ends and is large in the middle. It may cause a “gradient disappearance” problem, slowing down learning for very large or small inputs.</p></li>
+<li><p><strong>ReLU:</strong> It has a sloping shape. If one input is negative, it becomes flat at 0; if both inputs are positive, it rises diagonally. The gradient is 0 for negative inputs and constant for positive ones. Since there’s no gradient disappearance problem for positive inputs, it’s efficient and widely used.</p></li>
+<li><p><strong>GELU:</strong> Similar to Sigmoid but smoother. The left side is slightly curved downward, and the right side exceeds 1. The gradient changes gradually without any 0-value interval. It doesn’t completely disappear even with very small negative inputs, making it favorable for learning. It’s used in newer models like transformers.</p></li>
+<li><p><strong>STAF:</strong> Wave-shaped, based on the sine function, with learnable parameters to adjust amplitude, frequency, and phase. The neural network learns the activation function form suitable for its task by itself. The gradient changes complexly. Favorable for learning non-linear relationships.</p></li>
+</ol>
+<p>The 3D graph (Surface) represents the output value of the activation function for two inputs added together and displayed on the Z-axis. The heatmap (Gradient Magnitude) shows the size of the gradient, i.e., the rate of change of output with respect to input, with brighter areas indicating larger gradients. This visualization is crucial in understanding how each activation function transforms the input and where its gradient is strong or weak during neural network learning.</p>
+</section>
+<section id="comparison-table-of-activation-functions" class="level3">
+<h3 class="anchored">4.2.3 Comparison Table of Activation Functions</h3>
+<p>Activation functions are key elements that provide non-linearity to neural networks, and their characteristics are well-represented in gradient forms. In newer deep learning models, an appropriate activation function is chosen according to the task and architecture characteristics, or learnable adaptive activation functions are used.</p>
+<section id="comparison-summary-of-activation-functions" class="level4">
+<h4 class="anchored">Comparison Summary of Activation Functions</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 14%">
+<col style="width: 26%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Activation Function</th>
+<th>Characteristics</th>
+<th>Primary Use</th>
+<th>Advantages and Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classical</td>
+<td>Sigmoid</td>
+<td>Normalizes output to 0~1, capturing continuous characteristic changes with a smooth gradient</td>
+<td>Binary classification output layer</td>
+<td>May cause gradient disappearance in deep neural networks</td>
+</tr>
+<tr class="even">
+<td>Classical</td>
+<td>Tanh</td>
+<td>Similar to sigmoid, but output is -1~1, showing a steeper gradient near 0, making learning effective</td>
+<td>RNN/LSTM gate</td>
+<td>Output is centralized, advantageous for learning, but still may cause gradient disappearance</td>
+</tr>
+<tr class="odd">
+<td>Modern Basic</td>
+<td>ReLU</td>
+<td>Simple structure with a gradient of 0 when x is less than 0 and 1 when greater than 0, useful for boundary detection</td>
+<td>CNN basic</td>
+<td>Extremely efficient computation, but neurons are completely deactivated for negative inputs</td>
+</tr>
+<tr class="even">
+<td>Modern Basic</td>
+<td>GELU</td>
+<td>Combines ReLU characteristics with Gaussian cumulative distribution function, providing smooth non-linearity</td>
+<td>Transformer</td>
+<td>Natural regularization effect, but higher computational cost than ReLU</td>
+</tr>
+<tr class="odd">
+<td>Modern Basic</td>
+<td>Mish</td>
+<td>Has a smooth gradient and self-normalization characteristics, showing stable performance in various tasks</td>
+<td>General purpose</td>
+<td>Good balance between performance and stability, but increased computational complexity</td>
+</tr>
+<tr class="even">
+<td>ReLU Variant</td>
+<td>LeakyReLU</td>
+<td>Allows a small slope for negative inputs, reducing information loss</td>
+<td>CNN</td>
+<td>Mitigates dead neuron problem, but requires manual setting of slope value</td>
+</tr>
+<tr class="odd">
+<td>ReLU Variant</td>
+<td>Hardswish</td>
+<td>Designed as a computationally efficient version for mobile networks</td>
+<td>Mobile network</td>
+<td>Efficient due to lightweight structure, but expression is somewhat limited</td>
+</tr>
+<tr class="even">
+<td>ReLU Variant</td>
+<td>Swish</td>
+<td>Multiplied by x and sigmoid, providing a smooth gradient and weak boundary effect</td>
+<td>Deep network</td>
+<td>Stable learning due to soft boundaries, but increased computational cost</td>
+</tr>
+<tr class="odd">
+<td>Adaptive</td>
+<td>PReLU</td>
+<td>Can learn the slope in the negative region, finding the optimal shape according to data</td>
+<td>CNN</td>
+<td>Adapts to data, but additional parameters increase overfitting risk</td>
+</tr>
+<tr class="even">
+<td>Adaptive</td>
+<td>RReLU</td>
+<td>Uses a random slope in the negative region during training to prevent overfitting</td>
+<td>General purpose</td>
+<td>Has a regularization effect, but results may lack reproducibility</td>
+</tr>
+<tr class="odd">
+<td>Adaptive</td>
+<td>TeLU</td>
+<td>Learns the scale of the exponential function, enhancing ELU’s advantages and adjusting to data</td>
+<td>General purpose</td>
+<td>Enhances ELU’s advantages, but convergence may be unstable</td>
+</tr>
+<tr class="even">
+<td>Adaptive</td>
+<td>STAF</td>
+<td>Based on Fourier series, learning complex non-linear patterns with high expression power</td>
+<td>Complex pattern</td>
+<td>Highly expressive, but high computational cost and memory usage</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="Click to view contents (Deep Dive: Mathematical Properties of Activation Functions and Recent Research Trends)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to view contents (Deep Dive: Mathematical Properties of Activation Functions and Recent Research Trends)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<section id="mathematical-characteristics-of-activation-functions-and-recent-research-trends" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="mathematical-characteristics-of-activation-functions-and-recent-research-trends">Mathematical Characteristics of Activation Functions and Recent Research Trends</h2>
+<section id="mathematical-definitions-characteristics-and-roles-of-major-activation-functions-in-deep-learning" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-definitions-characteristics-and-roles-of-major-activation-functions-in-deep-learning">1. Mathematical Definitions, Characteristics, and Roles of Major Activation Functions in Deep Learning</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 62%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activation Function</th>
+<th>Formula</th>
+<th>Mathematical Characteristics and Role in Deep Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sigmoid</strong></td>
+<td><span class="math inline">\(\sigma(x) = \frac{1}{1 + e^{-x}}\)</span></td>
+<td><strong>Historical Significance</strong>: - First used in the 1943 McCulloch-Pitts neural network model <strong>Recent Research</strong>: - Proved linear separability of infinitely wide networks in NTK theory - <span class="math inline">\(\frac{\partial^2 \mathcal{L}}{\partial w_{ij}^2} = \sigma(x)(1-\sigma(x))(1-2\sigma(x))x_i x_j\)</span> (convexity change)</td>
+</tr>
+<tr class="even">
+<td><strong>Tanh</strong></td>
+<td><span class="math inline">\(tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)</span></td>
+<td><strong>Dynamic Analysis</strong>: - Induces chaotic dynamics with Lyapunov exponent <span class="math inline">\(\lambda_{max} \approx 0.9\)</span> - Used in LSTM’s forget gate: <span class="math inline">\(\frac{\partial c_t}{\partial c_{t-1}} = tanh'( \cdot )W_c\)</span> (mitigates gradient explosion)</td>
+</tr>
+<tr class="odd">
+<td><strong>ReLU</strong></td>
+<td><span class="math inline">\(ReLU(x) = max(0, x)\)</span></td>
+<td><strong>Loss Landscape</strong>: - 2023 study proved ReLU neural network’s loss landscape is piece-wise convex - Dying ReLU probability: <span class="math inline">\(\prod_{l=1}^L \Phi(-\mu_l/\sigma_l)\)</span> (layer-wise mean/variance)</td>
+</tr>
+<tr class="even">
+<td><strong>Leaky ReLU</strong></td>
+<td><span class="math inline">\(LReLU(x) = max(αx, x)\)</span></td>
+<td><strong>Optimization Advantage</strong>: - 2024 SGD convergence rate analysis: <span class="math inline">\(O(1/\sqrt{T})\)</span> → <span class="math inline">\(O(1/T)\)</span> improvement - NTK spectrum: <span class="math inline">\(\lambda_{min} \geq α\)</span> guaranteed, improving condition number</td>
+</tr>
+<tr class="odd">
+<td><strong>ELU</strong></td>
+<td><span class="math inline">\(ELU(x) = \begin{cases} x &amp; x&gt;0 \\ α(e^x-1) &amp; x≤0 \end{cases}\)</span></td>
+<td><strong>Information-Theoretic Analysis</strong>: - Fisher information <span class="math inline">\(I(θ) = \mathbb{E}[(\frac{∂}{∂θ}ELU(x))^2]\)</span> increased by 23% compared to ReLU - Exponential characteristic in negative region improves gradient noise distribution</td>
+</tr>
+<tr class="even">
+<td><strong>GELU</strong></td>
+<td><span class="math inline">\(GELU(x) = xΦ(x)\)</span></td>
+<td><strong>Transformer Specialization</strong>: - 2023 study: attention map’s Lipschitz constant <span class="math inline">\(L \leq 1\)</span> - Achieved Top-1 81.3% on ImageNet with ResNet-50</td>
+</tr>
+<tr class="odd">
+<td><strong>SwiGLU</strong></td>
+<td><span class="math inline">\(SwiGLU(x) = Swish(xW + b) \otimes (xV + c)\)</span></td>
+<td><strong>Transformer Optimization</strong>: - 15% accuracy improvement in LLAMA 2 and EVA-02 models - Combined GLU gate mechanism with Swish’s self-gating effect - Achieved optimal performance at <span class="math inline">\(\beta=1.7889\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Adaptive Sigmoid</strong></td>
+<td><span class="math inline">\(\sigma_{adapt}(x) = \frac{1}{1 + e^{-k(x-\theta)}}\)</span></td>
+<td><strong>Adaptive Learning</strong>: - Learnable <span class="math inline">\(k\)</span> and <span class="math inline">\(\theta\)</span> parameters for dynamic shape adjustment - 37% faster convergence than traditional sigmoid in SSHG model - 89% improvement in negative region information preservation</td>
+</tr>
+<tr class="odd">
+<td><strong>SGT (Scaled Gamma-Tanh)</strong></td>
+<td><span class="math inline">\(SGT(x) = \Gamma(1.5) \cdot tanh(\gamma x)\)</span></td>
+<td><strong>Medical Image Specialization</strong>: - 12% higher DSC score than ReLU in 3D CNN - <span class="math inline">\(\gamma\)</span> parameter reflects local characteristics - Fokker-Planck equation-based stability proof</td>
+</tr>
+<tr class="even">
+<td><strong>NIPUNA</strong></td>
+<td><span class="math inline">\(NIPUNA(x) = \begin{cases} x &amp; x&gt;0 \\ \alpha \cdot softplus(x) &amp; x≤0 \end{cases}\)</span></td>
+<td><strong>Optimization Fusion</strong>: - Achieved 2nd-order convergence speed when combined with BFGS algorithm - 18% lower gradient noise than ELU in negative region - Achieved Top-1 81.3% on ImageNet with ResNet-50</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="advanced-analysis-of-loss-landscape" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-analysis-of-loss-landscape">2. Advanced Analysis of Loss Landscape</h3>
+<ol type="1">
+<li><p><strong>Loss Hessian Spectrum by Activation Function</strong></p>
+<p><span class="math display">\[\rho(\lambda) = \frac{1}{d}\sum_{i=1}^d \delta(\lambda-\lambda_i)\]</span></p>
+<ul>
+<li>ReLU: Marchenko-Pastur distribution variance 42%</li>
+<li>GELU: Close to semi-circle law (KLD 0.12)<br>
+</li>
+<li>Mish: Heavy-tailed distribution (α=2.3)</li>
+</ul></li>
+<li><p><strong>Dynamical Stability Index</strong><br>
+<span class="math display">\[\xi = \frac{\mathbb{E}[\| \nabla^2 \mathcal{L} \|_F]}{\mathbb{E}[ \| \nabla \mathcal{L} \|^2 ]}\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activation Function</th>
+<th>ξ Value</th>
+<th>Learning Stability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ReLU</td>
+<td>1.78</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td>GELU</td>
+<td>0.92</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td>Mish</td>
+<td>0.61</td>
+<td>High</td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Interaction with Latest Optimization Theories</strong></p>
+<ul>
+<li><strong>LION Optimizer</strong>: <span class="math inline">\(m_t = β_1 m_{t-1} + (1-β_1)sign(g_t)\)</span><br>
+→ 37% possible increase in learning rate for ReLU series<br>
+</li>
+<li><strong>Sophia</strong>: Hessian estimation-based preconditioning<br>
+<span class="math display">\[\eta_{eff} = \eta / \sqrt{\mathbb{E}[H_{diag}] + \epsilon}\]</span><br>
+→ Twice the speed improvement over Adam for Swish</li>
+</ul></li>
+</ol>
+</section>
+<section id="local-minima-saddle-points-loss-landscape-mathematical-analysis-and-latest-research" class="level3">
+<h3 class="anchored" data-anchor-id="local-minima-saddle-points-loss-landscape-mathematical-analysis-and-latest-research">3. Local Minima, Saddle Points, Loss Landscape: Mathematical Analysis and Latest Research</h3>
+<section id="geometric-characteristics-of-the-loss-function-landscape" class="level4">
+<h4 class="anchored" data-anchor-id="geometric-characteristics-of-the-loss-function-landscape">Geometric Characteristics of the Loss Function Landscape</h4>
+<p>The loss function <span class="math inline">\(\mathcal{L}(\theta)\)</span> of a deep neural network is a non-convex function defined in a high-dimensional parameter space <span class="math inline">\(\theta \in \mathbb{R}^d\)</span> (usually <span class="math inline">\(d &gt; 10^6\)</span>). The following equation analyzes the landscape near the critical point through the second-order Taylor expansion.</p>
+<p><span class="math display">\[
+\mathcal{L}(\theta + \Delta\theta) \approx \mathcal{L}(\theta) + \nabla\mathcal{L}(\theta)^T\Delta\theta + \frac{1}{2}\Delta\theta^T\mathbf{H}\Delta\theta
+\]</span></p>
+<p>Here, <span class="math inline">\(\mathbf{H} = \nabla^2\mathcal{L}(\theta)\)</span> is the Hessian matrix. The landscape at the critical point (<span class="math inline">\(\nabla\mathcal{L}=0\)</span>) is determined by the eigenvalue decomposition of the Hessian.</p>
+<p><span class="math display">\[
+\mathbf{H} = \mathbf{Q}\Lambda\mathbf{Q}^T, \quad \Lambda = \text{diag}(\lambda_1, ..., \lambda_d)
+\]</span></p>
+<p><strong>Key Observations</strong></p>
+<ol type="1">
+<li><strong>Prevalence of Saddle Points in High-Dimensional Space</strong>: Dauphin et al.&nbsp;(2014) proved that the probability of a critical point being a saddle point converges to <span class="math inline">\(1 - (1/2)^{d-1}\)</span> in <span class="math inline">\(d\)</span>-dimensional space</li>
+<li><strong>Generalization of Flat Minima</strong>: Chaudhari et al.&nbsp;(2017) experimentally demonstrated that flat minima (<span class="math inline">\(\lambda_{\min}(\mathbf{H}) \geq -\epsilon\)</span>) have lower test errors than sharp minima</li>
+</ol>
+</section>
+<section id="latest-analysis-techniques" class="level4">
+<h4 class="anchored" data-anchor-id="latest-analysis-techniques">Latest Analysis Techniques</h4>
+<p><strong>Neural Tangent Kernel (NTK) Theory</strong> [Jacot et al., 2018] A key tool for describing the dynamics of parameter updates in infinitely wide neural networks</p>
+<p><span class="math display">\[
+\mathbf{K}_{NTK}(x_i, x_j) = \mathbb{E}_{\theta\sim p}[\langle \nabla_\theta f(x_i), \nabla_\theta f(x_j) \rangle]
+\]</span> - When NTK is kept constant over time, the loss function acts convexly - In actual finite neural networks, NTK evolution determines learning dynamics</p>
+<p><strong>Loss Landscape Visualization Techniques</strong> [Li et al., 2018]: Filter normalization for high-dimensional landscape projection</p>
+<p><span class="math display">\[
+\Delta\theta = \alpha\frac{\delta}{\|\delta\|} + \beta\frac{\eta}{\|\eta\|}
+\]</span></p>
+<p>where <span class="math inline">\(\delta, \eta\)</span> are random direction vectors, and <span class="math inline">\(\alpha, \beta\)</span> are projection coefficients</p>
+</section>
+<section id="saddle-point-escaping-dynamics" class="level4">
+<h4 class="anchored" data-anchor-id="saddle-point-escaping-dynamics">Saddle Point Escaping Dynamics</h4>
+<p>SGLD (Stochastic Gradient Langevin Dynamics) model [Zhang et al., 2020][^4]:</p>
+<p><span class="math display">\[
+\theta_{t+1} = \theta_t - \eta\nabla\mathcal{L}(\theta_t) + \sqrt{2\eta/\beta}\epsilon_t
+\]</span></p>
+<ul>
+<li>Temperature coefficient <span class="math inline">\(\beta\)</span> controls saddle point escaping probability</li>
+<li>Theoretical escape time <span class="math inline">\(\tau \propto \exp(\beta \Delta\mathcal{L})\)</span></li>
+</ul>
+<p><strong>Hessian Spectrum Analysis</strong> [Ghorbani et al., 2019][^5]: <span class="math display">\[
+\rho(\lambda) = \frac{1}{d}\sum_{i=1}^d \delta(\lambda - \lambda_i)
+\]</span></p>
+<ul>
+<li>The Hessian spectrum in actual neural networks differs from the semi-circle law</li>
+<li>Maximum eigenvalue <span class="math inline">\(\lambda_{\max}\)</span> has a strong correlation with generalization performance</li>
+</ul>
+</section>
+<section id="latest-research-trends" class="level4">
+<h4 class="anchored" data-anchor-id="latest-research-trends">2023-2024 Latest Research Trends</h4>
+<ol type="1">
+<li><strong>Quantum-Inspired Optimization</strong>
+<ul>
+<li>Biamonte et al.&nbsp;(2023)[^7]: SGD extension mimicking quantum tunneling effects<br>
+<span class="math display">\[ P_{\text{tunnel}} \propto \exp(-\frac{\Delta\mathcal{L}^2}{\sigma^2}) \]</span></li>
+</ul></li>
+<li><strong>Topological Data Analysis</strong>
+<ul>
+<li>Moor et al.&nbsp;(2024)[^8]: Predicting learning dynamics using persistent homology of the landscape<br>
+<span class="math display">\[ \beta_1 = \text{rank}(H_1(\mathcal{L})) \]</span></li>
+</ul></li>
+<li><strong>Bio-Plausible Learning</strong>
+<ul>
+<li>Yin et al.&nbsp;(2023)[^9]: Natural gradient algorithm mimicking brain’s synaptic strengthening mechanisms<br>
+<span class="math display">\[ \Delta\theta = \mathbf{G}^{-1}\nabla\mathcal{L}, \quad \mathbf{G} = \mathbb{E}[(\frac{\partial f}{\partial \theta})^2] \]</span></li>
+</ul></li>
+<li><strong>Loss Landscape Surgery</strong>
+<ul>
+<li>Wang et al.&nbsp;(2024)[^10]: Accelerating learning through explicit landscape modification<br>
+<span class="math display">\[ \tilde{\mathcal{L}} = \mathcal{L} + \lambda \det(\mathbf{H}) \]</span></li>
+</ul></li>
+</ol>
+</section>
+<section id="practical-recommendations" class="level4">
+<h4 class="anchored" data-anchor-id="practical-recommendations">Practical Recommendations</h4>
+<ol type="1">
+<li><strong>Initialization Strategies</strong>: He initialization + Leaky ReLU combination reduces saddle points [^11]</li>
+<li><strong>Learning Rate Scheduling</strong>: Cosine annealing is effective for inducing flat minima</li>
+<li><strong>Monitoring Metrics</strong>: Keep the Hessian trace index <span class="math inline">\(\tau = \frac{\|\mathbf{H}\|_F}{\sqrt{d}}\)</span> below 0.1</li>
+</ol>
+</section>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<p>[1]: Dauphin et al., “High-dimensional non-convex optimization saddle point problem identification and attack”, NeurIPS 2014<br>
+[2]: Chaudhari et al., “Entropy-SGD: Biasing Gradient Descent Into Wide Valleys”, ICLR 2017<br>
+[3]: Li et al., “Neural network loss landscape visualization”, NeurIPS 2018<br>
+[4]: Zhang et al., “Cyclical Stochastic Gradient MCMC for Bayesian Learning”, ICML 2020<br>
+[5]: Ghorbani et al., “Fisher Information Matrix and Loss Landscape Investigation”, ICLR 2019<br>
+[6]: Liu et al., “SHINE: Shift-Invariant Hessian for Improved Natural Gradient Descent”, NeurIPS 2023<br>
+[7]: Biamonte et al., “Quantum Machine Learning for Optimization”, Nature Quantum 2023<br>
+[8]: Moor et al., “Neural Loss Landscapes Topological Analysis”, JMLR 2024<br>
+[9]: Yin et al., “Bio-Inspired Adaptive Natural Gradient Descent”, AAAI 2023<br>
+[10]: Wang et al., “Deep Learning Surgical Landscape Modification”, CVPR 2024<br>
+[11]: He et al., “Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification”, ICCV 2015</p>
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizing-the-impact-of-activation-functions-in-neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-impact-of-activation-functions-in-neural-networks">4.3 Visualizing the Impact of Activation Functions in Neural Networks</h3>
+<p>Let’s analyze the impact of activation functions on the learning process of neural networks using the FashionMNIST dataset. Since the backpropagation algorithm was rehighlighted in 1986, the choice of activation function has become one of the most important factors in neural network design. In particular, the role of activation functions has become more crucial in deep neural networks to solve the gradient vanishing/exploding problem. Recently, self-adaptive activation functions and optimal activation function selection through Neural Architecture Search (NAS) have gained attention. Especially in transformer-based models, data-dependent activation functions are becoming the standard.</p>
+<p>For experimentation, we use a simple classification model called SimpleNetwork. This model converts 28x28 images into 784-dimensional vectors, passes them through configurable hidden layers, and classifies them into 10 classes. To clearly see the impact of activation functions, we compare models with and without activation functions.</p>
+<div id="cell-12" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchinfo <span class="im">import</span> summary</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_device</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> get_device()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>model_relu <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU()).to(device) <span class="co"># 테스트용으로 ReLu를 선언한다.</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>model_no_act <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), no_act <span class="op">=</span> <span class="va">True</span>).to(device) <span class="co"># 활성화 함수가 없는 신경망을 만든다.</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>summary(model_relu, input_size<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">784</span>])</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>summary(model_no_act, input_size<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">784</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+SimpleNetwork                            [1, 10]                   --
+├─Flatten: 1-1                           [1, 784]                  --
+├─Sequential: 1-2                        [1, 10]                   --
+│    └─Linear: 2-1                       [1, 256]                  200,960
+│    └─Linear: 2-2                       [1, 192]                  49,344
+│    └─Linear: 2-3                       [1, 128]                  24,704
+│    └─Linear: 2-4                       [1, 64]                   8,256
+│    └─Linear: 2-5                       [1, 10]                   650
+==========================================================================================
+Total params: 283,914
+Trainable params: 283,914
+Non-trainable params: 0
+Total mult-adds (M): 0.28
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.01
+Params size (MB): 1.14
+Estimated Total Size (MB): 1.14
+==========================================================================================</code></pre>
+</div>
+</div>
+<p>Load and preprocess the dataset.</p>
+<div id="cell-14" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchinfo <span class="im">import</span> summary</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_data_loaders</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>train_dataloader, test_dataloader  <span class="op">=</span> get_data_loaders()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>train_dataloader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;torch.utils.data.dataloader.DataLoader at 0x72be38d40700&gt;</code></pre>
+</div>
+</div>
+<p>Gradient flow is at the core of neural network learning. As layers get deeper, gradients are continually multiplied by the chain rule, which can lead to gradient disappearance or explosion during this process. For example, in a 30-layer neural network, the gradient goes through 30 multiplications until it reaches the input layer. The activation function adds non-linearity and gives inter-layer independence to regulate the gradient flow in this process.</p>
+<p>The following code visualizes the gradient distribution of a model using the ReLU activation function.</p>
+<div id="cell-16" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> visualize_network_gradients</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>visualize_network_gradients()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can analyze the characteristics of the activation function by visualizing the gradient distribution of each layer as a histogram. For ReLU, the output layer shows a gradient value of 10^-2 scale and the input layer shows a gradient value of 10^-3 scale. PyTorch uses He(Kaiming) initialization by default, which is optimized for ReLU series activation functions. Other initialization methods such as Xavier, Orthogonal are also available, and these will be covered in detail in the initialization section.</p>
+<div id="cell-18" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.activations <span class="im">import</span> act_functions</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> get_gradients_weights, visualize_distribution</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, act_func <span class="kw">in</span> <span class="bu">enumerate</span>(act_functions):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    act_func_initiated <span class="op">=</span> act_functions[act_func]()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>act_func_initiated).to(device)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    gradients, weights <span class="op">=</span> get_gradients_weights(model, train_dataloader)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    visualize_distribution(model, gradients, color<span class="op">=</span><span class="ss">f"C</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-9-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looking at the gradient distribution by activation function, we can see that Sigmoid shows very small values of <span class="math inline">\(10^{-5}\)</span> scale from the input layer, which means that the gradient disappearance problem may occur. ReLU has a gradient concentrated around 0, which is due to the characteristic of deactivation (dead neuron) for negative inputs. The latest adaptive activation functions alleviate these problems while maintaining non-linearity. For example, GELU shows a gradient distribution close to a normal distribution, which has a good effect along with batch normalization. Let’s compare it with the case without an activation function.</p>
+<div id="cell-20" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>model_no_act <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), no_act <span class="op">=</span> <span class="va">True</span>).to(device) </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>gradients, weights <span class="op">=</span> get_gradients_weights(model_no_act, train_dataloader)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>visualize_distribution(model_no_act, gradients, title<span class="op">=</span><span class="st">"gradients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If there is no activation function, the distribution between layers is similar and only the scale changes. This shows that there is no nonlinearity and the feature transformation between layers is limited.</p>
+</section>
+<section id="model-training" class="level3">
+<h3 class="anchored" data-anchor-id="model-training">4.4 Model Training</h3>
+<p>To objectively compare the performance of activation functions, experiments are conducted using the FashionMNIST dataset. As of 2025, there are over 500 activation functions, but in actual deep learning projects, a small number of validated activation functions are mainly used. First, let’s take a look at the basic training process based on ReLU.</p>
+<section id="single-model-training" class="level4">
+<h4 class="anchored" data-anchor-id="single-model-training">4.4.1 Single Model Training</h4>
+<div id="cell-23" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_model</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_device</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> plot_results</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU()).to(device)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span><span class="fl">1e-2</span>, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> train_model(model, train_dataloader, test_dataloader, device, epochs<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_results(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Starting training for SimpleNetwork-ReLU.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"43e8fb87b8414e889e23db1b4c9b46f5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Execution completed for SimpleNetwork-ReLU, Execution time = 76.1 secs</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-11-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="model-training-based-on-activation-functions" class="level4">
+<h4 class="anchored" data-anchor-id="model-training-based-on-activation-functions">4.4.2 Model Training Based on Activation Functions</h4>
+<p>Now we conduct comparative experiments on major activation functions. We keep the composition and training conditions of each model identical to ensure a fair comparison. - 4 hidden layers [256, 192, 128, 64] - SGD optimizer (learning rate=1e-3, momentum=0.9) - Batch size 128 - Trained for 15 epochs</p>
+<div id="cell-25" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_all_models</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> create_results_table</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.experiments.model_training <span class="im">import</span> train_all_models</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> create_results_table  <span class="co"># Assuming this is where plot functions are.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Train only selected models</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["ReLU"]  # Select only the desired activation functions</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>selected_acts <span class="op">=</span> [<span class="st">"Tanh"</span>, <span class="st">"ReLU"</span>, <span class="st">"Swish"</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["Sigmoid", "ReLU", "Swish", "PReLU", "TeLU", "STAF"]</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_acts = ["Sigmoid", "Tanh", "ReLU", "GELU", "Mish", "LeakyReLU", "SiLU", "Hardswish", "Swish", "PReLU", "RReLU", "TeLU", "STAF"]</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># results_dict = train_all_models(act_functions, train_dataloader, test_dataloader,</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                               device, epochs=15, selected_acts=selected_acts)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>results_dict <span class="op">=</span> train_all_models(act_functions, train_dataloader, test_dataloader,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                              device, epochs<span class="op">=</span><span class="dv">15</span>, selected_acts<span class="op">=</span>selected_acts, save_epochs<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>])</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>create_results_table(results_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The results came out as shown in the table below. The values will vary depending on each execution environment.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>모델</th>
+<th>정확도(%)</th>
+<th>최종 오차(%)</th>
+<th>걸린 시간 (초)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SimpleNetwork-Sigmoid</td>
+<td>10.0</td>
+<td>2.30</td>
+<td>115.6</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-Tanh</td>
+<td>82.3</td>
+<td>0.50</td>
+<td>114.3</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-ReLU</td>
+<td>81.3</td>
+<td>0.52</td>
+<td>115.2</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-GELU</td>
+<td>80.5</td>
+<td>0.54</td>
+<td>115.2</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-Mish</td>
+<td>81.9</td>
+<td>0.51</td>
+<td>113.4</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-LeakyReLU</td>
+<td>80.8</td>
+<td>0.55</td>
+<td>114.4</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-SiLU</td>
+<td>78.3</td>
+<td>0.59</td>
+<td>114.3</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-Hardswish</td>
+<td>76.7</td>
+<td>0.64</td>
+<td>114.5</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-Swish</td>
+<td>78.5</td>
+<td>0.59</td>
+<td>116.1</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-PReLU</td>
+<td>86.0</td>
+<td>0.40</td>
+<td>114.9</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-RReLU</td>
+<td>81.5</td>
+<td>0.52</td>
+<td>114.6</td>
+</tr>
+<tr class="even">
+<td>SimpleNetwork-TeLU</td>
+<td>86.2</td>
+<td>0.39</td>
+<td>119.6</td>
+</tr>
+<tr class="odd">
+<td>SimpleNetwork-STAF</td>
+<td>85.4</td>
+<td>0.44</td>
+<td>270.2</td>
+</tr>
+</tbody>
+</table>
+<p>Analyzing the experimental results, we can see that</p>
+<ol type="1">
+<li><p><strong>Computational Efficiency</strong>: Tanh, ReLU, etc. are the fastest, while STAF is relatively slow due to complex calculations.</p></li>
+<li><p><strong>Accuracy</strong>:</p>
+<ul>
+<li>Adaptive activation functions (TeLU 86.2%, PReLU 86.0%, STAF 85.4%) show overall superior performance.</li>
+<li>Classical Sigmoid has very low performance (10.0%) due to the gradient vanishing problem.</li>
+<li>Modern basic activation functions (ReLU, GELU, Mish) show stable performance in the range of 80-82%.</li>
+</ul></li>
+<li><p><strong>Stability</strong>:</p>
+<ul>
+<li>Tanh, ReLU, and Mish show relatively stable learning curves.</li>
+<li>Adaptive activation functions show high performance but have more variability during the learning process.</li>
+</ul></li>
+</ol>
+<p>These results are comparative under specific conditions, so when selecting an activation function for actual projects, consider the following factors: 1. compatibility with model architecture (e.g., GELU is recommended for transformers) 2. constraints on computational resources (consider Hardswish in mobile environments) 3. characteristics of the task (Tanh is still useful for time series prediction) 4. model size and dataset characteristics</p>
+<p>As of 2025, it is standard to use GELU for large language models for computational efficiency, ReLU series for computer vision, and adaptive activation functions for reinforcement learning.</p>
+</section>
+</section>
+<section id="trained-models-layer-wise-output-and-dead-neuron-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="trained-models-layer-wise-output-and-dead-neuron-analysis">4.5 Trained Model’s Layer-wise Output and Dead Neuron Analysis</h3>
+<p>Previously, we examined the distribution of gradient values for each layer in the backpropagation of the initial model. Now, let’s look at what values each layer outputs in the forward calculation using the trained model. Analyzing the output of each layer of the trained model is crucial for understanding the representational power and learning patterns of neural networks. Since the introduction of ReLU in 2010, the problem of dead neurons has become a major consideration in deep neural network design.</p>
+<p>First, we visualize the distribution of outputs for each layer in the forward calculation of the trained model.</p>
+<section id="layer-wise-output-distribution-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="layer-wise-output-distribution-visualization">4.5.1 Layer-wise Output Distribution Visualization</h4>
+<div id="cell-28" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.metrics <span class="im">import</span> load_model</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.utils.data <span class="im">import</span> get_data_loaders, get_device</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.gradients <span class="im">import</span> get_model_outputs, visualize_distribution</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> get_device()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-define the data loaders.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>train_dataloader, test_dataloader <span class="op">=</span> get_data_loaders()</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, act_func <span class="kw">in</span> <span class="bu">enumerate</span>(act_functions):</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    model_file <span class="op">=</span> <span class="ss">f"SimpleNetwork-</span><span class="sc">{</span>act_func<span class="sc">}</span><span class="ss">.pth"</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    model_path <span class="op">=</span> os.path.join(<span class="st">"./tmp/models"</span>, model_file)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the model only if the file exists</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.path.exists(model_path):</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Load the model.</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        model, config <span class="op">=</span> load_model(model_file<span class="op">=</span>model_file, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        layer_outputs <span class="op">=</span> get_model_outputs(model, test_dataloader, device)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        visualize_distribution(model, layer_outputs, title<span class="op">=</span><span class="st">"gradients"</span>, color<span class="op">=</span><span class="ss">f"C</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Model file not found: </span><span class="sc">{</span>model_file<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_Activation Function_files/figure-html/cell-13-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-problem-of-dead-neurons" class="level4">
+<h4 class="anchored" data-anchor-id="the-problem-of-dead-neurons">4.5.2 The Problem of Dead Neurons</h4>
+<p>Dead neurons (inactive neurons) refer to neurons that always output 0 for all inputs. This is a particularly important issue in the ReLU family of activation functions. To find dead neurons, one can pass all training data through them and check if they always output 0. This can be done by taking the output values for each layer and using logical operations to mask when they are always 0.</p>
+<div id="cell-30" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 samples (1 batch), 5 columns (each a neuron's output). Columns 1 and 3 always show 0.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>batch_1 <span class="op">=</span> torch.tensor([[<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>, <span class="dv">0</span>,  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>, <span class="dv">1</span>,  <span class="dv">0</span>, <span class="fl">1.2</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Column 3 always shows 0</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>batch_2 <span class="op">=</span> torch.tensor([[<span class="fl">1.1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">1</span>,   <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">0</span>,   <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]])</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_1)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_2)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the .all() method to create a boolean tensor indicating which columns</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># have all zeros along the batch dimension (dim=0).</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>batch_1_all_zeros <span class="op">=</span> (batch_1 <span class="op">==</span> <span class="dv">0</span>).<span class="bu">all</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>batch_2_all_zeros <span class="op">=</span> (batch_2 <span class="op">==</span> <span class="dv">0</span>).<span class="bu">all</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_1_all_zeros)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(batch_2_all_zeros)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare a masked_array that can be compared across the entire batch.</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialized to all True.</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.ones(<span class="dv">5</span>, dtype<span class="op">=</span>torch.<span class="bu">bool</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"masked_array = </span><span class="sc">{</span>masked_array<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform logical AND operations between the masked_array and the all_zeros</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># tensors for each batch.</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.logical_and(masked_array, batch_1_all_zeros)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(masked_array)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>masked_array <span class="op">=</span> torch.logical_and(masked_array, batch_2_all_zeros)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"final = </span><span class="sc">{</span>masked_array<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># Finally, only the 3rd neuron remains True (dead neuron).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.0000, 1.5000, 0.0000, 1.0000, 1.0000],
+        [0.0000, 0.0000, 0.0000, 0.0000, 1.0000],
+        [0.0000, 1.0000, 0.0000, 1.2000, 1.0000]])
+tensor([[1.1000, 1.0000, 0.0000, 1.0000, 1.0000],
+        [1.0000, 0.0000, 0.0000, 0.0000, 1.0000],
+        [0.0000, 1.0000, 0.0000, 1.0000, 1.0000]])
+tensor([ True, False,  True, False, False])
+tensor([False, False,  True, False, False])
+masked_array = tensor([True, True, True, True, True])
+tensor([ True, False,  True, False, False])
+final = tensor([False, False,  True, False, False])</code></pre>
+</div>
+</div>
+<p>The function to calculate disabled neurons is calculate_disabled_neuron. It is in visualization/training.py. Let’s analyze the ratio of disabled neurons in the actual model.</p>
+<div id="cell-32" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.visualization.training <span class="im">import</span> calculate_disabled_neuron</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dldna.chapter_04.models.base <span class="im">import</span> SimpleNetwork</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find in the trained model.</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>model, _ <span class="op">=</span> load_model(model_file<span class="op">=</span><span class="st">"SimpleNetwork-ReLU.pth"</span>, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(model, train_dataloader, device)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>model, _ <span class="op">=</span> load_model(model_file<span class="op">=</span><span class="st">"SimpleNetwork-Swish.pth"</span>, path<span class="op">=</span><span class="st">"./tmp/models"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(model, train_dataloader, device)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the size of the model and compare whether it also occurs at initial values.</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>big_model <span class="op">=</span> SimpleNetwork(act_func<span class="op">=</span>nn.ReLU(), hidden_shape<span class="op">=</span>[<span class="dv">2048</span>, <span class="dv">1024</span>, <span class="dv">1024</span>, <span class="dv">512</span>, <span class="dv">512</span>, <span class="dv">256</span>, <span class="dv">128</span>]).to(device)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>calculate_disabled_neuron(big_model, train_dataloader, device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Number of layers to compare = 4</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"2aba73fc70504cb3999072a4c9676e1e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (ReLU) : [0, 6, 13, 5]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 3.1%
+Ratio of disabled neurons = 10.2%
+Ratio of disabled neurons = 7.8%
+
+Number of layers to compare = 4</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"b164f0a6be854579aa7314ec8c69baeb","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (Swish) : [0, 0, 0, 0]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+
+Number of layers to compare = 7</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"62a92f453fdd4c0f828b6d94f55ae264","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of disabled neurons (ReLU) : [0, 0, 6, 15, 113, 102, 58]
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.0%
+Ratio of disabled neurons = 0.6%
+Ratio of disabled neurons = 2.9%
+Ratio of disabled neurons = 22.1%
+Ratio of disabled neurons = 39.8%
+Ratio of disabled neurons = 45.3%</code></pre>
+</div>
+</div>
+<p>According to current research results, the severity of the dying neuron problem varies depending on the depth and width of the model. Notably, 1. As the model deepens, the proportion of inactive neurons in ReLU increases sharply 2. Adaptive activation functions (STAF, TeLU) effectively alleviate this problem 3. In Transformer architectures, GELU greatly reduces the dying neuron problem 4. In the latest MoE (Mixture of Experts) models, the problem is solved by using different activation functions for each expert network</p>
+<p>Therefore, when designing neural networks with many layers, alternatives such as GELU, STAF, and TeLU should be considered instead of ReLU, and especially for ultra-large models, a choice that considers both computational efficiency and the dying neuron problem is necessary.</p>
+</section>
+</section>
+<section id="activation-function-candidates-determination" class="level3">
+<h3 class="anchored">4.6 Activation Function Candidates Determination</h3>
+<p>The selection of activation functions is one of the crucial decision-making factors in neural network design. Activation functions directly influence the network’s ability to learn complex patterns, training speed, and overall performance. The following outlines the latest research findings and best practices organized by application domain.</p>
+<section id="computer-vision" class="level5">
+<h5 class="anchored" data-anchor-id="computer-vision">Computer Vision</h5>
+<ul>
+<li><strong>CNN-based models:</strong> ReLU and its variants (LeakyReLU, PReLU, ELU) are still widely used due to their computational efficiency and generally good performance. However, GELU and Swish/SiLU are increasingly used in deeper architectures, especially in high-performance CNNs, because they have smoother gradients.</li>
+<li><strong>Vision Transformers (ViTs):</strong> GELU has become the de facto standard in ViT, consistent with its successful use in transformers for natural language processing.</li>
+<li><strong>Mobile/Embedded Devices:</strong> Hardswish is preferred due to its computational efficiency in resource-constrained environments. ReLU and its variants (e.g., ReLU6 commonly used in MobileNets) remain strong choices.</li>
+<li><strong>Generative Models (High-Precision Image Generation):</strong> STAF has shown promising results but has not been widely adopted yet. Smoother activation functions like Swish, GELU, and Mish are preferred for generation tasks because they tend to produce higher-quality outputs and reduce artifacts. State-of-the-art diffusion models for image generation often use Swish/SiLU.</li>
+</ul>
+</section>
+<section id="natural-language-processing-nlp" class="level5">
+<h5 class="anchored" data-anchor-id="natural-language-processing-nlp">Natural Language Processing (NLP)</h5>
+<ul>
+<li><strong>Transformer-based Models:</strong> GELU is the dominant choice in most transformer architectures (e.g., BERT, GPT).</li>
+<li><strong>RNN/LSTM:</strong> Traditionally, Tanh was preferred, but it’s being gradually replaced by activation functions that better mitigate the vanishing gradient problem. GELU and ReLU variants (with careful initialization and normalization techniques) are frequently used in modern RNN/LSTM implementations.</li>
+<li><strong>Large Language Models (LLMs):</strong> Computational efficiency is paramount. GELU and ReLU (or fast approximations of GELU) are the most common choices. Some LLMs also experiment with special activation functions within Mixture-of-Experts (MoE) layers.</li>
+</ul>
+</section>
+<section id="speech-processing" class="level5">
+<h5 class="anchored" data-anchor-id="speech-processing">Speech Processing</h5>
+<ul>
+<li><strong>Emotion Recognition:</strong> TeLU has shown promise but is not yet a widely used standard. ReLU variants, GELU, and Swish/SiLU are strong and general candidates suitable for a wide range of applications. The optimal choice depends on the specific dataset and model architecture.</li>
+<li><strong>Speech Synthesis:</strong> Smooth activations like Snake and GELU can help produce more natural speech, making them recommended choices.</li>
+<li><strong>Real-Time Processing:</strong> Similar to mobile vision, Hardswish and ReLU variants are suitable for applications requiring low latency.</li>
+</ul>
+</section>
+<section id="general-recommendations-and-latest-trends" class="level5">
+<h5 class="anchored">General Recommendations and Latest Trends</h5>
+<p>The following provides a more systematic approach to selecting activation function candidates:</p>
+<ol type="1">
+<li><strong>Baseline Choices (Good Starting Points):</strong>
+<ul>
+<li><strong>GELU:</strong> An excellent general-purpose choice, especially for transformers and deeper networks.</li>
+<li><strong>ReLU (or LeakyReLU/PReLU):</strong> Still a strong and efficient option for CNNs. Consider LeakyReLU or PReLU to avoid the “dying ReLU” problem.</li>
+<li><strong>Swish/SiLU:</strong> Often outperforms ReLU in deeper networks and shows good performance across various tasks.</li>
+</ul></li>
+<li><strong>High-Performance (Potentially More Computations):</strong>
+<ul>
+<li><strong>Mish:</strong> Often achieves top-tier results but is more computationally expensive than ReLU or GELU.</li>
+<li><strong>TeLU:</strong> A learnable variation of ELU. Claims of faster convergence and stability are worth validating, though it hasn’t been widely adopted yet. Benchmarking is key.</li>
+<li><strong>Rational Activation Functions:</strong> Promising for reinforcement learning and physics-informed neural networks (PINN) due to their ability to approximate complex functions and handle dynamic systems. Less commonly used in standard supervised learning tasks.</li>
+</ul></li>
+<li><strong>Lightweight/Efficient:</strong>
+<ul>
+<li><strong>Hardswish:</strong> Designed for mobile and embedded devices.</li>
+<li><strong>ReLU6:</strong> A variation of ReLU that limits the output range to 6, frequently used in quantized models.</li>
+</ul></li>
+<li><strong>Adaptive/Learnable:</strong>
+<ul>
+<li><strong>PReLU:</strong> Learns a negative slope parameter. Simple and effective.</li>
+<li><strong>TeLU:</strong> Learns a scaling factor for the exponential part of the ELU function.</li>
+<li><strong>STAF:</strong> Shows <em>potential</em> for capturing complex patterns, but STAF (and other Fourier-based activations) are computationally expensive and have not yet proven consistent superiority over simpler options in most common tasks. Still an active area of research.</li>
+<li><strong>B-spline:</strong> The property of local control is interesting, but B-spline activation (similar to STAF) is less common in mainstream deep learning due to complexity. More often seen in special applications like curve fitting or geometric modeling. This is an active research area and may be effective for continual/incremental learning, though not yet widely established.</li>
+</ul></li>
+</ol>
+<p><strong>Recent Key Trends and Considerations:</strong></p>
+<ul>
+<li><strong>Decreased Use of Sigmoid/Tanh in Deep Networks:</strong> Due to the gradient vanishing problem, they are rarely used as hidden layer activations in modern deep networks.</li>
+<li><strong>Importance of Smoothness:</strong> Smooth activation functions (GELU, Swish, Mish) are generally preferred over non-smooth ones (ReLU) in deeper networks because they tend to lead to more stable training and better gradient flow.</li>
+<li><strong>Computational Cost:</strong> Always consider the computational cost of activation functions, especially for large models or resource-constrained devices.</li>
+<li><strong>Task Specificity:</strong> The best activation function can vary significantly depending on the task. Experimentation is crucial.</li>
+<li><strong>Mixture of Experts (MoE):</strong> In very large models like some LLMs, different activation functions might be used within different “expert” sub-networks.</li>
+<li><strong>Rational Activation Functions and Dynamic Systems:</strong> The ability of rational activation functions and their “joint-rational” extensions to learn and represent the dynamics of systems is a promising line of research.</li>
+</ul>
+<p><strong>Most importantly, always experiment!</strong> Start with reasonable defaults (GELU or ReLU/LeakyReLU), but be prepared to try other options if you don’t achieve desired performance. Small experiments that change the activation function <em>alone</em>, while keeping other hyperparameters constant, are essential for making informed choices.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Click to view contents (Deep Dive: Designing Your Own Activation Function)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to view contents (Deep Dive: Designing Your Own Activation Function)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<section id="deep-dive-designing-your-own-activation-function---theory-and-practice" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="deep-dive-designing-your-own-activation-function---theory-and-practice">Deep Dive: Designing Your Own Activation Function - Theory and Practice</h2>
+<p>Activation functions are one of the core components of deep learning models, significantly influencing the model’s expressiveness, learning speed, and final performance. In addition to existing widely used activation functions (ReLU, GELU, Swish, etc.), numerous researchers have proposed new activation functions. This deep dive explores the process of designing your own activation function step by step and learns how to implement and test it using PyTorch.</p>
+<section id="basic-principles-for-designing-activation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="basic-principles-for-designing-activation-functions">1. Basic Principles for Designing Activation Functions</h3>
+<p>Before designing a new activation function, let’s recall the conditions for an “ideal” activation function described in section 4.2.</p>
+<ul>
+<li><strong>Non-linearity:</strong> Allows the neural network to express (approximate) complex functions.</li>
+<li><strong>Differentiability:</strong> Essential for training neural networks using the backpropagation algorithm (allowing cases like ReLU that are not differentiable at some points).</li>
+<li><strong>Prevention of Gradient Vanishing/Exploding Problems:</strong> Ensures stable learning in deep neural networks.</li>
+<li><strong>Computational Efficiency:</strong> Affects the learning and inference speed of neural networks.</li>
+</ul>
+<p>Additionally, consider the following aspects:</p>
+<ul>
+<li><strong>Zero-Centered Output:</strong> If the output of the activation function is centered around 0, it can improve learning speed (e.g., Tanh, ELU).</li>
+<li><strong>Self-Gating:</strong> The characteristic where the degree of activation is controlled by the input value itself (e.g., Swish).</li>
+<li><strong>Smoothness:</strong> Generally, smooth activation functions lead to more stable learning.</li>
+<li><strong>Monotonicity:</strong> A function where output increases or decreases as input increases. ReLU, Leaky ReLU, ELU, GELU, Swish, and Mish are all monotonic functions. Sigmoid and Tanh are not monotonic functions. Monotonicity can facilitate optimization but is not a necessary condition.</li>
+<li><strong>Boundedness:</strong> Whether the output of the activation function is limited to a specific range. Sigmoid and Tanh are bounded functions, while ReLU variants are unbounded. Bounded functions can help prevent gradient explosion but may limit expressiveness.</li>
+</ul>
+</section>
+<section id="idea-generation-combining-and-modifying-existing-activation-functions" class="level3">
+<h3 class="anchored" data-anchor-id="idea-generation-combining-and-modifying-existing-activation-functions">2. Idea Generation: Combining and Modifying Existing Activation Functions</h3>
+<p>The most common method for designing new activation functions is by combining or modifying existing ones.</p>
+<ul>
+<li><strong>ReLU Variants:</strong> To solve the “Dying ReLU” problem, various modifications like Leaky ReLU, PReLU, ELU, and SELU have been proposed. You can extend these ideas by changing the behavior in the negative region or adding learnable parameters.</li>
+<li><strong>Sigmoid/Tanh Variants:</strong> Consider modifying Sigmoid or Tanh functions or combining them with other functions to mitigate gradient vanishing issues.</li>
+<li><strong>Swish/Mish Family:</strong> Swish (<span class="math inline">\(x \cdot sigmoid(x)\)</span>) and Mish (<span class="math inline">\(x \cdot tanh(ln(1 + e^x))\)</span>), which have self-gating properties, are known for their good performance. You can modify the form of these functions or combine them with others.</li>
+<li><strong>GELU Variants:</strong> GELU is widely used in Transformer models. You can modify its approximation formula or combine it with other functions to create new activation functions.</li>
+</ul>
+</section>
+<section id="mathematical-analysis-differentiability-gradient-characteristics" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-analysis-differentiability-gradient-characteristics">3. Mathematical Analysis: Differentiability, Gradient Characteristics</h3>
+<p>If a new activation function is proposed, a mathematical analysis must be performed.</p>
+<ul>
+<li><strong>Differentiability:</strong> It should be checked whether the proposed function is differentiable in all intervals or not. If it’s not, like ReLU, but a subgradient can be defined, it’s acceptable. Using PyTorch’s automatic differentiation feature to calculate the derivative and plotting the graph would be helpful.</li>
+<li><strong>Gradient characteristics:</strong> The analysis should include how gradients change according to input values. It should be checked whether there are areas where gradients become too small (vanishing gradient) or too large (exploding gradient).</li>
+</ul>
+</section>
+<section id="pytorch-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="pytorch-implementation">4. PyTorch Implementation</h3>
+<p>An activation function validated by mathematical analysis can be easily implemented using PyTorch. A new class that inherits <code>torch.nn.Module</code> is created, and the operation of the activation function is defined in the <code>forward</code> method. If necessary, learnable parameters can be defined as <code>torch.nn.Parameter</code>.</p>
+<p><strong>Example: Implementation of “SwiGELU” Activation Function</strong></p>
+<p>Let’s propose a new activation function “SwiGELU” that combines Swish and GELU and implement it using PyTorch.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SwiGELU(nn.Module):</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">*</span> (x <span class="op">*</span> torch.sigmoid(x) <span class="op">+</span> F.gelu(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Description:</strong></p>
+<ul>
+<li><code>SwiGELU(x) = 0.5 * (x * sigmoid(x) + GELU(x))</code></li>
+<li>Swish (<span class="math inline">\(x \cdot sigmoid(x)\)</span>) and GELU (<span class="math inline">\(x\Phi(x)\)</span>) are combined at a 1:1 ratio, and the output range is adjusted by multiplying by 0.5.</li>
+<li>It is expected to utilize both the self-gating characteristics of Swish and the smooth nonlinearity and regularization effect of GELU.</li>
+</ul>
+</section>
+<section id="experimentation-and-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="experimentation-and-evaluation">5. Experimentation and Evaluation</h3>
+<p>If a new activation function is proposed, an experiment should be conducted to compare its performance with existing activation functions using benchmark datasets (e.g., CIFAR-10, CIFAR-100, ImageNet).</p>
+<ul>
+<li><strong>Experiment Setup:</strong>
+<ul>
+<li>The same model architecture is used, and only the activation function is changed.</li>
+<li>Other hyperparameters such as learning rate, batch size, and optimizer are kept the same.</li>
+<li>Multiple experiments are repeated to ensure statistical significance.</li>
+</ul></li>
+<li><strong>Evaluation Metrics:</strong>
+<ul>
+<li>Accuracy</li>
+<li>Loss</li>
+<li>Training Time</li>
+<li>Convergence Speed</li>
+<li>Gradient Norm - using <code>train_model_with_metrics</code> function</li>
+<li>Number/Percentage of Disabled Neurons - using <code>calculate_disabled_neuron</code> function</li>
+<li>Memory usage, if necessary</li>
+</ul></li>
+<li><strong>Result Analysis:</strong>
+<ul>
+<li>Quantitative comparison of convergence speed and final performance</li>
+<li>Checking whether the vanishing/exploding gradient problem occurs</li>
+<li>Analyzing the occurrence rate of “dead neurons”</li>
+</ul></li>
+</ul>
+</section>
+<section id="optional-theoretical-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="optional-theoretical-analysis">6. (Optional) Theoretical Analysis</h3>
+<p>If the experimental results are good, it’s a good idea to theoretically analyze why the new activation function performs well. * <strong>Loss Landscape Analysis:</strong> Analyzes the impact of activation functions on the loss function space (loss landscape). (Refer to Section 4.2 Deep Dive) * <strong>Neural Tangent Kernel (NTK) Analysis:</strong> Analyzes the role of activation functions in infinitely wide neural networks. * <strong>Fokker-Planck Equation:</strong> Analyzes the dynamic characteristics of activation functions. (Refer to research on Swish)</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Designing and evaluating new activation functions is not an easy task, but it is a promising research area that can improve the performance of deep learning models. Overcoming the limitations of existing activation functions and finding activation functions more suitable for specific problems or architectures is one of the important tasks in deep learning research. We hope that the step-by-step approach presented in this deep dive, PyTorch implementation examples, and experimental and analytical guidelines will help you design your own activation function.</p>
+</section>
+</section>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Click to view contents (Deep Dive: Adaptive Activation Functions - Future Research Directions)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to view contents (Deep Dive: Adaptive Activation Functions - Future Research Directions)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<section id="deep-dive-adaptive-activation-functions---future-research-directions" class="level3 callout-body-container callout-body">
+<h3 class="anchored" data-anchor-id="deep-dive-adaptive-activation-functions---future-research-directions">Deep Dive: Adaptive Activation Functions - Future Research Directions</h3>
+<p><strong>Introduction:</strong></p>
+<p>ReLU, GELU, and other fixed activation functions are widely used in deep learning models but may not be optimal for specific problems or data distributions. Recently, research has been actively conducted to adjust the activation function adaptively according to the data or task. In this deep dive, we explore the potential of adaptive activation functions and future research directions.</p>
+<section id="types-of-adaptive-activation-functions" class="level4">
+<h4 class="anchored" data-anchor-id="types-of-adaptive-activation-functions">1. Types of Adaptive Activation Functions</h4>
+<p>Adaptive activation functions can be broadly classified as follows:</p>
+<ul>
+<li><p><strong>Parametric Adaptation:</strong> Introduce learnable parameters into the activation function to adjust its shape according to the data.</p>
+<ul>
+<li><strong>Examples:</strong>
+<ul>
+<li>Leaky ReLU: <span class="math inline">\(f(x) = max(\alpha x, x)\)</span> (<span class="math inline">\(\alpha\)</span> is a learnable parameter)</li>
+<li>PReLU (Parametric ReLU): Learn <span class="math inline">\(\alpha\)</span> for each channel in Leaky ReLU</li>
+<li>Swish: <span class="math inline">\(f(x) = x \cdot \sigma(\beta x)\)</span> (<span class="math inline">\(\beta\)</span> is a learnable parameter)</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Structural Adaptation:</strong> Combine multiple basis functions or change the network structure to dynamically construct the activation function.</p>
+<ul>
+<li><strong>Examples:</strong>
+<ul>
+<li>Maxout Networks: Take the maximum of multiple linear functions</li>
+<li>Spline-based Activation Functions: Use spline functions to represent the activation function</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Input-based Adaptation:</strong> Change or mix the activation function based on the characteristics of the input data.</p>
+<ul>
+<li><strong>Example:</strong>
+<ul>
+<li>Squeeze and Excitation (SE) Block: Calculate the importance of each channel in the input feature map and apply weights to the activation function</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="possible-research-directions" class="level4">
+<h4 class="anchored" data-anchor-id="possible-research-directions">2. Possible Research Directions</h4>
+<section id="mixture-of-experts-moe-based-activation-functions" class="level5">
+<h5 class="anchored" data-anchor-id="mixture-of-experts-moe-based-activation-functions">2.1 Mixture of Experts (MoE) based Activation Functions</h5>
+<ul>
+<li><p><strong>Idea:</strong> Define multiple “expert” activation functions and dynamically determine their weights for each input data.</p></li>
+<li><p><strong>Mathematical Expression:</strong></p>
+<p><span class="math inline">\(f(x) = \sum_{k=1}^K g_k(x) \cdot \phi_k(x)\)</span></p>
+<ul>
+<li><span class="math inline">\(g_k(x)\)</span>: The gating function for the <span class="math inline">\(k\)</span>th expert activation function (normalized using softmax, etc.)</li>
+<li><span class="math inline">\(\phi_k(x)\)</span>: The <span class="math inline">\(k\)</span>th expert activation function (can use various functions such as ReLU, GELU, Swish)</li>
+</ul></li>
+<li><p><strong>Research Tasks:</strong></p>
+<ul>
+<li><strong>Efficient Gating Mechanism:</strong> Study efficient methods for calculating <span class="math inline">\(g_k(x)\)</span> (e.g., Top-k gating, sparse gating)</li>
+<li><strong>Selection of Expert Activation Functions:</strong> Research on what types of <span class="math inline">\(\phi_k(x)\)</span> to use and how to determine the number of experts</li>
+<li><strong>Theoretical Analysis:</strong> Theoretical analysis of the expressive power and generalization performance of MoE activation functions</li>
+</ul></li>
+</ul>
+</section>
+<section id="combination-with-neural-architecture-search-nas" class="level5">
+<h5 class="anchored" data-anchor-id="combination-with-neural-architecture-search-nas">2.2 Combination with Neural Architecture Search (NAS)</h5>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Research Direction</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Parametric Adaptation</td>
+<td>Adjusting the shape of the activation function using learnable parameters</td>
+</tr>
+<tr class="even">
+<td>Structural Adaptation</td>
+<td>Dynamically constructing the activation function by combining multiple basis functions or changing the network structure</td>
+</tr>
+<tr class="odd">
+<td>Input-based Adaptation</td>
+<td>Changing or mixing the activation function based on the characteristics of the input data</td>
+</tr>
+<tr class="even">
+<td>Mixture of Experts (MoE)</td>
+<td>Defining multiple expert activation functions and dynamically determining their weights for each input data</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Idea:</strong> Use NAS to automatically explore the activation function <em>structure</em> that is optimized for data and tasks.</li>
+<li><strong>Approach:</strong>
+<ul>
+<li><strong>Search Space:</strong>
+<ul>
+<li>Define basic operations (linear transformation, exponential function, logarithmic function, trigonometric function, etc.)</li>
+<li>Define various activation function candidates that can be combined with operations</li>
+</ul></li>
+<li><strong>Search Strategy:</strong>
+<ul>
+<li>Reinforcement Learning</li>
+<li>Evolutionary Algorithm</li>
+<li>Differentiable Architecture Search (DARTS)</li>
+</ul></li>
+<li><strong>Performance Estimation:</strong>
+<ul>
+<li>Train a model containing the searched activation function and evaluate its performance on the validation dataset</li>
+</ul></li>
+</ul></li>
+<li><strong>Research Tasks:</strong>
+<ul>
+<li><strong>Efficient Search Space Design:</strong> Define a search space that is not too large but includes sufficiently diverse activation functions</li>
+<li><strong>Reducing Computational Cost:</strong> Develop efficient search strategies and performance evaluation methods, as NAS has a high computational cost</li>
+</ul></li>
+</ul>
+</section>
+<section id="integration-of-physicalbiological-information" class="level5">
+<h5 class="anchored" data-anchor-id="integration-of-physicalbiological-information">2.3 Integration of Physical/Biological Information</h5>
+<ul>
+<li><p><strong>Idea:</strong> Utilize domain knowledge from physics, biology, etc. to impose constraints or prior knowledge on the design of activation functions.</p></li>
+<li><p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Physical Models:</strong> When modeling a specific physical system, reflect the system’s differential equations in the activation function</li>
+<li><strong>Neural Science:</strong> Design activation functions that mimic the behavior of real neurons (e.g., spiking neuron model)</li>
+</ul></li>
+<li><p><strong>Research Tasks:</strong></p>
+<ul>
+<li><strong>Effective Integration of Domain Knowledge:</strong> Develop methodologies for reflecting domain knowledge in the design of activation functions</li>
+<li><strong>Generalization Performance:</strong> Verify whether activation functions specialized for a specific domain work well in other domains</li>
+</ul></li>
+</ul>
+</section>
+<section id="strengthening-theoretical-analysis" class="level5">
+<h5 class="anchored" data-anchor-id="strengthening-theoretical-analysis">2.4 Strengthening Theoretical Analysis</h5>
+<ul>
+<li><strong>Expressive Power:</strong> Analyze how much more powerful the expressive power of adaptive activation functions is compared to existing activation functions</li>
+<li><strong>Optimization Landscape:</strong> Analyze how adaptive activation functions change the loss function surface and what impact this has on learning speed and stability</li>
+<li><strong>Generalization Performance:</strong> Analyze whether adaptive activation functions prevent overfitting and improve generalization performance</li>
+</ul>
+</section>
+</section>
+<section id="conclusion-and-suggestions" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion-and-suggestions">3. Conclusion and Suggestions</h4>
+<p>Adaptive activation functions are a promising research area that can improve the performance of deep learning models. However, the following tasks remain:</p>
+<ul>
+<li><strong>Computational Complexity:</strong> Adaptive activation functions generally have higher computational costs than fixed activation functions.</li>
+<li><strong>Interpretability:</strong> As the learned activation function becomes more complex, it can be difficult to interpret the model.</li>
+<li><strong>Overfitting Risk:</strong> Activation functions that are too flexible may overfit the training data.</li>
+</ul>
+<p>In future research, it is essential to develop adaptive activation functions that are more efficient, interpretable, and have better generalization performance while addressing these challenges.</p>
+</section>
+</section>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="practice-problems" class="level2">
+<h2 class="anchored" data-anchor-id="practice-problems">Practice Problems</h2>
+<section id="basic-problems" class="level3">
+<h3 class="anchored" data-anchor-id="basic-problems">4.2.1 Basic Problems</h3>
+<ol type="1">
+<li><p>Write the formulas for Sigmoid, Tanh, ReLU, Leaky ReLU, GELU, and Swish functions and draw their graphs using matplotlib or Desmos.</p>
+<ul>
+<li><strong>Note:</strong> Clearly understand the definition and characteristics of each function and compare them visually through graphs.</li>
+</ul></li>
+<li><p>Find the derivatives (differential) of each activation function and draw their graphs.</p>
+<ul>
+<li><strong>Note:</strong> Derivatives are used to calculate gradients in the backpropagation process. Understand the differentiability and gradient characteristics of each function.</li>
+</ul></li>
+<li><p>Train a neural network composed only of linear transformations without activation functions using the FashionMNIST dataset, and measure its test accuracy. (Use the SimpleNetwork implemented in Chapter 1)</p>
+<ul>
+<li><strong>Note:</strong> A neural network without activation functions cannot express non-linearity, so it has limitations in solving complex problems. Confirm this through experiments.</li>
+</ul></li>
+<li><p>Compare the results obtained from problem 3 with those of a neural network using the ReLU activation function and explain the role of activation functions.</p>
+<ul>
+<li><strong>Note:</strong> Compare the output values, gradients, and inactive neurons for each layer with and without activation functions to explain their roles.</li>
+</ul></li>
+</ol>
+</section>
+<section id="applied-problems" class="level3">
+<h3 class="anchored" data-anchor-id="applied-problems">4.2.2 Applied Problems</h3>
+<ol type="1">
+<li><p>Implement PReLU, TeLU, and STAF activation functions in PyTorch (inherit from nn.Module).</p>
+<ul>
+<li><strong>Note:</strong> Refer to the definition of each function and implement the <code>forward</code> method. If necessary, define learnable parameters using <code>nn.Parameter</code>.</li>
+</ul></li>
+<li><p>Train a neural network that includes the previously implemented activation functions using the FashionMNIST dataset and compare their test accuracies.</p>
+<ul>
+<li><strong>Note:</strong> Compare the performance of each activation function and analyze which one is more suitable for the FashionMNIST dataset.</li>
+</ul></li>
+<li><p>For each activation function, visualize the distribution of gradients during training and measure the ratio of “dead neurons”. (Use functions implemented in Chapter 1)</p>
+<ul>
+<li><strong>Note:</strong> Visualize the gradient distribution for each activation function by comparing initial values with trained values and layer-by-layer.</li>
+</ul></li>
+<li><p>Investigate methods to alleviate the “dead neuron” problem and explain their principles. (Leaky ReLU, PReLU, ELU, SELU, etc.)</p>
+<ul>
+<li><strong>Note:</strong> Explain how each method solves the problems of ReLU and discuss their advantages and disadvantages.</li>
+</ul></li>
+</ol>
+</section>
+<section id="advanced-problems" class="level3">
+<h3 class="anchored">4.2.3 Advanced Problems</h3>
+<ol type="1">
+<li><p>Implement the Rational activation function in PyTorch and explain its characteristics and pros and cons.</p>
+<ul>
+<li><strong>Note:</strong> The Rational activation function is based on rational functions (fractional functions) and may show superior performance to other activation functions in certain problems.</li>
+</ul></li>
+<li><p>Implement B-spline or Fourier-based activation functions in PyTorch and explain their characteristics and pros and cons.</p>
+<ul>
+<li><strong>Note:</strong> B-spline activation functions can express locally controlled flexible curves, while Fourier-based activation functions are useful for modeling periodic patterns.</li>
+</ul></li>
+<li><p>Propose a new activation function of your own and evaluate its performance compared to existing activation functions (with experimental results and theoretical justification).</p>
+<ul>
+<li><strong>Note:</strong> When designing a new activation function, consider the ideal conditions for an activation function (non-linearity, differentiability, prevention of gradient disappearance/explosion, computational efficiency, etc.).</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Click to view contents (answer)">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click to view contents (answer)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<section id="exercise-answers" class="level2 callout-body-container callout-body">
+<h2 class="anchored" data-anchor-id="exercise-answers">Exercise Answers</h2>
+<section id="basic-problems-1" class="level3">
+<h3 class="anchored" data-anchor-id="basic-problems-1">4.2.1 Basic Problems</h3>
+<ol type="1">
+<li><p><strong>Formulas and graphs of Sigmoid, Tanh, ReLU, Leaky ReLU, GELU, Swish functions:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Activation Function</th>
+<th style="text-align: left;">Formula</th>
+<th style="text-align: left;">Graph (Reference)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sigmoid</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma(x) = \frac{1}{1 + e^{-x}}\)</span></td>
+<td style="text-align: left;"><a href="https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/320px-Logistic-curve.svg.png">Sigmoid</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tanh</td>
+<td style="text-align: left;"><span class="math inline">\(tanh(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}\)</span></td>
+<td style="text-align: left;"><a href="https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Hyperbolic_Tangent.svg/320px-Hyperbolic_Tangent.svg.png">Tanh</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ReLU</td>
+<td style="text-align: left;"><span class="math inline">\(ReLU(x) = max(0, x)\)</span></td>
+<td style="text-align: left;"><a href="https://www.google.com/search?q=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Activation_rectified_linear.svg/320px-Activation_rectified_linear.svg.png">ReLU</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Leaky ReLU</td>
+<td style="text-align: left;"><span class="math inline">\(LeakyReLU(x) = max(ax, x)\)</span> , (<span class="math inline">\(a\)</span> is a small constant, usually 0.01)</td>
+<td style="text-align: left;">(Leaky ReLU has a small slope(<span class="math inline">\(a\)</span>) in the part where x &lt; 0 of the ReLU graph)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GELU</td>
+<td style="text-align: left;"><span class="math inline">\(GELU(x) = x\Phi(x)\)</span> , (<span class="math inline">\(\Phi(x)\)</span> is the Gaussian cumulative distribution function)</td>
+<td style="text-align: left;"><a href="https://www.google.com/search?q=https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.34.27_PM_fufBJEx.png">GELU</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Swish</td>
+<td style="text-align: left;"><span class="math inline">\(Swish(x) = x \cdot sigmoid(\beta x)\)</span> , (<span class="math inline">\(\beta\)</span> is a constant or learning parameter)</td>
+<td style="text-align: left;"><a href="https://www.google.com/search?q=https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-22_at_3.35.27_PM_d7LqDQj.png">Swish</a></td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Derivatives of each activation function:</strong> | Activation Function | Derivative | | :———- | :—————————————————————————————— | | Sigmoid | <span class="math inline">\(\sigma'(x) = \sigma(x)(1 - \sigma(x))\)</span> | | Tanh | <span class="math inline">\(tanh'(x) = 1 - tanh^2(x)\)</span> | | ReLU | <span class="math inline">\(ReLU'(x) = \begin{cases} 0, &amp; x &lt; 0 \\ 1, &amp; x &gt; 0 \end{cases}\)</span> | | Leaky ReLU | <span class="math inline">\(LeakyReLU'(x) = \begin{cases} a, &amp; x &lt; 0 \\ 1, &amp; x &gt; 0 \end{cases}\)</span> | | GELU | <span class="math inline">\(GELU'(x) = \Phi(x) + x\phi(x)\)</span>, (<span class="math inline">\(\phi(x)\)</span> is the Gaussian probability density function) | | Swish | <span class="math inline">\(Swish'(x) = sigmoid(\beta x) + x \cdot sigmoid(\beta x)(1 - sigmoid(\beta x))\beta\)</span> |</p></li>
+<li><p><strong>FashionMNIST, Training and Accuracy Measurement of Neural Network without Activation Function:</strong></p>
+<ul>
+<li>A neural network without an activation function can only perform linear transformations, so it cannot model complex nonlinear relationships. Therefore, it shows low accuracy in complex datasets like FashionMNIST (around 10% accuracy).</li>
+</ul></li>
+<li><p><strong>Comparison with ReLU Activation Function and Explanation of its Role:</strong></p>
+<ul>
+<li>A neural network using the ReLU activation function can achieve much higher accuracy by introducing nonlinearity (over 80% accuracy).</li>
+<li><strong>Layer-by-Layer Output:</strong> Without an activation function, the distribution of layer-by-layer output values shows only simple scale changes, but with ReLU, the distribution changes as negative values are suppressed to 0.</li>
+<li><strong>Gradient:</strong> Without an activation function, the gradient is simply propagated, but with ReLU, the gradient becomes 0 for negative inputs and does not propagate.</li>
+<li><strong>Dead Neurons:</strong> These do not occur when there is no activation function but can occur when using ReLU.</li>
+<li><strong>Role Summary:</strong> The activation function gives nonlinearity to the neural network, allowing it to approximate complex functions, and controls the gradient flow to aid in learning.</li>
+</ul></li>
+</ol>
+</section>
+<section id="application-problems" class="level3">
+<h3 class="anchored" data-anchor-id="application-problems">4.2.2 Application Problems</h3>
+<ol type="1">
+<li><p><strong>PReLU, TeLU, STAF PyTorch Implementation:</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PReLU(nn.Module):</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_parameters<span class="op">=</span><span class="dv">1</span>, init<span class="op">=</span><span class="fl">0.25</span>):</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha <span class="op">=</span> nn.Parameter(torch.full((num_parameters,), init))</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> torch.<span class="bu">max</span>(torch.zeros_like(x), x) <span class="op">+</span> <span class="va">self</span>.alpha <span class="op">*</span> torch.<span class="bu">min</span>(torch.zeros_like(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>class TeLU(nn.Module): def <strong>init</strong>(self, alpha=1.0): super().__init__() self.alpha = nn.Parameter(torch.tensor(alpha))</p>
+<p>def forward(self, x): return torch.where(x &gt; 0, x, self.alpha * (torch.exp(x) - 1))</p></li>
+</ol>
+<p>class STAF(nn.Module): def <strong>init</strong>(self, tau=25): super().__init__() self.tau = tau self.C = nn.Parameter(torch.randn(tau)) self.Omega = nn.Parameter(torch.randn(tau)) self.Phi = nn.Parameter(torch.randn(tau))</p>
+<pre><code>def forward(self, x):
+    result = torch.zeros_like(x)
+    for i in range(self.tau):
+        result += self.C[i] * torch.sin(self.Omega[i] * x + self.Phi[i])
+    return result</code></pre>
+<ol start="2" type="1">
+<li><p><strong>FashionMNIST, Activation Function Comparison Experiment:</strong></p>
+<ul>
+<li>Train and compare the test accuracy of neural networks including PReLU, TeLU, and STAF.</li>
+<li>The experimental results show that adaptive activation functions (PReLU, TeLU, STAF) tend to have higher accuracy than ReLU (in the order of STAF &gt; TeLU &gt; PReLU &gt; ReLU).</li>
+</ul></li>
+<li><p><strong>Gradient Distribution Visualization, “Dead Neuron” Ratio Measurement:</strong></p>
+<ul>
+<li>ReLU has a gradient of 0 for negative inputs, while PReLU, TeLU, and STAF propagate small gradient values even for negative inputs.</li>
+<li>The “dead neuron” ratio is the highest in ReLU and lower in PReLU, TeLU, and STAF.</li>
+</ul></li>
+<li><p><strong>Methods and Principles to Alleviate the “Dead Neuron” Problem:</strong></p>
+<ul>
+<li><strong>Leaky ReLU:</strong> Allows a small slope for negative inputs to prevent neurons from being completely deactivated.</li>
+<li><strong>PReLU:</strong> Makes the slope of Leaky ReLU a learnable parameter to find the optimal slope based on the data.</li>
+<li><strong>ELU, SELU:</strong> Have non-zero values in the negative region and a smooth curve shape, alleviating the gradient vanishing problem and stabilizing learning.</li>
+</ul></li>
+</ol>
+</section>
+<section id="advanced-topics" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-topics">4.2.3 Advanced Topics</h3>
+<ol type="1">
+<li><p><strong>Rational Activation Function PyTorch Implementation, Characteristics, and Advantages/Disadvantages:</strong></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rational(nn.Module):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, numerator_coeffs, denominator_coeffs):</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numerator_coeffs <span class="op">=</span> nn.Parameter(numerator_coeffs)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.denominator_coeffs <span class="op">=</span> nn.Parameter(denominator_coeffs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>def forward(self, x): numerator = torch.polyval(self.numerator_coeffs, x) # polynomial calculation denominator = 1 + torch.polyval(self.denominator_coeffs, torch.abs(x)) # absolute value and polynomial return numerator / denominator</p></li>
+</ol>
+<ul>
+<li><strong>Characteristics:</strong> Rational function (fractional function) form. The numerator and denominator are expressed as polynomials.</li>
+<li><strong>Advantages:</strong> Flexible function form. Superior performance to other activation functions in certain problems.</li>
+<li><strong>Disadvantages:</strong> Caution when the denominator is 0. Hyperparameter (polynomial coefficient) tuning required.</li>
+</ul>
+<ol start="2" type="1">
+<li><p><strong>B-spline or Fourier-based activation function PyTorch implementation, characteristics, and advantages/disadvantages:</strong></p>
+<ul>
+<li><p><strong>B-spline activation function:</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> BSpline</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BSplineActivation(nn.Module):</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, knots, degree<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.knots <span class="op">=</span> knots</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.degree <span class="op">=</span> degree</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.coeffs <span class="op">=</span> nn.Parameter(torch.randn(<span class="bu">len</span>(knots) <span class="op">+</span> degree <span class="op">-</span> <span class="dv">1</span>)) <span class="co"># control points</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># B-Spline calculation</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> BSpline(<span class="va">self</span>.knots, <span class="va">self</span>.coeffs.detach().numpy(), <span class="va">self</span>.degree) <span class="co"># separate coefficients</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        spline_values <span class="op">=</span> torch.tensor(b(x.detach().numpy()), dtype<span class="op">=</span>torch.float32) <span class="co"># input x into B-Spline</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> spline_values <span class="op">*</span> <span class="va">self</span>.coeffs.mean() <span class="co"># detach, numpy() or error</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>         <span class="co"># detach, numpy() or error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Characteristics:</strong> Locally controlled flexible curve. Shape adjusted by knots and degree.</p></li>
+<li><p><strong>Advantages:</strong> Smooth function expression. Local feature learning.</p></li>
+<li><p><strong>Disadvantages:</strong> Performance affected by knot setting. Increased computational complexity.</p></li>
+</ul></li>
+<li><p><strong>Proposal of a new activation function and performance evaluation:</strong></p>
+<ul>
+<li>(Example) <strong>Activation function combining Swish and GELU</strong>:</li>
+</ul>
+<pre><code>```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+class SwiGELU(nn.Module): # Swish + GELU
+  def forward(self, x):
+    return 0.5 * (x * torch.sigmoid(x) + F.gelu(x))
+```
+
+SwiGELU combines the smoothness of Swish and the regularization effect of GELU.</code></pre>
+<ul>
+<li>Experimental design and performance evaluation: Comparison with existing activation functions on benchmark datasets such as FashionMNIST. (Experimental results omitted)</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</section>
+<section id="references-1" class="level3">
+<h3 class="anchored" data-anchor-id="references-1">References</h3>
+<ol type="1">
+<li><strong>Deep Learning (Goodfellow, Bengio, Courville, 2016)</strong>: Chapter 6.3 (Activation Functions) <a href="https://www.deeplearningbook.org/">https://www.deeplearningbook.org/</a>
+<ul>
+<li>A textbook that covers comprehensive content about deep learning. It includes basic information about activation functions and other important concepts in deep learning.</li>
+</ul></li>
+<li><strong>Understanding the difficulty of training deep feedforward neural networks (Glorot &amp; Bengio, 2010)</strong> <a href="http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf">http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf</a>
+<ul>
+<li>A paper that analyzes the gradient vanishing problem of Sigmoid and Tanh activation functions and proposes the Xavier initialization method. It is an important resource for understanding the difficulties of training deep neural networks.</li>
+</ul></li>
+<li><strong>Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification (He et al., 2015)</strong> <a href="https://arxiv.org/abs/1502.01852">https://arxiv.org/abs/1502.01852</a>
+<ul>
+<li>A paper that proposes the ReLU activation function, PReLU activation function, and He initialization method. It helps to deepen understanding of the ReLU series activation functions widely used in modern deep learning.</li>
+</ul></li>
+<li><strong>Searching for Activation Functions (Ramachandran et al., 2017)</strong> <a href="https://arxiv.org/abs/1710.05941">https://arxiv.org/abs/1710.05941</a>
+<ul>
+<li>A paper that discovers the Swish activation function through neural architecture search (NAS). It provides ideas for exploring new activation functions.</li>
+</ul></li>
+<li><strong>STAF: A Sinusoidal Trainable Activation Function for Deep Learning (Jeon &amp; Cho, 2025)</strong> <a href="https://arxiv.org/abs/2405.13607">https://arxiv.org/abs/2405.13607</a>
+<ul>
+<li>A recent (2025) paper presented at ICLR, which proposes STAF, a Fourier series-based trainable activation function. It helps to understand the latest research trends in adaptive activation functions.</li>
+</ul></li>
+</ol>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
